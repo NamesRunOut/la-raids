@@ -53,6 +53,11 @@ const Home = () => {
     return (
         <Wrapper>
             <List/>
+            Player
+                char1
+                char2
+
+            drag and drop chars
         </Wrapper>
     );
 }

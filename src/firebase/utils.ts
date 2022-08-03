@@ -86,7 +86,7 @@ export interface signups{
 export async function addPlayer(db: Firestore, player: player){
     try {
         const docRef = await addDoc(collection(db, "players"), player);
-        localStorage.setItem('playerId', JSON.stringify(docRef.id))
+        // localStorage.setItem('playerId', JSON.stringify(docRef.id))
         console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);

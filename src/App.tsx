@@ -23,7 +23,7 @@ const App = () => {
           <Navbar>
               <PageLink to={"/"}>Home</PageLink>
               <PageLink to={"/players"}>All players</PageLink>
-              <PageLink to={"/addPlayer"}>Add player</PageLink>
+              <PageLink to={"/addPlayer"}>Add/Edit players</PageLink>
           </Navbar>
           <Routes>
               <Route path="/" element={<Home />} />
