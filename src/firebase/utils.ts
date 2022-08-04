@@ -87,6 +87,7 @@ export async function addPlayer(db: Firestore, player: player){
     try {
         const docRef = await addDoc(collection(db, "players"), player);
         // localStorage.setItem('playerId', JSON.stringify(docRef.id))
+        alert("Player added successfully")
         console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);

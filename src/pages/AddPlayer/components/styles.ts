@@ -32,6 +32,7 @@ export const Save = styled.div`
   border-radius: 1rem;
   width: max-content;
   font-size: 1rem;
+  margin-top: 1rem;
   
   :hover {
     background: #327959;

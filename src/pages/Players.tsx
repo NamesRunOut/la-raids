@@ -64,11 +64,11 @@ const Player: React.FC <{player: player}> = ({player}) => {
         <PlayerTile>
             <PlayerName>{player.name}</PlayerName>
             <PlayerCharacters>
-                {player.characters.map(char =>
+                {player.characters?.map(char =>
                     <PlayerCharacter>
                         <div>{i++}.</div>
                         <CharName>{char.name}</CharName>
-                        <CharClass style={{color: getClassData(char.class).color || "white"}}>{char.class}</CharClass>
+                        <CharClass style={{color: getClassData(char.class)?.color || "white"}}>{char.class}</CharClass>
                         <CharIlvl>{char.ilvl}</CharIlvl>
                     </PlayerCharacter>)}
             </PlayerCharacters>
@@ -86,8 +86,6 @@ const Players = () => {
             setPlayerId(id);
         }
     }, [playerId]);
-
-    console.log(players)
 
     useEffect(() => {
         getPlayers(db)

@@ -59,7 +59,7 @@ const EditPlayer = () => {
 
                 const playersRef = collection(db, "players");
                 setDoc(doc(playersRef, pid), tmp)
-                    .then(r => console.log("Changes saved"))
+                    .then(r => alert("Changes saved"))
                     .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
@@ -122,7 +122,6 @@ const EditPlayer = () => {
     return (
         <Wrapper>
             <Header>
-                <Save onClick={saveChanges}>Save changes</Save>
                 <PlayerSelect value={player.origName} onChange={changePlayer}>
                     {allPlayers.map((p: any) => <option key={p.origName} value={p.name}>{p.name}</option>)}
                 </PlayerSelect>
@@ -132,22 +131,24 @@ const EditPlayer = () => {
             <Header>Characters:</Header>
             <Add onClick={addCharacter}>Add character</Add>
 
-            <Character>
-                <div style={{width: "70px"}}/>
+            {player.characters.length > 0 && <Character>
                 <div style={{width: "110px"}}/>
                 <div style={{width: "150px"}}>Character name</div>
                 <div style={{width: "150px"}}>Item level</div>
-            </Character>
+                <div style={{width: "70px"}}/>
+            </Character>}
             {player.characters?.map((char: any) =>
                 <Character key={char.id}>
-                    <Remove onClick={() => removeCharacter(char)}>remove</Remove>
                     <select value={char.class || character_class[character_class.Berserker]} onChange={(e) => changeClass(e, char.id)}>
                         {Object.keys(classData).map((spec: any) => <option key={char.name+spec} value={spec}>{spec}</option>)}
                     </select>
                     <input value={char.name} onChange={e => changeName(e, char.id)} />
                     <input type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id)} />
+                    <Remove onClick={() => removeCharacter(char)}>remove</Remove>
                 </Character>
             )}
+
+            <Save onClick={saveChanges}>Save changes</Save>
         </Wrapper>
     );
 }
