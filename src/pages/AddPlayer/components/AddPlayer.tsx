@@ -3,18 +3,10 @@ import {addPlayer as addPlayerToDB, character_class} from "../../../firebase/uti
 import {db} from "../../../firebase/init";
 import styled from "styled-components";
 import {classData} from "../../../data/classData";
+import {Add, Character, Header, Input, Remove, Save } from "./styles";
 
 const Wrapper = styled.div`
-  padding: 2rem;
   color: white;
-`
-
-const Add = styled.div`
-  color: green;
-`
-
-const Remove = styled.div`
-  color: red;
 `
 
 const AddPlayer = () => {
@@ -23,8 +15,7 @@ const AddPlayer = () => {
         characters: []
     })
 
-    const addPlayer = () => {
-        console.log(player.characters)
+    const saveChanges = () => {
         let tmp = player
         for (let i=0;i<tmp.characters.length;i++){
             tmp.characters[i] = {
@@ -83,20 +74,27 @@ const AddPlayer = () => {
 
     return (
         <Wrapper>
-            <div onClick={addPlayer}>Add player</div>
-            Discord name <input value={player.name} onChange={e => setPlayer({...player, name: e.target.value})} />
-            Characters:
+            <Save onClick={saveChanges}>Save changes</Save>
+            <Header>Discord name: <Input value={player.name} onChange={e => setPlayer({...player, name: e.target.value})} /></Header>
+
+            <Header>Characters:</Header>
             <Add onClick={addCharacter}>Add character</Add>
 
+            <Character>
+                <div style={{width: "70px"}}/>
+                <div style={{width: "110px"}}/>
+                <div style={{width: "150px"}}>Character name</div>
+                <div style={{width: "150px"}}>Item level</div>
+            </Character>
             {player.characters.map((char: any) =>
-                <div key={char.id}>
+                <Character key={char.id}>
                     <Remove onClick={() => removeCharacter(char)}>remove</Remove>
                     <select value={char.class || character_class[character_class.Berserker]} onChange={(e) => changeClass(e, char.id)}>
                         {Object.keys(classData).map((spec: any) => <option key={`${char.id}-${spec}`} value={spec}>{spec}</option>)}
                     </select>
                     <input value={char.name} onChange={e => changeName(e, char.id)} />
                     <input type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id)} />
-                </div>
+                </Character>
             )}
         </Wrapper>
     );

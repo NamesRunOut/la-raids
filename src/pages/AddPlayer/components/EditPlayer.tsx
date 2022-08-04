@@ -5,18 +5,10 @@ import styled from "styled-components";
 import {player as playerI} from "../../../firebase/utils";
 import {collection, doc, Firestore, getDoc, getDocs, query, setDoc, where} from "firebase/firestore";
 import {classData} from "../../../data/classData";
+import {Add, Character, Header, Input, PlayerSelect, Remove, Save} from "./styles";
 
 const Wrapper = styled.div`
-  padding: 2rem;
   color: white;
-`
-
-const Add = styled.div`
-  color: green;
-`
-
-const Remove = styled.div`
-  color: red;
 `
 
 const getPlayerId = async (db: Firestore, playerName: string) => {
@@ -129,24 +121,32 @@ const EditPlayer = () => {
 
     return (
         <Wrapper>
-            <select value={player.origName} onChange={changePlayer}>
-                {allPlayers.map((p: any) => <option key={p.origName} value={p.name}>{p.name}</option>)}
-            </select>
+            <Header>
+                <Save onClick={saveChanges}>Save changes</Save>
+                <PlayerSelect value={player.origName} onChange={changePlayer}>
+                    {allPlayers.map((p: any) => <option key={p.origName} value={p.name}>{p.name}</option>)}
+                </PlayerSelect>
+            </Header>
 
-            <div onClick={saveChanges}>Save changes</div>
-            Discord name <input value={player.name} onChange={e => setPlayer({...player, name: e.target.value})} />
-            Characters:
+            <Header>Discord name <Input value={player.name} onChange={e => setPlayer({...player, name: e.target.value})} /></Header>
+            <Header>Characters:</Header>
             <Add onClick={addCharacter}>Add character</Add>
 
+            <Character>
+                <div style={{width: "70px"}}/>
+                <div style={{width: "110px"}}/>
+                <div style={{width: "150px"}}>Character name</div>
+                <div style={{width: "150px"}}>Item level</div>
+            </Character>
             {player.characters?.map((char: any) =>
-                <div key={char.id}>
+                <Character key={char.id}>
                     <Remove onClick={() => removeCharacter(char)}>remove</Remove>
                     <select value={char.class || character_class[character_class.Berserker]} onChange={(e) => changeClass(e, char.id)}>
-                        {Object.keys(classData).map((spec: any) => <option key={`${char.name}-${spec}`} value={spec}>{spec}</option>)}
+                        {Object.keys(classData).map((spec: any) => <option key={char.name+spec} value={spec}>{spec}</option>)}
                     </select>
                     <input value={char.name} onChange={e => changeName(e, char.id)} />
                     <input type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id)} />
-                </div>
+                </Character>
             )}
         </Wrapper>
     );
