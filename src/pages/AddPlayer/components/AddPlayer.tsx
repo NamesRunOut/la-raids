@@ -1,7 +1,8 @@
-import styled from "styled-components";
 import React, {useEffect, useState} from "react";
-import {character, character_class, getPlayers, player, addPlayer as addPlayerToDB} from "../firebase/utils";
-import {db} from "../firebase/init";
+import {addPlayer as addPlayerToDB, character_class} from "../../../firebase/utils";
+import {db} from "../../../firebase/init";
+import styled from "styled-components";
+import {classData} from "../../../data/classData";
 
 const Wrapper = styled.div`
   padding: 2rem;
@@ -21,10 +22,6 @@ const AddPlayer = () => {
         name: "",
         characters: []
     })
-
-    useEffect(() => {
-
-    }, []);
 
     const addPlayer = () => {
         console.log(player.characters)
@@ -47,7 +44,7 @@ const AddPlayer = () => {
                 {
                     id: player.characters.length === 0 ? 0 : player.characters[player.characters.length-1].id+1,
                     name: "",
-                    class: character_class.Berserker,
+                    class: character_class[character_class.Berserker],
                     ilvl: 0
                 }
             ]})
@@ -66,7 +63,7 @@ const AddPlayer = () => {
     const changeClass = (e: any, i: number) => {
         let tmp = player.characters
         let idx = tmp.findIndex((el: { id: number; }) => el.id === i)
-        tmp[idx].class = parseInt(e.target.value)
+        tmp[idx].class = e.target.value
         setPlayer({...player, characters: [...tmp]})
     }
 
@@ -92,10 +89,10 @@ const AddPlayer = () => {
             <Add onClick={addCharacter}>Add character</Add>
 
             {player.characters.map((char: any) =>
-                <div>
+                <div key={char.id}>
                     <Remove onClick={() => removeCharacter(char)}>remove</Remove>
-                    <select value={player.characters[player.characters.findIndex((el: { id: number; }) => el.id === char.id)]?.class || character_class.Berserker} onChange={(e) => changeClass(e, char.id)}>
-                        {(Object.keys(character_class)).map((spec: any) => <option value={spec}>{character_class[spec]}</option>)}
+                    <select value={char.class || character_class[character_class.Berserker]} onChange={(e) => changeClass(e, char.id)}>
+                        {Object.keys(classData).map((spec: any) => <option key={`${char.id}-${spec}`} value={spec}>{spec}</option>)}
                     </select>
                     <input value={char.name} onChange={e => changeName(e, char.id)} />
                     <input type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id)} />

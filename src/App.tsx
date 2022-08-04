@@ -3,7 +3,7 @@ import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home";
 import Players from "./pages/Players";
 import styled from "styled-components";
-import AddPlayer from "./pages/AddPlayer";
+import AddOrEdit from "./pages/AddPlayer/AddOrEditPlayer";
 
 const Navbar = styled.nav`
   padding: 0.5rem;
@@ -28,7 +28,7 @@ const App = () => {
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="players" element={<Players />} />
-              <Route path="addPlayer" element={<AddPlayer />} />
+              <Route path="addPlayer" element={<AddOrEdit />} />
             {/*<Route path="player/:playerId" element={<Player />} />*/}
             {/*<Route path="new" element={<NewTeamForm />} />*/}
             {/*<Route index element={<LeagueStandings />} />*/}

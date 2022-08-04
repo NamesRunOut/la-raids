@@ -1,4 +1,4 @@
-import {addDoc, collection, Firestore, getDocs} from "firebase/firestore";
+import {addDoc, collection, doc, Firestore, getDocs, setDoc} from "firebase/firestore";
 import {classData} from "../data/classData";
 
 export async function getPlayers(db: Firestore) {
@@ -92,3 +92,14 @@ export async function addPlayer(db: Firestore, player: player){
         console.error("Error adding document: ", e);
     }
 }
+
+// export async function addPlayer(db: Firestore, player: player){
+//     try {
+//         const playersRef = collection(db, "players");
+//         const docRef = await setDoc(doc(playersRef, player.name), player);
+//         // localStorage.setItem('playerId', JSON.stringify(docRef.id))
+//         console.log("Document written");
+//     } catch (e) {
+//         console.error("Error adding document: ", e);
+//     }
+// }
