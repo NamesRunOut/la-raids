@@ -45,27 +45,30 @@ const PlayerCharacter = styled.div`
   margin: 0.5rem 0;
   padding: 0.5rem;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: max-content auto 1fr auto;
 `
 
 const CharName = styled.div`
-  margin: auto;
   padding: 0 0.5rem;
 `
 
-const CharClass = styled.div``
+const CharClass = styled.div`
+  margin: auto;
+`
 
 const CharIlvl = styled.div``
 
 const Player: React.FC <{player: player}> = ({player}) => {
+    let i=1
     return(
         <PlayerTile>
             <PlayerName>{player.name}</PlayerName>
             <PlayerCharacters>
                 {player.characters.map(char =>
                     <PlayerCharacter>
-                        <CharClass style={{color: getClassData(char.class).color || "white"}}>{char.class}</CharClass>
+                        <div>{i++}.</div>
                         <CharName>{char.name}</CharName>
+                        <CharClass style={{color: getClassData(char.class).color || "white"}}>{char.class}</CharClass>
                         <CharIlvl>{char.ilvl}</CharIlvl>
                     </PlayerCharacter>)}
             </PlayerCharacters>

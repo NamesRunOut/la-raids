@@ -9,8 +9,23 @@ const Navbar = styled.nav`
   padding: 0.5rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
+  gap: 0.5rem;
+
+  a {
+    text-decoration: none;
+    color: #58b8ce;
+    background: rgba(255, 255, 255, 0.1);
+    width: max-content;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+
+    :hover {
+      color: #327779;
+    }
+  }
 `
 
 const PageLink = styled(Link)`
