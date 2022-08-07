@@ -5,32 +5,29 @@ import {getClassData, getPlayers, getSignups, player, signups} from "../firebase
 import {db} from "../firebase/init";
 
 const Wrapper = styled.div`
-  padding: 2rem;
-`
-
-const PlayersGrid = styled.div`
-  display: grid;
-  margin: auto;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  
-  @media(max-width: 1023px){
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media(max-width: 567px){
-    grid-template-columns: 1fr;
-  }
-`
-
-const PlayerTile = styled.div`
-  border-radius: 1rem;
-  background: rgba(255,255,255,0.69);
-  margin: 1rem;
   padding: 1rem;
 `
 
+const PlayersGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+`
+
+const PlayerTile = styled.div`
+  flex: 1 1 20%;
+  border-radius: 0.5rem;
+  background: rgba(255,255,255,0.69);
+  margin: 0.25rem;
+  padding: 0.25rem;
+
+  @media (max-width: 468px){
+    flex: 0 1 100%;
+  }
+`
+
 const PlayerName = styled.h3`
-  padding: 0.5rem;
+  padding: 0.25rem;
   margin: 0;
 `
 
@@ -40,16 +37,16 @@ const PlayerCharacters = styled.div`
 `
 
 const PlayerCharacter = styled.div`
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   background: rgba(231, 218, 218, 0.69);
-  margin: 0.5rem 0;
-  padding: 0.5rem;
+  margin: 0.25rem 0;
+  padding: 0.25rem;
   display: grid;
   grid-template-columns: max-content auto 1fr auto;
 `
 
 const CharName = styled.div`
-  padding: 0 0.5rem;
+  padding: 0 0.25rem;
 `
 
 const CharClass = styled.div`

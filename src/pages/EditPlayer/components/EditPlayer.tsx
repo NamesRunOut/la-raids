@@ -29,13 +29,16 @@ const EditPlayer = () => {
     useEffect(() => {
         getPlayers(db)
             .then(r => {
-                for (let i=0;i<r.length;i++){
-                    for (let j=0;i<r[i].characters.length;i++) {
-                        r[i].characters[j].id = j
+                let result = []
+                for (let [key, value] of Object.entries(r)) {
+                    let tmp = value
+                    for (let i=0;i<value.characters.length;i++) {
+                        tmp.characters[i].id = i
                     }
+                    result.push(tmp)
                 }
-                if (r.length > 0) setPlayer({...r[0], origName: r[0].name})
-                setAllPlayers(r)
+                if (result.length > 0) setPlayer({...result[0], origName: result[0].name})
+                setAllPlayers(result)
             })
             .catch(err => console.log(err))
     }, []);
@@ -78,7 +81,7 @@ const EditPlayer = () => {
                 }
             ]})
     }
-
+    
     const removeCharacter = (char: any) => {
         let tmp = player.characters
         tmp.splice(tmp.findIndex((el: { id: number; }) => el.id === char.id), 1)

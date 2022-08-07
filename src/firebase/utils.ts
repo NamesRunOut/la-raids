@@ -1,4 +1,4 @@
-import {addDoc, collection, doc, Firestore, getDocs, setDoc} from "firebase/firestore";
+import {addDoc, collection, doc, Firestore, getDocs, query, setDoc, where} from "firebase/firestore";
 import {classData} from "../data/classData";
 
 export async function getPlayers(db: Firestore) {
@@ -84,6 +84,19 @@ export interface signups{
 }
 
 export async function addPlayer(db: Firestore, player: player){
+    const q = query(collection(db, "players"), where("name", "==", player.name))
+    const querySnapshot = await getDocs(q)
+    let result = null
+    querySnapshot.forEach((doc: { id: any; data: () => any; }) => {
+        // console.log(doc.id, " => ", doc.data());
+        result = doc.id
+    })
+
+    if (result !== null){
+        alert("A player with this name already exists!")
+        return
+    }
+
     try {
         const docRef = await addDoc(collection(db, "players"), player);
         // localStorage.setItem('playerId', JSON.stringify(docRef.id))
