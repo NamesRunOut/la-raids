@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Signups = styled.div`
+export const Raid = styled.div`
     color: white;
 `
 
@@ -22,4 +22,7 @@ export const Characters = styled.div`
 
 export const Character = styled.div`
     display: flex;
+`
+
+export const Group = styled.div`
 `

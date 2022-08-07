@@ -247,7 +247,7 @@ let signedin = [
     }
 ]
 
-const getRaid = async (db: Firestore, raid: string) => {
+export const getSignup = async (db: Firestore, raid: string) => {
     const raidRef = doc(db, "signups", raid);
     const docSnap = await getDoc(raidRef);
 
@@ -264,43 +264,29 @@ const ManageRaids = () => {
     const [selected, setSelected] = useState(Object.keys(raidData)[0])
 
     useEffect(() => {
-        // TODO tmp for tests
-        // getPlayers(db)
-        //     .then(r => {
-        //         let tmp = {[signedupgroupname]: [], group1: [], group2: [], group3: []}
-        //         let tmp2 = []
-        //         let i=0
-        //         for (let p of r){
-        //             let tc = []
-        //             for (let c of p.characters){
-        //                 tc.push({
-        //                     ...c,
-        //                     playerName: p.name,
-        //                     id: i.toString()
-        //                 })
-        //                 i++
-        //             }
-        //             tmp2.push(tc)
-        //         }
-        //         tmp2 = tmp2.flat()
-        //         //@ts-ignore
-        //         tmp[signedupgroupname] = tmp2
-        //         console.log(tmp)
-        //         // @ts-ignore
-        //         setPlayers(r)
-        //         // @ts-ignore
-        //         setSignups(tmp)
-        //     })
-        //     .catch(err => console.log(err))
-
-        getRaid(db, selected)
+        getSignup(db, selected)
             .then(r => setSignups(r))
             .catch(err => console.log(err))
     }, [selected])
 
+    const clearRaidsAndSignups = async () => {
+        for (let key of Object.keys(raidData)) {
+            await setDoc(doc(db, "signups", key), {
+                comment: "",
+                players: []
+            })
+
+            await setDoc(doc(db, "raids", key), {
+                comment: ""
+            })
+        }
+        setSignups({comment: "", players: []})
+        alert("Data cleared")
+    }
+
     return (<Wrapper>
         <div>General settings</div>
-        <div>Clear assignments and sign ups from all raids</div>
+        <div onClick={clearRaidsAndSignups}>Clear assignments and sign ups from all raids</div>
 
         <hr />
         <div>Individual raid settings</div>
