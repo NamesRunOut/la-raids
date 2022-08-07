@@ -87,6 +87,7 @@ const DragList = ({raid, data}) => {
 
   useEffect(() => {
     let tmp = structuredClone(data.players)
+    tmp.sort(compareIlvl).reverse()
     let raidD = {
       [signedupgroupname]: []
     }
