@@ -19,7 +19,7 @@ const Navbar = styled.nav`
   justify-content: flex-start;
   align-items: center;
   gap: 0.25rem;
-  //background: #151515;
+  background: #151515;
 `
 
 const PageLink = styled(Link)`

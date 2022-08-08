@@ -19,7 +19,7 @@ export const Option = styled.option`
 export const Save = styled.div`
   padding: 0.5rem 1rem;
   background: ${primarybutton};
-  color: ${darktext};
+  color: black;//${darktext};
   font-weight: bold;
   border-radius: 1rem;
   width: max-content;

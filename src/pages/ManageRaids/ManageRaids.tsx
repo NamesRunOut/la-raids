@@ -52,10 +52,9 @@ const ManageRaids = () => {
     }
 
     return (<Wrapper>
-        <SectionTitle>General settings</SectionTitle>
+        <SectionTitle style={{marginTop: "0"}}>General settings</SectionTitle>
         <Action onClick={clearRaidsAndSignups}>Clear assignments and sign ups from all raids</Action>
 
-        <hr />
         <SectionTitle>Individual raid settings</SectionTitle>
 
         <RaidWrapper>

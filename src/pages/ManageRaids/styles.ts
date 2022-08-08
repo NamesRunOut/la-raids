@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import {tilegb} from "../../styles/palette";
+import {darktext, tilegb} from "../../styles/palette";
 
 export const SectionTitle = styled.h3`
-  margin-top: 0;
-  color: black;
+  //margin-top: 0;
+  color: ${darktext};
 `
 
 export const Signups = styled.div`
-  color: black;
+  color: ${darktext};
 `
 
 export const Title = styled.h3`

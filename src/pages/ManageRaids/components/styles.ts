@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
     darktext,
-    dragitembg,
+    dragitembg, lighttext,
     primarybutton,
     primarybuttonhover,
     remove, removehover,
@@ -13,7 +13,7 @@ export const DragItem = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   background: ${dragitembg};
   margin: 0 0 8px 0;
-  color: ${darktext};
+  color: black;//${darktext};
 //   gap: 0.25rem;
 
   min-width: 16rem;
@@ -23,7 +23,7 @@ export const DragDropContextContainer = styled.div`
 // padding: 0.1rem;
     // border: 4px solid indianred;
   // border-radius: 6px;
-  color: #fefefe;
+  color: ${lighttext};
 `;
 
 export const ListsWrapper = styled.div`
