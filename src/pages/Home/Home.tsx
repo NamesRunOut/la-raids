@@ -5,6 +5,7 @@ import { Character, Group, Navbar, PageWrapper, Raid, RaidLink, RaidsWrapper, Ti
 import {compareGroupName, getRaid} from "./utils";
 import {classData} from "../../data/classData";
 import {getIlvlRating} from "../ManageRaids/components/Raid/Raid";
+import {classfilter} from "../../styles/palette";
 
 const Home = () => {
     const [selected, setSelected] = useState(Object.keys(raidData)[0])
@@ -49,7 +50,7 @@ const Home = () => {
                                                 <Lp>{i++}.</Lp>
                                                 <PName>{c.name}</PName>
                                                 {/*@ts-ignore*/}
-                                                <PClass style={{color: classData[c.class].color || "black", filter: "brightness(2.69) grayscale(0.5)"}}>{c.class}</PClass>
+                                                <PClass style={{color: classData[c.class].color || "black", filter: classfilter}}>{c.class}</PClass>
                                                 {/*@ts-ignore*/}
                                                 <Pilvl style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "black"}}>{c.ilvl}</Pilvl>
                                             </React.Fragment>)}

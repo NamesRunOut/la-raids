@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {tilegb} from "../../styles/palette";
 
 export const SectionTitle = styled.h3`
   margin-top: 0;
@@ -55,11 +56,8 @@ export const RaidLink = styled.div`
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-weight: bold;
-  background: #2c2c2c;
-
-  :hover {
-    background: black;
-  }
+  background: ${tilegb};
+  cursor: pointer;
 `
 
 export const Comment = styled.input`

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {darktext, primarybutton, primarybuttonhover, remove, removehover} from "./palette";
 
 export const PlayerSelect = styled.select`
   background: #d9e6f4;
@@ -17,8 +18,8 @@ export const Option = styled.option`
 
 export const Save = styled.div`
   padding: 0.5rem 1rem;
-  background: #6dafff;
-  color: black;
+  background: ${primarybutton};
+  color: ${darktext};
   font-weight: bold;
   border-radius: 1rem;
   width: max-content;
@@ -27,12 +28,12 @@ export const Save = styled.div`
   cursor: pointer;
 
   :hover {
-    background: #4168b2;
+    background: ${primarybuttonhover};
   }
 `
 
 export const Add = styled.div`
-  color: #6dafff;
+  color: ${primarybutton};
   background: #2c2c2c;
   width: max-content;
   padding: 0.5rem 1rem;
@@ -41,18 +42,18 @@ export const Add = styled.div`
   cursor: pointer;
 
   :hover {
-    color: #4168b2;
+    color: ${primarybuttonhover};
   }
 `
 
 export const Remove = styled.div`
-  color: #ff5858;
+  color: ${remove};
   width: max-content;
   padding: 0.25rem 0.5rem;
   border-radius: 1rem;
   cursor: pointer;
 
   :hover {
-    color: #793232;
+    color: ${removehover};
   }
 `

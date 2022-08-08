@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {darktext, lighttext, raidlinkbg} from "../../styles/palette";
 
 export const Raid = styled.div`
   //background: #2c2c2c;
@@ -43,7 +44,7 @@ export const Group = styled.div`
   background: #2c2c2c;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  color: #fefefe;
+  color: ${lighttext};
 `
 
 export const Wrapper = styled.div`
@@ -60,20 +61,16 @@ export const Navbar = styled.nav`
 
 export const RaidLink = styled.div`
   text-decoration: none;
-  color: black;
+  color: ${raidlinkbg};
   width: max-content;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-weight: bold;
   cursor: pointer;
-
-  :hover {
-    background: rgba(0, 0, 0, 0.2);
-  }
 `
 
 export const PageWrapper = styled.div`
-  color: black;
+  color: ${darktext};
   padding: 1rem;
   //background: #151515;
 `
@@ -86,5 +83,5 @@ export const RaidsWrapper = styled.div`
 
 export const Comment = styled.div`
   width: 100%;
-  color: black;
+  color: ${darktext};
 `

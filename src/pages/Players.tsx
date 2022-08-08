@@ -6,10 +6,11 @@ import {db} from "../firebase/init";
 import {classData} from "../data/classData";
 import {getIlvlRating} from "./ManageRaids/components/Raid/Raid";
 import {raidData} from "../data/raidData";
+import {classfilter, lighttext, tilegb} from "../styles/palette";
 
 const Wrapper = styled.div`
   padding: 1rem;
-  color: #fefefe;
+  color: ${lighttext};
 `
 
 const PlayersGrid = styled.div`
@@ -21,7 +22,7 @@ const PlayersGrid = styled.div`
 const PlayerTile = styled.div`
   flex: 1 1 min-content;
   border-radius: 0.5rem;
-  background: #2c2c2c;
+  background: ${tilegb};
   margin: 0.25rem;
   padding: 0 0.5rem;
 `
@@ -70,7 +71,7 @@ const Player: React.FC <{player: player}> = ({player}) => {
                         <Lp>{i++}.</Lp>
                         <CharName>{char.name}</CharName>
                         {/*@ts-ignore*/}
-                        <CharClass style={{color: classData[char.class].color || "black", filter: "brightness(2.69) grayscale(0.5)"}}>{char.class}</CharClass>
+                        <CharClass style={{color: classData[char.class].color || "black", filter: classfilter}}>{char.class}</CharClass>
                         {/*@ts-ignore*/}
                         <CharIlvl style={{color: getIlvlRating(char.ilvl, raidData["Argos_p3"].minlvl || 0) || "black"}}>{char.ilvl}</CharIlvl>
                     </PlayerCharacter>)}

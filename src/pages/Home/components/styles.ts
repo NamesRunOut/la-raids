@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import {dragitembg, raidgropbg, raidsignupgroupbg} from "../../../styles/palette";
 
 export const DragItem = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: white;
+  background: ${dragitembg};
   margin: 0 0 8px 0;
 //   gap: 0.25rem;
 
@@ -51,7 +52,7 @@ export const DroppableStyles = styled.div`
   flex: 1 1 17rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  background: #d4d4d4;
+  background: ${raidgropbg};
   height: min-content;
   min-width: 17rem;
   max-width: 40%;
@@ -60,7 +61,7 @@ export const DroppableStyles = styled.div`
 export const DroppableStylesSignup = styled.div`
   padding: 0.5rem;
   border-radius: 0.5rem;
-  background: #d4d4d4;
+  background: ${raidsignupgroupbg};
   height: min-content;
   min-width: 17rem;
 `;
@@ -102,26 +103,6 @@ export const ActionsBar = styled.div`
     margin-bottom: 0.25rem;
 `
 
-export const Action = styled.div`
-    background: grey;
-    color: black;
-    cursor: pointer;
-
-    :hover{
-        background: lightgrey;
-    }
-
-`
-
 export const GroupName = styled.div`
     text-transform: uppercase;
-`
-
-export const RemoveGroup = styled.div`
-    color: red;
-    cursor: pointer;
-
-    :hover{
-        color: rgba(0,0,0,0.2)
-    }
 `

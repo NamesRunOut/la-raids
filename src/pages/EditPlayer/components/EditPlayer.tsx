@@ -8,9 +8,10 @@ import {classData} from "../../../data/classData";
 import { Character, Header, Input} from "./styles";
 import {NotificationContext} from "../../../contexts/NotificationContext";
 import {PlayerSelect, Option, Save, Add, Remove} from '../../../styles/common'
+import {darktext} from "../../../styles/palette";
 
 const Wrapper = styled.div`
-  color: black;
+  color: ${darktext};
 `
 
 const getPlayerId = async (db: Firestore, playerName: string) => {

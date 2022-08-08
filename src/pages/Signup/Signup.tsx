@@ -9,6 +9,7 @@ import {classData} from "../../data/classData";
 import {getIlvlRating} from "../ManageRaids/components/Raid/Raid";
 import {NotificationContext} from "../../contexts/NotificationContext";
 import { PlayerSelect, Save, Option } from "../../styles/common";
+import {classfilter} from "../../styles/palette";
 
 const getAllRaidSignupData = async (db: Firestore) => {
     const q = query(collection(db, "signups"))
@@ -166,7 +167,7 @@ const Signup = () => {
                                 <Checkbox type="checkbox" checked={checkIfSignedUp(raid, player.name, char.name)} onChange={(e) => signUp(e, raid, char.name)} /> {/* checked if matches found in signups */}
                                 <PName>{char.name}</PName>
                                 {/*@ts-ignore*/}
-                                <PClass style={{color: classData[char.class].color || "black", filter: "brightness(2.69) grayscale(0.5)"}}>{char.class}</PClass>
+                                <PClass style={{color: classData[char.class].color || "black", filter: classfilter}}>{char.class}</PClass>
                                 {/*@ts-ignore*/}
                                 <Pilvl style={{color: getIlvlRating(char.ilvl, raidData[raid].minlvl || 0) || "black"}}>{char.ilvl}</Pilvl>
                             </React.Fragment>

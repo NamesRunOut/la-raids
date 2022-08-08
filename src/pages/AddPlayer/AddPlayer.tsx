@@ -4,10 +4,11 @@ import {character, character_class, getPlayers, player, addPlayer as addPlayerTo
 import {db} from "../../firebase/init";
 import Add from "./components/AddPlayer";
 import { motion } from "framer-motion";
+import {lighttext} from "../../styles/palette";
 
 const Wrapper = styled.div`
   padding: 1rem;
-  color: white;
+  color: ${lighttext};
 `
 
 const AddPlayer = () => {

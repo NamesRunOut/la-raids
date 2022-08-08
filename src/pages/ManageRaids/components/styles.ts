@@ -1,11 +1,19 @@
 import styled from "styled-components";
+import {
+    darktext,
+    dragitembg,
+    primarybutton,
+    primarybuttonhover,
+    remove, removehover,
+    secondarybuttonbg
+} from "../../../styles/palette";
 
 export const DragItem = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: white;
+  background: ${dragitembg};
   margin: 0 0 8px 0;
-  color: black;
+  color: ${darktext};
 //   gap: 0.25rem;
 
   min-width: 16rem;
@@ -109,8 +117,8 @@ export const ActionsBar = styled.div`
 `
 
 export const Action = styled.div`
-  color: #6dafff;
-  background: #2c2c2c;
+  color: ${primarybutton};
+  background: ${secondarybuttonbg};
   cursor: pointer;
   width: max-content;
   padding: 0.25rem 0.5rem;
@@ -120,14 +128,14 @@ export const Action = styled.div`
   align-items: center;
 
   :hover{
-    color: #4168b2;
+    color: ${primarybuttonhover};
   }
 `
 
 export const Save = styled.div`
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
-  background: #6dafff;
+  background: ${primarybutton};
   color: black;
   font-weight: bold;
   width: max-content;
@@ -135,7 +143,7 @@ export const Save = styled.div`
   cursor: pointer;
 
   :hover {
-    background: #4168b2;
+    background: ${primarybuttonhover};
   }
 `
 
@@ -144,10 +152,10 @@ export const GroupName = styled.div`
 `
 
 export const RemoveGroup = styled.div`
-  color: red;
+  color: ${remove};
   cursor: pointer;
 
   :hover{
-    color: rgba(0,0,0,0.2)
+    color: ${removehover};
   }
 `
