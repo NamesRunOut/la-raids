@@ -9,6 +9,7 @@ import { Character, Header, Input} from "./styles";
 import {NotificationContext} from "../../../contexts/NotificationContext";
 import {PlayerSelect, Option, Save, Add, Remove} from '../../../styles/common'
 import {darktext} from "../../../styles/palette";
+import {sortByName} from "../../AllPlayers/Players";
 
 const Wrapper = styled.div`
   color: ${darktext};
@@ -33,6 +34,7 @@ const EditPlayer = () => {
     useEffect(() => {
         getPlayers(db)
             .then(r => {
+                r.sort(sortByName)
                 let result = []
                 for (let [key, value] of Object.entries(r)) {
                     let tmp = value

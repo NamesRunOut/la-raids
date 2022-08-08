@@ -5,7 +5,7 @@ import {getPlayers, getSignups, player, raids, signups} from "../../firebase/uti
 import {db} from "../../firebase/init";
 import { raidData } from "../../data/raidData";
 import { Character, Characters, Navbar, Player, PName, RaidWrapper, SectionTitle, Signups, Title, Wrapper, Comment, RaidLink } from "./styles";
-import DragList from "./components/Raid";
+import DragList from "./components/DragList";
 import {doc, Firestore, getDoc, setDoc} from "firebase/firestore";
 import {NotificationContext} from "../../contexts/NotificationContext";
 import {Action} from './components/styles'

@@ -10,6 +10,7 @@ import {NotificationContext} from "../../contexts/NotificationContext";
 import { PlayerSelect, Save, Option } from "../../styles/common";
 import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/components/utils/getIlvlRating";
+import {sortByName} from "../AllPlayers/Players";
 
 const getAllRaidSignupData = async (db: Firestore) => {
     const q = query(collection(db, "signups"))
@@ -33,6 +34,7 @@ const Signup = () => {
         // get all players
         getPlayers(db)
             .then(r => {
+                r.sort(sortByName)
                 let result = []
                 for (let [key, value] of r.entries()) {
                     let tmp = value

@@ -29,13 +29,29 @@ const Player: React.FC <{player: player}> = ({player}) => {
     )
 }
 
+export const sortByName = (a: any, b: any) => {
+    if (a.name < b.name)
+        return -1
+    if (a.name > b.name)
+        return 1
+    return 0
+}
+
+export const sortByPlayerName = (a: any, b: any) => {
+    if (a.playerName < b.playerName)
+        return -1
+    if (a.playerName > b.playerName)
+        return 1
+    return 0
+}
+
 const Players = () => {
     const [players, setPlayers] = useState<Array<player>>([])
 
     useEffect(() => {
         getPlayers(db)
             // @ts-ignore
-            .then(r => setPlayers(r))
+            .then(r => setPlayers(r.sort(sortByName)))
             .catch(err => console.log(err))
     }, [])
 

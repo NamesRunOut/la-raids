@@ -5,7 +5,7 @@ import {raidData} from "../../../../data/raidData";
 import compareIlvl from "./compareIlvl";
 import { SetStateAction } from "react";
 
-const autoAssign = (raid: string, elements: any, setElements: any) => {
+const autoAssignParallel = (raid: string, elements: any, setElements: any) => {
     reset(elements, setElements)
     let signedUp = elements[signedupgroupname]
     let groups = []
@@ -124,4 +124,4 @@ const autoAssign = (raid: string, elements: any, setElements: any) => {
     setElements({[signedupgroupname]: leftovers, ...result})
 }
 
-export default autoAssign
+export default autoAssignParallel

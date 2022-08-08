@@ -28,7 +28,7 @@ const Notification = () => {
                 color: '',
                 message: ''
             })
-        }, 7000);
+        }, 3000);
         return () => clearTimeout(timer);
     }, [notification, setNotification])
 
