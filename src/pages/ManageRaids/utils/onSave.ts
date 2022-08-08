@@ -1,5 +1,5 @@
 import {doc, getDoc, setDoc} from "firebase/firestore";
-import {db} from "../../../../firebase/init";
+import {db} from "../../../firebase/init";
 import {signedupgroupname} from "./consts";
 
 const onSave = async (raid: string, rcomment: any, elements: { [s: string]: unknown; } | ArrayLike<unknown>, setNotification: (arg0: { color: string; message: string; }) => void) => {

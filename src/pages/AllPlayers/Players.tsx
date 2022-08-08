@@ -16,7 +16,7 @@ import {
     PlayerTile,
     Wrapper
 } from "./styles";
-import getIlvlRating from "../ManageRaids/components/utils/getIlvlRating";
+import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
 
 const Player: React.FC <{player: player}> = ({player}) => {
     let i=1

@@ -20,7 +20,7 @@ import {
 import {compareGroupName, getRaid} from "./utils";
 import {classData} from "../../data/classData";
 import {classfilter} from "../../styles/palette";
-import getIlvlRating from "../ManageRaids/components/utils/getIlvlRating";
+import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
 
 const Home = () => {
     const [selected, setSelected] = useState(Object.keys(raidData)[0])
@@ -31,8 +31,6 @@ const Home = () => {
             .then(r => setRaid(r))
             .catch(err => console.log(err))
     }, [selected])
-
-    console.log(Object.entries(raid).sort(compareGroupName))
 
     return (<PageWrapper>
         <Title>Upcoming raids</Title>

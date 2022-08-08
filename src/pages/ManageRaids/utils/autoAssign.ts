@@ -1,7 +1,7 @@
 //@ts-nocheck
 import reset from "./reset";
 import {signedupgroupname} from "./consts";
-import {raidData} from "../../../../data/raidData";
+import {raidData} from "../../../data/raidData";
 import compareIlvl from "./compareIlvl";
 
 const autoAssign = (raid: string, elements: any, setElements: any) => {

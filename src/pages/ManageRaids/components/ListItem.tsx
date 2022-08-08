@@ -3,9 +3,9 @@ import {classData} from "../../../data/classData";
 import {Character, CharacterBgColor, Class, DragItem, Ilvl, Name, PlayerName} from "./styles";
 import {raidData} from "../../../data/raidData";
 import React from "react";
-import hexToRgb from "./utils/hexToRgb";
+import hexToRgb from "../utils/hexToRgb";
 import {Draggable} from 'react-beautiful-dnd'
-import getIlvlRating from "./utils/getIlvlRating";
+import getIlvlRating from "../utils/getIlvlRating";
 
 const ListItem = ({ item, index, raid }) => {
     let torgb = hexToRgb(classData[item.class]?.color || "#000000")

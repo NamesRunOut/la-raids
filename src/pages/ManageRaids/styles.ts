@@ -63,4 +63,9 @@ export const RaidLink = styled.div`
 export const Comment = styled.input`
   margin-bottom: 0.5rem;
   min-width: 15rem;
+  width: 50%;
+  
+  @media(max-width: 468px){
+    width: 100%;
+  }
 `

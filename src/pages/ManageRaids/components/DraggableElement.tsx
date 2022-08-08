@@ -4,7 +4,7 @@ import {raidData} from "../../../data/raidData";
 import {Remove} from "../../../styles/common";
 import React from "react";
 import {Droppable} from "react-beautiful-dnd";
-import {signedupgroupname} from "./utils/consts";
+import {signedupgroupname} from "../utils/consts";
 import ListItem from "./ListItem";
 
 const DraggableElement:React.FC <{prefix: string, elements: any, allElements: any, setElements: any, raid: string}> = ({ prefix, elements, allElements, setElements, raid }) => {
