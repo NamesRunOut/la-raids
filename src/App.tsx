@@ -43,6 +43,10 @@ const App = () => {
         return tab === selected
     }
 
+    useEffect(() => {
+        setSelected(window.location.pathname.slice(1))
+    }, [])
+
   return(
       <NotificationContext>
           <BrowserRouter>
