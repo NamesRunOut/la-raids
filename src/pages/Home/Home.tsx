@@ -32,6 +32,8 @@ const Home = () => {
             .catch(err => console.log(err))
     }, [selected])
 
+    console.log(Object.entries(raid).sort(compareGroupName))
+
     return (<PageWrapper>
         <Title>Upcoming raids</Title>
 
@@ -52,29 +54,25 @@ const Home = () => {
             <Wrapper>
                 <Raid>
                     <Comment>{raid["comment"]}</Comment>
-                    {Object.entries(raid).sort(compareGroupName).map((c: any) => {
+                    {Object.entries(raid).filter(el => el[0] !== "comment").sort(compareGroupName).map((c: any) => {
                         let name = c[0]
                         let players = c[1]
                         let i=1
-                            if (name === "comment") return (<></>)
-                            else {
-                                return(
-                                    <Group key={name}>
-                                        <Title>{name}</Title>
-                                        <Roster>
-                                            {players.map((c:any) => <React.Fragment key={c.name}>
-                                                <Lp>{i++}.</Lp>
-                                                <PName>{c.name}</PName>
-                                                {/*@ts-ignore*/}
-                                                <PClass style={{color: classData[c.class].color || "black", filter: classfilter}}>{c.class}</PClass>
-                                                {/*@ts-ignore*/}
-                                                <Pilvl style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "black"}}>{c.ilvl}</Pilvl>
-                                            </React.Fragment>)}
-                                        </Roster>
-                                    </Group>
-                                )
-                            }
-                        }
+                        return(
+                            <Group key={name}>
+                                <Title>{name}</Title>
+                                <Roster>
+                                    {players.map((c:any) => <React.Fragment key={c.name}>
+                                        <Lp>{i++}.</Lp>
+                                        <PName>{c.name}</PName>
+                                        {/*@ts-ignore*/}
+                                        <PClass style={{color: classData[c.class].color || "black", filter: classfilter}}>{c.class}</PClass>
+                                        {/*@ts-ignore*/}
+                                        <Pilvl style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "black"}}>{c.ilvl}</Pilvl>
+                                    </React.Fragment>)}
+                                </Roster>
+                            </Group>
+                        )}
                     )}
                 </Raid>
             </Wrapper>
