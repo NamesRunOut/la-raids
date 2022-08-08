@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import styled from "styled-components";
+import {bgcolor} from "./styles/palette";
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  background: #676e75;
+  background: ${bgcolor};
 `
 
 const root = ReactDOM.createRoot(
