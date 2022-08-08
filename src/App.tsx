@@ -10,6 +10,7 @@ import Signup from './pages/Signup/Signup';
 import ManageRaids from "./pages/ManageRaids/ManageRaids";
 import {Notification as NotificationContext} from "./contexts/NotificationContext";
 import Notification from './components/Notification'
+import {lighttext, navbuttonbg, navbuttonhover} from "./styles/palette";
 
 const Navbar = styled.nav`
   padding: 0.25rem;
@@ -23,14 +24,14 @@ const Navbar = styled.nav`
 
 const PageLink = styled(Link)`
   text-decoration: none;
-  color: #fefefe;
-  background: #2c2c2c;
+  color: ${lighttext};
+  background: ${navbuttonbg};
   width: max-content;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 
   :hover {
-    color: #777777;
+    color: ${navbuttonhover};
   }
 `
 

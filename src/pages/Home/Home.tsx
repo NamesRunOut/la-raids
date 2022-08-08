@@ -5,7 +5,7 @@ import { Character, Group, Navbar, PageWrapper, Raid, RaidLink, RaidsWrapper, Ti
 import {compareGroupName, getRaid} from "./utils";
 import {classData} from "../../data/classData";
 import {getIlvlRating} from "../ManageRaids/components/Raid/Raid";
-import {classfilter} from "../../styles/palette";
+import {classfilter, navbuttonbg, tilegb} from "../../styles/palette";
 
 const Home = () => {
     const [selected, setSelected] = useState(Object.keys(raidData)[0])
@@ -27,7 +27,7 @@ const Home = () => {
                         key={raid}
                         onClick={() => setSelected(raid)}
                         //@ts-ignore
-                        style={{color: raidData[raid].color || "white", background: selected === raid ? "#2c2c2c" : "black"}}>
+                        style={{color: raidData[raid].color || "white", background: selected === raid ? tilegb : navbuttonbg}}>
                         {raid}
                     </RaidLink>)
                 })}

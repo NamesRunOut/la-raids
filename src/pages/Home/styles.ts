@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {darktext, lighttext, raidlinkbg} from "../../styles/palette";
+import {darktext, lighttext, raidlinkbg, tilegb} from "../../styles/palette";
 
 export const Raid = styled.div`
   //background: #2c2c2c;
@@ -41,7 +41,7 @@ export const Character = styled.div`
 
 export const Group = styled.div`
   flex: 1 1 min-content;
-  background: #2c2c2c;
+  background: ${tilegb};
   padding: 0.5rem;
   border-radius: 0.5rem;
   color: ${lighttext};
