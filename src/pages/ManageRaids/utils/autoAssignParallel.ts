@@ -84,7 +84,11 @@ const autoAssignParallel = (raid: string, elements: any, setElements: any) => {
         let newSups = structuredClone(supportPlayers)
         for (let player=0;player<newSups.length;player++){
             for (let group=0;group<groups.length;group++){
-                if (supportPlayers.length < 1 || groups[group].length >= groupMax) continue
+                let noSupportsInGroup = 0
+                for (let p of groups[group]){
+                    if (supportClasses.some(el => el === p.class)) noSupportsInGroup++
+                }
+                if (supportPlayers.length < 1 || groups[group].length >= groupMax || noSupportsInGroup >= supportNumber) continue
                 if (playerIsAlreadyInGroup(groups[group], newSups[player]) || playerIsInPreviousGroup(groups[group-1], newSups[player])) continue
 
                 groups[group].push(newSups[player])
