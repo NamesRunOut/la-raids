@@ -1,10 +1,25 @@
 import React, {useEffect, useState} from "react";
 import {db} from "../../firebase/init";
-import { raidData } from "../../data/raidData";
-import { Character, Group, Navbar, PageWrapper, Raid, RaidLink, RaidsWrapper, Title, Wrapper, Comment, Roster, Pilvl, PClass, PName, Lp } from "./styles";
+import {raidData} from "../../data/raidData";
+import {
+    Comment,
+    Group,
+    Lp,
+    Navbar,
+    PageWrapper,
+    PClass,
+    Pilvl,
+    PName,
+    Raid,
+    RaidLink,
+    RaidsWrapper,
+    Roster,
+    Title,
+    Wrapper
+} from "./styles";
 import {compareGroupName, getRaid} from "./utils";
 import {classData} from "../../data/classData";
-import {classfilter, navbuttonbg, tilegb} from "../../styles/palette";
+import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/components/utils/getIlvlRating";
 
 const Home = () => {

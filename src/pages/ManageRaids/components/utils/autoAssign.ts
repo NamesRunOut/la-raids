@@ -3,7 +3,6 @@ import reset from "./reset";
 import {signedupgroupname} from "./consts";
 import {raidData} from "../../../../data/raidData";
 import compareIlvl from "./compareIlvl";
-import { SetStateAction } from "react";
 
 const autoAssign = (raid: string, elements: any, setElements: any) => {
     reset(elements, setElements)
@@ -20,9 +19,6 @@ const autoAssign = (raid: string, elements: any, setElements: any) => {
 
     let dpsPlayers = signedUp.filter(c => !supportClasses.includes(c.class))
     let supportPlayers = signedUp.filter(c => supportClasses.includes(c.class))
-
-    // console.log(signedUp, groups)
-    // TODO rownlolegle raidy
 
     // assign at least groupMax/4 supports
     let supportNumber = groupMax/4
@@ -42,8 +38,6 @@ const autoAssign = (raid: string, elements: any, setElements: any) => {
             }
             eIdx--
         }
-        // TODO recilvl + czihi algo
-        // TODO rownoleglosc
 
         newSups = supportPlayers
 

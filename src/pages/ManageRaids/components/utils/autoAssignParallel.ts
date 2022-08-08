@@ -3,7 +3,6 @@ import reset from "./reset";
 import {signedupgroupname} from "./consts";
 import {raidData} from "../../../../data/raidData";
 import compareIlvl from "./compareIlvl";
-import { SetStateAction } from "react";
 
 const autoAssignParallel = (raid: string, elements: any, setElements: any) => {
     reset(elements, setElements)

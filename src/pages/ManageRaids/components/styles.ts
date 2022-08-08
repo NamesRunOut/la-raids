@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import {
     darktext,
-    dragitembg, lighttext,
+    dragitembg,
+    lighttext,
     primarybutton,
     primarybuttonhover,
-    remove, removehover,
+    remove,
+    removehover,
     secondarybuttonbg
 } from "../../../styles/palette";
 

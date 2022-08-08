@@ -1,13 +1,12 @@
-import styled from "styled-components";
 import React, {useContext, useEffect, useState} from "react";
 import {raidData} from "../../data/raidData";
 import {getPlayers} from "../../firebase/utils";
 import {db} from "../../firebase/init";
-import {Character, Header, Raid, RaidWrapper, Wrapper, RaidName, Roster, Checkbox, PName, PClass, Pilvl} from "./styles";
+import {Checkbox, Header, PClass, Pilvl, PName, Raid, RaidName, RaidWrapper, Roster, Wrapper} from "./styles";
 import {collection, doc, Firestore, getDoc, getDocs, query, setDoc} from "firebase/firestore";
 import {classData} from "../../data/classData";
 import {NotificationContext} from "../../contexts/NotificationContext";
-import { PlayerSelect, Save, Option } from "../../styles/common";
+import {Option, PlayerSelect, Save} from "../../styles/common";
 import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/components/utils/getIlvlRating";
 import {sortByName} from "../AllPlayers/Players";

@@ -1,13 +1,12 @@
 import React, {useContext, useEffect, useState} from "react";
-import {addPlayer as addPlayerToDB, character_class, getPlayers} from "../../../firebase/utils";
+import {character_class, getPlayers, player as playerI} from "../../../firebase/utils";
 import {db} from "../../../firebase/init";
 import styled from "styled-components";
-import {player as playerI} from "../../../firebase/utils";
-import {collection, doc, Firestore, getDoc, getDocs, query, setDoc, where} from "firebase/firestore";
+import {collection, doc, Firestore, getDocs, query, setDoc, where} from "firebase/firestore";
 import {classData} from "../../../data/classData";
-import { Character, Header, Input} from "./styles";
+import {Character, Header} from "./styles";
 import {NotificationContext} from "../../../contexts/NotificationContext";
-import {PlayerSelect, Option, Save, Add, Remove} from '../../../styles/common'
+import {Add, Option, PlayerSelect, Remove, Save} from '../../../styles/common'
 import {darktext} from "../../../styles/palette";
 import {sortByName} from "../../AllPlayers/Players";
 

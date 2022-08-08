@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import React, {useEffect, useState} from "react";
-import {character, character_class, getPlayers, player, addPlayer as addPlayerToDB} from "../../firebase/utils";
-import {db} from "../../firebase/init";
+import React from "react";
 import Edit from "./components/EditPlayer";
-import { motion } from "framer-motion";
 import {lighttext} from "../../styles/palette";
 
 const Wrapper = styled.div`

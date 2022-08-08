@@ -4,7 +4,7 @@ import {Character, CharacterBgColor, Class, DragItem, Ilvl, Name, PlayerName} fr
 import {raidData} from "../../../data/raidData";
 import React from "react";
 import hexToRgb from "./utils/hexToRgb";
-import {Droppable, Draggable} from 'react-beautiful-dnd'
+import {Draggable} from 'react-beautiful-dnd'
 import getIlvlRating from "./utils/getIlvlRating";
 
 const ListItem = ({ item, index, raid }) => {

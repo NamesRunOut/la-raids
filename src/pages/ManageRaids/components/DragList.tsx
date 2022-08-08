@@ -1,38 +1,10 @@
 //@ts-nocheck
-import styled from "styled-components";
 import React, {useContext, useEffect, useState} from "react";
-import {Droppable, Draggable} from 'react-beautiful-dnd'
-import { DragDropContext } from "react-beautiful-dnd";
-import {
-  DroppableStylesSignup,
-  Action,
-  RemoveGroup,
-  Signups,
-  CharacterBgColor,
-  Character,
-  Class,
-  ColumnHeader,
-  DragDropContextContainer,
-  DragItem,
-  DroppableStyles,
-  Ilvl,
-  ListGrid,
-  Name,
-  PlayerName,
-  ListsWrapper,
-  ActionsBar,
-  GroupName,
-  BasicCInfo,
-    Save
-} from "./styles";
-import { classData } from "../../../data/classData";
-import { raidData } from "../../../data/raidData";
-import Loading from '../../../components/Loading'
-import {doc, getDoc, setDoc} from "firebase/firestore";
-import {db} from "../../../firebase/init";
+import {DragDropContext} from 'react-beautiful-dnd'
+import {Action, ActionsBar, DragDropContextContainer, ListGrid, ListsWrapper, Save, Signups} from "./styles";
+import {raidData} from "../../../data/raidData";
 import {NotificationContext} from "../../../contexts/NotificationContext";
 import {Comment} from "../styles";
-import {Remove} from '../../../styles/common'
 import {signedupgroupname} from "./utils/consts";
 import DraggableElement from "./DraggableElement";
 import DraggableSignupsElement from "./DraggableSignupsElement";

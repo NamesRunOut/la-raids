@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import {addPlayer as addPlayerToDB, character_class} from "../../../firebase/utils";
 import {db} from "../../../firebase/init";
 import styled from "styled-components";
 import {classData} from "../../../data/classData";
-import { Character, Header, Input } from "./styles";
+import {Character, Header, Input} from "./styles";
 import {NotificationContext} from "../../../contexts/NotificationContext";
-import {PlayerSelect, Option, Save, Remove, Add} from '../../../styles/common'
+import {Add, Remove, Save} from '../../../styles/common'
 import {darktext} from "../../../styles/palette";
 
 const Wrapper = styled.div`

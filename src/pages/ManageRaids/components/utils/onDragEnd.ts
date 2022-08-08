@@ -1,8 +1,8 @@
 //@ts-nocheck
 import removeFromList from "./removeFromList";
 import addToList from "./addToList";
-import { SetStateAction } from "react";
-import { DropResult } from "react-beautiful-dnd";
+import {SetStateAction} from "react";
+import {DropResult} from "react-beautiful-dnd";
 
 const onDragEnd = (result: DropResult, elements: {}, setElements: { (value: SetStateAction<{}>): void; (arg0: any): void; }) => {
     if (!result.destination) {

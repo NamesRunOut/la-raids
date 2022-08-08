@@ -1,10 +1,8 @@
-import styled from "styled-components";
 import React, {useContext, useEffect, useState} from "react";
-import {Reorder, useMotionValue} from "framer-motion";
-import {getPlayers, getSignups, player, raids, signups} from "../../firebase/utils";
+import {raids, signups} from "../../firebase/utils";
 import {db} from "../../firebase/init";
-import { raidData } from "../../data/raidData";
-import { Character, Characters, Navbar, Player, PName, RaidWrapper, SectionTitle, Signups, Title, Wrapper, Comment, RaidLink } from "./styles";
+import {raidData} from "../../data/raidData";
+import {Navbar, RaidLink, RaidWrapper, SectionTitle, Wrapper} from "./styles";
 import DragList from "./components/DragList";
 import {doc, Firestore, getDoc, setDoc} from "firebase/firestore";
 import {NotificationContext} from "../../contexts/NotificationContext";

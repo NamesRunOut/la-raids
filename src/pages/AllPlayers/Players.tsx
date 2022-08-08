@@ -1,12 +1,21 @@
-import styled from "styled-components";
 import React, {useEffect, useState} from "react";
-import {Reorder} from "framer-motion";
-import {getClassData, getPlayers, getSignups, player, signups} from "../../firebase/utils";
+import {getPlayers, player} from "../../firebase/utils";
 import {db} from "../../firebase/init";
 import {classData} from "../../data/classData";
 import {raidData} from "../../data/raidData";
-import {classfilter, lighttext, tilegb} from "../../styles/palette";
-import {CharName, Lp, PlayerCharacter, PlayerCharacters, PlayerName, PlayersGrid, PlayerTile, Wrapper, CharClass, CharIlvl } from "./styles";
+import {classfilter} from "../../styles/palette";
+import {
+    CharClass,
+    CharIlvl,
+    CharName,
+    Lp,
+    PlayerCharacter,
+    PlayerCharacters,
+    PlayerName,
+    PlayersGrid,
+    PlayerTile,
+    Wrapper
+} from "./styles";
 import getIlvlRating from "../ManageRaids/components/utils/getIlvlRating";
 
 const Player: React.FC <{player: player}> = ({player}) => {

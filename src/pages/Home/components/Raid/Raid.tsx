@@ -1,12 +1,28 @@
 //@ts-nocheck
-import styled from "styled-components";
 import React, {useEffect, useState} from "react";
-import {Droppable, Draggable} from 'react-beautiful-dnd'
-import { DragDropContext } from "react-beautiful-dnd";
-import { DroppableStylesSignup, Action, RemoveGroup, Signups, CharacterBgColor, Character, Class, ColumnHeader, DragDropContextContainer, DragItem, DroppableStyles, Ilvl, ListGrid, Name, PlayerName, ListsWrapper, ActionsBar, GroupName } from "../styles";
-import { classData } from "../../../../data/classData";
-import { raidData } from "../../../../data/raidData";
-import Loading from '../../../../components/Loading'
+import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd'
+import {
+    Action,
+    ActionsBar,
+    Character,
+    CharacterBgColor,
+    Class,
+    ColumnHeader,
+    DragDropContextContainer,
+    DragItem,
+    DroppableStyles,
+    DroppableStylesSignup,
+    GroupName,
+    Ilvl,
+    ListGrid,
+    ListsWrapper,
+    Name,
+    PlayerName,
+    RemoveGroup,
+    Signups
+} from "../styles";
+import {classData} from "../../../../data/classData";
+import {raidData} from "../../../../data/raidData";
 
 const DraggableElement = ({ prefix, elements, allElements, setElements, raid }) => {
     // console.log(prefix, elements)
