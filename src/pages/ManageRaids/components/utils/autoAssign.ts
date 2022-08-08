@@ -53,6 +53,8 @@ const autoAssign = (raid: string, elements: any, setElements: any) => {
         }
     }
 
+    // TODO recommended ilvl
+
     // assign dps to groups
     let dpsNumber = groupMax-supportNumber
     for (let group=0;group<groups.length;group++){

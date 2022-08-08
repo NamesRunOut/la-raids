@@ -51,7 +51,7 @@ const DragList: React.FC <{raid: string, data: {comment: string, players: Array<
       <ActionsBar>
         <Save onClick={() => onSave(raid, rcomment, elements, setNotification)}>Save</Save>
         <Action onClick={() => autoAssign(raid, elements, setElements)}>Auto assign</Action>
-        <Action onClick={() => autoAssignParallel(raid, elements, setElements)}>Auto assign (force parallel groups)</Action>
+        <Action onClick={() => autoAssignParallel(raid, elements, setElements)}>Auto assign (force 2 parallel groups)</Action>
         <Action onClick={() => addGroup(elements, setElements)}>Add group</Action>
         {/* <Action onClick={addRun}>Divide into simultaneous runs</Action> */}
         <Action onClick={() => reset(elements, setElements)}>Reset</Action>
