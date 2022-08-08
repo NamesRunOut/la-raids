@@ -3,9 +3,13 @@ import React, {useEffect, useState} from "react";
 import {Reorder} from "framer-motion";
 import {getClassData, getPlayers, getSignups, player, signups} from "../firebase/utils";
 import {db} from "../firebase/init";
+import {classData} from "../data/classData";
+import {getIlvlRating} from "./ManageRaids/components/Raid/Raid";
+import {raidData} from "../data/raidData";
 
 const Wrapper = styled.div`
   padding: 1rem;
+  color: white;
 `
 
 const PlayersGrid = styled.div`
@@ -17,9 +21,9 @@ const PlayersGrid = styled.div`
 const PlayerTile = styled.div`
   flex: 1 1 20%;
   border-radius: 0.5rem;
-  background: rgba(255,255,255,0.69);
+  background: #2c2c2c;
   margin: 0.25rem;
-  padding: 0.25rem;
+  padding: 0 0.5rem;
 
   @media (max-width: 468px){
     flex: 0 1 100%;
@@ -38,7 +42,7 @@ const PlayerCharacters = styled.div`
 
 const PlayerCharacter = styled.div`
   border-radius: 0.25rem;
-  background: rgba(231, 218, 218, 0.69);
+  background: #151515;
   margin: 0.25rem 0;
   padding: 0.25rem;
   display: grid;
@@ -65,8 +69,10 @@ const Player: React.FC <{player: player}> = ({player}) => {
                     <PlayerCharacter>
                         <div>{i++}.</div>
                         <CharName>{char.name}</CharName>
-                        <CharClass style={{color: getClassData(char.class)?.color || "white"}}>{char.class}</CharClass>
-                        <CharIlvl>{char.ilvl}</CharIlvl>
+                        {/*@ts-ignore*/}
+                        <CharClass style={{color: classData[char.class].color || "white", filter: "brightness(2.69)"}}>{char.class}</CharClass>
+                        {/*@ts-ignore*/}
+                        <CharIlvl style={{color: getIlvlRating(char.ilvl, raidData["Argos_p3"].minlvl || 0) || "white", filter: "brightness(1.25)"}}>{char.ilvl}</CharIlvl>
                     </PlayerCharacter>)}
             </PlayerCharacters>
         </PlayerTile>
@@ -75,14 +81,6 @@ const Player: React.FC <{player: player}> = ({player}) => {
 
 const Players = () => {
     const [players, setPlayers] = useState<Array<player>>([])
-    const [playerId, setPlayerId] = useState<string>("")
-
-    useEffect(() => {
-        let id = JSON.parse(localStorage.getItem('playerId') as string)
-        if (id) {
-            setPlayerId(id);
-        }
-    }, [playerId]);
 
     useEffect(() => {
         getPlayers(db)

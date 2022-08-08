@@ -1,32 +1,38 @@
 export const raidData = {
     Argos_p3: {
-        color: "green",
+        color: "#39ce53",
         minlvl: 1370,
+        reclvl: 1400,
         groupSize: 8
     },
     Valtan_nm: {
-        color: "lightblue",
+        color: "#3990ce",
         minlvl: 1415,
+        reclvl: 1415,
         groupSize: 8
     },
     Valtan_hm: {
-        color: "orange",
+        color: "#393bce",
         minlvl: 1445,
+        reclvl: 1445,
         groupSize: 8
     },
     Valtan_inferno: {
-        color: "red",
+        color: "#ce3939",
         minlvl: 1415,
+        reclvl: 1415,
         groupSize: 8
     },
     Vykas_nm: {
-        color: "lightblue",
+        color: "#ae39ce",
         minlvl: 1430,
+        reclvl: 1430,
         groupSize: 8
     },
     Vykas_hm: {
-        color: "orange",
+        color: "#ce399a",
         minlvl: 1460,
+        reclvl: 1460,
         groupSize: 8
     }
 }

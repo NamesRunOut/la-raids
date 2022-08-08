@@ -1,42 +1,13 @@
 import styled from "styled-components";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Reorder, useMotionValue} from "framer-motion";
 import {getPlayers, getSignups, player, raids, signups} from "../../firebase/utils";
 import {db} from "../../firebase/init";
 import { raidData } from "../../data/raidData";
-import { Character, Characters, Player, PName, Signups, Title } from "./styles";
+import { Character, Characters, Navbar, Player, PName, RaidLink, RaidWrapper, SectionTitle, Signups, Title, Wrapper, Comment, Action } from "./styles";
 import DragList, { signedupgroupname } from "./components/Raid/Raid";
 import {doc, Firestore, getDoc, setDoc} from "firebase/firestore";
-
-const Wrapper = styled.div`
-  padding: 1rem;
-`
-
-const RaidWrapper = styled.div`
-
-`
-
-const Navbar = styled.nav`
-  padding: 0.25rem 0.25rem 0 0.25rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.25rem;
-  background: rgba(0,0,0,0.2);
-`
-
-const RaidLink = styled.div`
-  text-decoration: none;
-  color: black;
-  width: max-content;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-
-  :hover {
-    background: rgba(0,0,0,0.2);
-  }
-`
+import {NotificationContext} from "../../contexts/NotificationContext";
 
 export const getSignup = async (db: Firestore, raid: string) => {
     const raidRef = doc(db, "signups", raid);
@@ -53,6 +24,7 @@ export const getSignup = async (db: Firestore, raid: string) => {
 const ManageRaids = () => {
     const [signups, setSignups] = useState<any>({comment: "", players: []})//useState<Array<signups>>([])
     const [selected, setSelected] = useState(Object.keys(raidData)[0])
+    const [setNotification] = useContext(NotificationContext)
 
     useEffect(() => {
         getSignup(db, selected)
@@ -72,15 +44,15 @@ const ManageRaids = () => {
             })
         }
         setSignups({comment: "", players: []})
-        alert("Data cleared")
+        setNotification({color: "lightgreen", message: "Data cleared"})
     }
 
     return (<Wrapper>
-        <div>General settings</div>
-        <div onClick={clearRaidsAndSignups}>Clear assignments and sign ups from all raids</div>
+        <SectionTitle>General settings</SectionTitle>
+        <Action onClick={clearRaidsAndSignups}>Clear assignments and sign ups from all raids</Action>
 
         <hr />
-        <div>Individual raid settings</div>
+        <SectionTitle>Individual raid settings</SectionTitle>
 
         <RaidWrapper>
             <Navbar>
@@ -89,15 +61,12 @@ const ManageRaids = () => {
                         key={raid}
                         onClick={() => setSelected(raid)}
                         //@ts-ignore
-                        style={{color: raidData[raid].color, background: selected === raid ? "#1d1e1f" : "rgba(0,0,0,0.1)"}}>
+                        style={{color: raidData[raid].color, background: selected === raid ? "black" : "#2c2c2c"}}>
                         {raid}
                     </RaidLink>)
                 })}
             </Navbar>
 
-            <div>{signups.comment}</div>
-
-            {/* TODO add sort signups by lvl and class */}
             <DragList raid={selected} data={signups} />
         </RaidWrapper>
     </Wrapper>);

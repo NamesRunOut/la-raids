@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {addPlayer as addPlayerToDB, character_class, getPlayers} from "../../../firebase/utils";
 import {db} from "../../../firebase/init";
 import styled from "styled-components";
@@ -6,6 +6,7 @@ import {player as playerI} from "../../../firebase/utils";
 import {collection, doc, Firestore, getDoc, getDocs, query, setDoc, where} from "firebase/firestore";
 import {classData} from "../../../data/classData";
 import {Add, Character, Header, Input, PlayerSelect, Remove, Save} from "./styles";
+import {NotificationContext} from "../../../contexts/NotificationContext";
 
 const Wrapper = styled.div`
   color: white;
@@ -25,6 +26,7 @@ const getPlayerId = async (db: Firestore, playerName: string) => {
 const EditPlayer = () => {
     const [player, setPlayer] = useState<any>({origName: "", name: "", characters: []})
     const [allPlayers, setAllPlayers] = useState<any>([])
+    const [setNotification] = useContext(NotificationContext)
 
     useEffect(() => {
         getPlayers(db)
@@ -62,7 +64,7 @@ const EditPlayer = () => {
 
                 const playersRef = collection(db, "players");
                 setDoc(doc(playersRef, pid), tmp)
-                    .then(r => alert("Changes saved"))
+                    .then(r => setNotification({color: "lightgreen", message: "Changes saved"}))
                     .catch(err => console.log(err))
             })
             .catch(err => console.log(err))

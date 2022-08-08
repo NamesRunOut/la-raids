@@ -14,6 +14,7 @@ export const DragDropContextContainer = styled.div`
 // padding: 0.1rem;
     // border: 4px solid indianred;
   // border-radius: 6px;
+  
 `;
 
 export const ListsWrapper = styled.div`
@@ -28,11 +29,11 @@ export const Signups = styled.div`
 `
 
 export const ListGrid = styled.div`
-display: flex;
-gap: 0.25rem;
-flex-wrap: wrap;
-justify-content: flex-start;
-// align-items: flex-start;
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  // align-items: flex-start;
   // display: grid;
   // grid-template-columns: 1fr 1fr 1fr;
   // grid-gap: 8px;
@@ -66,13 +67,13 @@ export const DroppableStylesSignup = styled.div`
 `;
 
 export const PlayerName = styled.div`
-    font-size: 0.5rem
+  font-size: 0.75rem
 `
 
 export const Character = styled.div`
-    display: grid;
-    grid-template-columns: max-content auto max-content;
-    gap: 0.5rem;
+  display: grid;
+  grid-template-columns: max-content auto max-content;
+  gap: 0.5rem;
 `
 
 export const Class = styled.div`
@@ -84,44 +85,46 @@ export const Ilvl = styled.div`
 `
 
 export const Name = styled.div`
-    margin: auto;
+  margin: auto;
 `
 
 export const CharacterBgColor = styled.div`
-    padding: 0.25rem;
-    display: flex;
-    flex-direction: column;
-    border-radius: 0.5rem;
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
 `
 
 export const ActionsBar = styled.div`
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-    margin-bottom: 0.25rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
 `
 
 export const Action = styled.div`
-    background: grey;
-    color: black;
-    cursor: pointer;
+  background: grey;
+  color: black;
+  cursor: pointer;
+  width: max-content;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
 
-    :hover{
-        background: lightgrey;
-    }
-
+  :hover{
+    background: lightgrey;
+  }
 `
 
 export const GroupName = styled.div`
-    text-transform: uppercase;
+  text-transform: uppercase;
 `
 
 export const RemoveGroup = styled.div`
-    color: red;
-    cursor: pointer;
+  color: red;
+  cursor: pointer;
 
-    :hover{
-        color: rgba(0,0,0,0.2)
-    }
+  :hover{
+    color: rgba(0,0,0,0.2)
+  }
 `

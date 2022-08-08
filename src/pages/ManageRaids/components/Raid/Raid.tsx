@@ -1,6 +1,6 @@
 //@ts-nocheck
 import styled from "styled-components";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Droppable, Draggable} from 'react-beautiful-dnd'
 import { DragDropContext } from "react-beautiful-dnd";
 import { DroppableStylesSignup, Action, RemoveGroup, Signups, CharacterBgColor, Character, Class, ColumnHeader, DragDropContextContainer, DragItem, DroppableStyles, Ilvl, ListGrid, Name, PlayerName, ListsWrapper, ActionsBar, GroupName } from "../styles";
@@ -9,6 +9,8 @@ import { raidData } from "../../../../data/raidData";
 import Loading from '../../../../components/Loading'
 import {doc, getDoc, setDoc} from "firebase/firestore";
 import {db} from "../../../../firebase/init";
+import {NotificationContext} from "../../../../contexts/NotificationContext";
+import {Comment} from "../../styles";
 
 const DraggableElement = ({ prefix, elements, allElements, setElements, raid }) => {
     // console.log(prefix, elements)
@@ -84,6 +86,8 @@ const addToList = (list, index, element) => {
 
 const DragList = ({raid, data}) => {
   const [elements, setElements] = useState({})
+  const [rcomment, setRcomment] = useState("")
+  const [setNotification] = useContext(NotificationContext)
 
   useEffect(() => {
     let tmp = structuredClone(data.players)
@@ -107,6 +111,7 @@ const DragList = ({raid, data}) => {
     }
 
     setElements({...raidD})
+    setRcomment(data.comment)
   }, [raid, data]);
 
   const onDragEnd = (result) => {
@@ -184,6 +189,8 @@ const DragList = ({raid, data}) => {
         }
         eIdx--
       }
+      // TODO recilvl + czihi algo
+      // TODO rownoleglosc
 
       newSups = supportPlayers
 
@@ -287,9 +294,8 @@ const DragList = ({raid, data}) => {
 
     if (docSnap.exists()) {
       // console.log("Document data:", docSnap.data());
-      let tmp = docSnap.data()
       let roster = {
-        comment: tmp.comment
+        comment: rcomment
       }
 
       for (let [key, value] of Object.entries(elements)){
@@ -300,9 +306,9 @@ const DragList = ({raid, data}) => {
       await setDoc(doc(db, "raids", raid), {
         ...roster
       })
-          .then(r => alert("Raid saved"))
+          .then(r => setNotification({color: "lightgreen", message: "Raid saved"}))
           .catch(err => {
-            alert("Error saving raid")
+            setNotification({color: "lightred", message: "Error saving raid"})
             console.log(err)
           })
 
@@ -320,6 +326,8 @@ const DragList = ({raid, data}) => {
         {/* <Action onClick={addRun}>Divide into simultaneous runs</Action> */}
         <Action onClick={reset}>Reset</Action>
       </ActionsBar>
+
+      <Comment value={rcomment} placeholder="Add raid description / comment" onChange={e => setRcomment(e.target.value)} />
 
       <DragDropContext onDragEnd={onDragEnd}>
         <ListsWrapper>
@@ -382,7 +390,7 @@ const ListItem = ({ item, index, raid }) => {
   };
 
 
-const getIlvlRating = (clvl, minlvl) => {
+export const getIlvlRating = (clvl, minlvl) => {
   let relative = clvl-minlvl
 
   // equal ilvl

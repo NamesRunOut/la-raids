@@ -83,7 +83,7 @@ export interface signups{
     groups: Array<group>
 }
 
-export async function addPlayer(db: Firestore, player: player){
+export async function addPlayer(db: Firestore, player: player, setNotification: any){
     const q = query(collection(db, "players"), where("name", "==", player.name))
     const querySnapshot = await getDocs(q)
     let result = null
@@ -93,14 +93,14 @@ export async function addPlayer(db: Firestore, player: player){
     })
 
     if (result !== null){
-        alert("A player with this name already exists!")
+        setNotification({color: "lightred", message: "A player with this name already exists!"})
         return
     }
 
     try {
         const docRef = await addDoc(collection(db, "players"), player);
         // localStorage.setItem('playerId', JSON.stringify(docRef.id))
-        alert("Player added successfully")
+        setNotification({color: "lightgreen", message: "Player added successfully"})
         console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);

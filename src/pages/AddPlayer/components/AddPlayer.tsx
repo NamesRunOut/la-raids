@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {addPlayer as addPlayerToDB, character_class} from "../../../firebase/utils";
 import {db} from "../../../firebase/init";
 import styled from "styled-components";
 import {classData} from "../../../data/classData";
 import {Add, Character, Header, Input, Remove, Save } from "./styles";
+import {NotificationContext} from "../../../contexts/NotificationContext";
 
 const Wrapper = styled.div`
   color: white;
@@ -14,6 +15,7 @@ const AddPlayer = () => {
         name: "",
         characters: []
     })
+    const [setNotification] = useContext(NotificationContext)
 
     const saveChanges = () => {
         let tmp = player
@@ -24,7 +26,7 @@ const AddPlayer = () => {
                 ilvl: tmp.characters[i].ilvl
             }
         }
-        addPlayerToDB(db, tmp)
+        addPlayerToDB(db, tmp, setNotification)
     }
 
     const addCharacter = () => {

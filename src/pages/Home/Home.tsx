@@ -1,51 +1,10 @@
-import styled from "styled-components";
 import React, {useEffect, useState} from "react";
-import {Reorder, useMotionValue} from "framer-motion";
-import {getPlayers, getSignups, player, raids, signups} from "../../firebase/utils";
 import {db} from "../../firebase/init";
 import { raidData } from "../../data/raidData";
-import { Character, Characters, Group, Player, PName, Raid, Title } from "./styles";
-import DragList, { signedupgroupname } from "./components/Raid/Raid";
-import {doc, Firestore, getDoc} from "firebase/firestore";
-import {getSignup} from "../ManageRaids/ManageRaids";
-
-const Wrapper = styled.div`
-  padding: 1rem;
-`
-
-const Navbar = styled.nav`
-  padding: 0.25rem 0.25rem 0 0.25rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.25rem;
-  background: rgba(0, 0, 0, 0.2);
-`
-
-const RaidLink = styled.div`
-  text-decoration: none;
-  color: black;
-  width: max-content;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-
-  :hover {
-    background: rgba(0, 0, 0, 0.2);
-  }
-`
-
-const getRaid = async (db: Firestore, raid: string) => {
-    const raidRef = doc(db, "raids", raid);
-    const docSnap = await getDoc(raidRef)
-
-    if (docSnap.exists()) {
-        return docSnap.data()
-    } else {
-        console.log("No such raid!", raid)
-        return {comment: ""}
-    }
-}
+import { Character, Group, Navbar, PageWrapper, Raid, RaidLink, RaidsWrapper, Title, Wrapper, Comment, Roster, Pilvl, PClass, PName, Lp } from "./styles";
+import {compareGroupName, getRaid} from "./utils";
+import {classData} from "../../data/classData";
+import {getIlvlRating} from "../ManageRaids/components/Raid/Raid";
 
 const Home = () => {
     const [selected, setSelected] = useState(Object.keys(raidData)[0])
@@ -57,52 +16,53 @@ const Home = () => {
             .catch(err => console.log(err))
     }, [selected])
 
-    return (<>
-        <div>Upcoming raids</div>
+    return (<PageWrapper>
+        <Title>Upcoming raids</Title>
 
-        <Navbar>
-            {Object.keys(raidData).map((raid: any) => {
-                return(<RaidLink
-                    key={raid}
-                    onClick={() => setSelected(raid)}
-                    //@ts-ignore
-                    style={{color: raidData[raid].color, background: selected === raid ? "#1d1e1f" : "rgba(0,0,0,0.1)"}}>
+        <RaidsWrapper>
+            <Navbar>
+                {Object.keys(raidData).map((raid: any) => {
+                    return(<RaidLink
+                        key={raid}
+                        onClick={() => setSelected(raid)}
+                        //@ts-ignore
+                        style={{color: raidData[raid].color || "white", background: selected === raid ? "#2c2c2c" : "#151515"}}>
                         {raid}
                     </RaidLink>)
-            })}
-        </Navbar>
+                })}
+            </Navbar>
 
-        <Wrapper>
-            <Raid>
-                {Object.entries(raid).map((c: any) => {
-                    let name = c[0]
-                    let players = c[1]
-                    if (name === "comment") return (<></>)
-                    else {
-                        return(
-                            <Group>
-                                <Title>{name}</Title>
-                                <Player>
-                                    <PName>{name}</PName>
-                                    <Characters>
-                                        {/*@ts-ignore*/}
-                                        {players.map((c:any) =>
-                                            <Character>
-                                                <div>{c.name}</div>
-                                                <div>{c.class}</div>
-                                                <div>{c.ilvl}</div>
-                                            </Character>
-                                        )}
-                                    </Characters>
-                                </Player>
-                            </Group>
-                        )
-                    }
-                }
-                )}
-            </Raid>
-        </Wrapper>
-    </>);
+            <Wrapper>
+                <Raid>
+                    <Comment>{raid["comment"]}</Comment>
+                    {Object.entries(raid).sort(compareGroupName).map((c: any) => {
+                        let name = c[0]
+                        let players = c[1]
+                        let i=1
+                            if (name === "comment") return (<></>)
+                            else {
+                                return(
+                                    <Group key={name}>
+                                        <Title>{name}</Title>
+                                        <Roster>
+                                            {players.map((c:any) => <React.Fragment key={c.name}>
+                                                <Lp>{i++}.</Lp>
+                                                <PName>{c.name}</PName>
+                                                {/*@ts-ignore*/}
+                                                <PClass style={{color: classData[c.class].color || "white", filter: "brightness(2.69)"}}>{c.class}</PClass>
+                                                {/*@ts-ignore*/}
+                                                <Pilvl style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "white", filter: "brightness(1.25)"}}>{c.ilvl}</Pilvl>
+                                            </React.Fragment>)}
+                                        </Roster>
+                                    </Group>
+                                )
+                            }
+                        }
+                    )}
+                </Raid>
+            </Wrapper>
+        </RaidsWrapper>
+    </PageWrapper>);
 }
 
 export default Home
