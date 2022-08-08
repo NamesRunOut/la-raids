@@ -1,64 +1,13 @@
 import styled from "styled-components";
 import React, {useEffect, useState} from "react";
 import {Reorder} from "framer-motion";
-import {getClassData, getPlayers, getSignups, player, signups} from "../firebase/utils";
-import {db} from "../firebase/init";
-import {classData} from "../data/classData";
-import {getIlvlRating} from "./ManageRaids/components/Raid/Raid";
-import {raidData} from "../data/raidData";
-import {classfilter, lighttext, tilegb} from "../styles/palette";
-
-const Wrapper = styled.div`
-  padding: 1rem;
-  color: ${lighttext};
-`
-
-const PlayersGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-`
-
-const PlayerTile = styled.div`
-  flex: 1 1 min-content;
-  border-radius: 0.5rem;
-  background: ${tilegb};
-  margin: 0.25rem;
-  padding: 0 0.5rem;
-`
-
-const PlayerName = styled.h3`
-  padding: 0.25rem;
-  margin-bottom: 0;
-  margin-top: 0.5rem;
-`
-
-const PlayerCharacters = styled.div`
-`
-
-const PlayerCharacter = styled.div`
-  border-radius: 0.25rem;
-  //background: #151515;
-  margin: 0.25rem 0;
-  padding: 0.25rem;
-  
-  display: grid;
-  grid-template-columns: min-content 1fr 1fr min-content;
-  gap: 0.1rem;
-  grid-column-gap: 0.5rem;
-`
-
-const CharName = styled.div`
-`
-
-const CharClass = styled.div`
-`
-
-const CharIlvl = styled.div``
-
-const Lp = styled.div`
-  margin-right: 0.5rem;
-`
+import {getClassData, getPlayers, getSignups, player, signups} from "../../firebase/utils";
+import {db} from "../../firebase/init";
+import {classData} from "../../data/classData";
+import {raidData} from "../../data/raidData";
+import {classfilter, lighttext, tilegb} from "../../styles/palette";
+import {CharName, Lp, PlayerCharacter, PlayerCharacters, PlayerName, PlayersGrid, PlayerTile, Wrapper, CharClass, CharIlvl } from "./styles";
+import getIlvlRating from "../ManageRaids/components/utils/getIlvlRating";
 
 const Player: React.FC <{player: player}> = ({player}) => {
     let i=1

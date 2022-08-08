@@ -6,10 +6,10 @@ import {db} from "../../firebase/init";
 import {Character, Header, Raid, RaidWrapper, Wrapper, RaidName, Roster, Checkbox, PName, PClass, Pilvl} from "./styles";
 import {collection, doc, Firestore, getDoc, getDocs, query, setDoc} from "firebase/firestore";
 import {classData} from "../../data/classData";
-import {getIlvlRating} from "../ManageRaids/components/Raid/Raid";
 import {NotificationContext} from "../../contexts/NotificationContext";
 import { PlayerSelect, Save, Option } from "../../styles/common";
 import {classfilter} from "../../styles/palette";
+import getIlvlRating from "../ManageRaids/components/utils/getIlvlRating";
 
 const getAllRaidSignupData = async (db: Firestore) => {
     const q = query(collection(db, "signups"))

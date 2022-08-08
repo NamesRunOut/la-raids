@@ -4,8 +4,8 @@ import { raidData } from "../../data/raidData";
 import { Character, Group, Navbar, PageWrapper, Raid, RaidLink, RaidsWrapper, Title, Wrapper, Comment, Roster, Pilvl, PClass, PName, Lp } from "./styles";
 import {compareGroupName, getRaid} from "./utils";
 import {classData} from "../../data/classData";
-import {getIlvlRating} from "../ManageRaids/components/Raid/Raid";
 import {classfilter, navbuttonbg, tilegb} from "../../styles/palette";
+import getIlvlRating from "../ManageRaids/components/utils/getIlvlRating";
 
 const Home = () => {
     const [selected, setSelected] = useState(Object.keys(raidData)[0])

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Players from "./pages/Players";
+import Players from "./pages/AllPlayers/Players";
 import styled from "styled-components";
 import AddOrEdit from "./pages/AddPlayer/AddPlayer";
 import AddPlayer from './pages/AddPlayer/AddPlayer';
