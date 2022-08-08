@@ -139,7 +139,7 @@ const EditPlayer = () => {
             <Add onClick={addCharacter}>Add character</Add>
 
             {player.characters.length > 0 && <Character>
-                <div style={{width: "110px"}}/>
+                <div style={{width: "110px"}}>Class</div>
                 <div style={{width: "150px"}}>Character name</div>
                 <div style={{width: "150px"}}>Item level</div>
                 <div style={{width: "70px"}}/>

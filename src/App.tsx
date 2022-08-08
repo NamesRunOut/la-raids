@@ -11,6 +11,7 @@ import ManageRaids from "./pages/ManageRaids/ManageRaids";
 import {Notification as NotificationContext} from "./contexts/NotificationContext";
 import Notification from './components/Notification'
 import {lighttext, navbuttonbg, navbuttonhover} from "./styles/palette";
+import {raidData} from "./data/raidData";
 
 const Navbar = styled.nav`
   padding: 0.25rem;
@@ -36,17 +37,23 @@ const PageLink = styled(Link)`
 `
 
 const App = () => {
+    const [selected, setSelected] = useState("")
+
+    const isSelected = (tab: string) => {
+        return tab === selected
+    }
+
   return(
       <NotificationContext>
           <BrowserRouter>
               <Notification />
               <Navbar>
-                  <PageLink to={"/"}>Home</PageLink>
-                  <PageLink to={"/signup"}>Raid signups</PageLink>
-                  <PageLink to={"/players"}>All players</PageLink>
-                  <PageLink to={"/addPlayer"}>Add players</PageLink>
-                  <PageLink to={"/editPlayer"}>Edit players</PageLink>
-                  <PageLink to={"/manageRaids"}>Manage raids</PageLink>
+                  <PageLink to={"/"} style={{background: isSelected("") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("")}>Home</PageLink>
+                  <PageLink to={"/signup"} style={{background: isSelected("signup") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("signup")}>Raid signups</PageLink>
+                  <PageLink to={"/players"} style={{background: isSelected("players") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("players")}>All players</PageLink>
+                  <PageLink to={"/addPlayer"} style={{background: isSelected("addPlayer") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("addPlayer")}>Add players</PageLink>
+                  <PageLink to={"/editPlayer"} style={{background: isSelected("editPlayer") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("editPlayer")}>Edit players</PageLink>
+                  <PageLink to={"/manageRaids"} style={{background: isSelected("manageRaids") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("manageRaids")}>Manage raids</PageLink>
               </Navbar>
               <Routes>
                   <Route path="/" element={<Home />} />
@@ -55,9 +62,6 @@ const App = () => {
                   <Route path="addPlayer" element={<AddPlayer />} />
                   <Route path="editPlayer" element={<EditPlayer />} />
                   <Route path="manageRaids" element={<ManageRaids />} />
-                  {/*<Route path="player/:playerId" element={<Player />} />*/}
-                  {/*<Route path="new" element={<NewTeamForm />} />*/}
-                  {/*<Route index element={<LeagueStandings />} />*/}
               </Routes>
           </BrowserRouter>
       </NotificationContext>

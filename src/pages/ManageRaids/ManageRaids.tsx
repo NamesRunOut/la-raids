@@ -65,7 +65,8 @@ const ManageRaids = () => {
                         onClick={() => setSelected(raid)}
                         //@ts-ignore
                         style={{color: raidData[raid].color, background: selected === raid ? "black" : "#2c2c2c"}}>
-                        {raid}
+                        {/*@ts-ignore*/}
+                        {raidData[raid].name}
                     </RaidLink>)
                 })}
             </Navbar>

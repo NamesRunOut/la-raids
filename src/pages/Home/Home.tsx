@@ -27,8 +27,9 @@ const Home = () => {
                         key={raid}
                         onClick={() => setSelected(raid)}
                         //@ts-ignore
-                        style={{color: raidData[raid].color || "white", background: selected === raid ? tilegb : navbuttonbg}}>
-                        {raid}
+                        style={{color: raidData[raid].color || "white", background: selected === raid ? "black" : "#2c2c2c"}}>
+                        {/*@ts-ignore*/}
+                        {raidData[raid].name}
                     </RaidLink>)
                 })}
             </Navbar>

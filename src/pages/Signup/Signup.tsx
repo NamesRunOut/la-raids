@@ -157,7 +157,9 @@ const Signup = () => {
             {Object.keys(raidData).map((raid: any) => {
                 return(<Raid key={raid}>
                     {/*@ts-ignore*/}
-                    <RaidName style={{color: raidData[raid].color || "white"}}>{raid}</RaidName>
+                    <RaidName style={{color: raidData[raid].color || "white"}}>
+                        {/*@ts-ignore*/}
+                        {raidData[raid].name}</RaidName>
                     <div>Eligible characters:</div>
 
                     <Roster>
