@@ -3,11 +3,12 @@ import {addPlayer as addPlayerToDB, character_class} from "../../../firebase/uti
 import {db} from "../../../firebase/init";
 import styled from "styled-components";
 import {classData} from "../../../data/classData";
-import {Add, Character, Header, Input, Remove, Save } from "./styles";
+import { Character, Header, Input } from "./styles";
 import {NotificationContext} from "../../../contexts/NotificationContext";
+import {PlayerSelect, Option, Save, Remove, Add} from '../../../styles/common'
 
 const Wrapper = styled.div`
-  color: white;
+  color: black;
 `
 
 const AddPlayer = () => {
@@ -94,7 +95,7 @@ const AddPlayer = () => {
                     </select>
                     <input value={char.name} onChange={e => changeName(e, char.id)} />
                     <input type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id)} />
-                    <Remove onClick={() => removeCharacter(char)}>remove</Remove>
+                    <Remove onClick={() => removeCharacter(char)}>X</Remove>
                 </Character>
             )}
 

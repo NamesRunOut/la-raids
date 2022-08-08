@@ -3,11 +3,12 @@ import React, {useContext, useEffect, useState} from "react";
 import {raidData} from "../../data/raidData";
 import {getPlayers} from "../../firebase/utils";
 import {db} from "../../firebase/init";
-import {Character, Header, PlayerSelect, Raid, RaidWrapper, Save, Wrapper, RaidName, Roster, Checkbox, PName, PClass, Pilvl, Option} from "./styles";
+import {Character, Header, Raid, RaidWrapper, Wrapper, RaidName, Roster, Checkbox, PName, PClass, Pilvl} from "./styles";
 import {collection, doc, Firestore, getDoc, getDocs, query, setDoc} from "firebase/firestore";
 import {classData} from "../../data/classData";
 import {getIlvlRating} from "../ManageRaids/components/Raid/Raid";
 import {NotificationContext} from "../../contexts/NotificationContext";
+import { PlayerSelect, Save, Option } from "../../styles/common";
 
 const getAllRaidSignupData = async (db: Firestore) => {
     const q = query(collection(db, "signups"))
@@ -165,9 +166,9 @@ const Signup = () => {
                                 <Checkbox type="checkbox" checked={checkIfSignedUp(raid, player.name, char.name)} onChange={(e) => signUp(e, raid, char.name)} /> {/* checked if matches found in signups */}
                                 <PName>{char.name}</PName>
                                 {/*@ts-ignore*/}
-                                <PClass style={{color: classData[char.class].color || "white", filter: "brightness(2.69)"}}>{char.class}</PClass>
+                                <PClass style={{color: classData[char.class].color || "black", filter: "brightness(2.69) grayscale(0.5)"}}>{char.class}</PClass>
                                 {/*@ts-ignore*/}
-                                <Pilvl style={{color: getIlvlRating(char.ilvl, raidData[raid].minlvl || 0) || "white", filter: "brightness(1.25)"}}>{char.ilvl}</Pilvl>
+                                <Pilvl style={{color: getIlvlRating(char.ilvl, raidData[raid].minlvl || 0) || "black"}}>{char.ilvl}</Pilvl>
                             </React.Fragment>
                             else return <></>}
                         )}

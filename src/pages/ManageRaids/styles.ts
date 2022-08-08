@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const SectionTitle = styled.h3`
   margin-top: 0;
-  color: white;
+  color: black;
 `
 
 export const Signups = styled.div`
-  color: white;
+  color: black;
 `
 
 export const Title = styled.h3`
@@ -34,7 +34,7 @@ export const Wrapper = styled.div`
 `
 
 export const RaidWrapper = styled.div`
-  background: #151515;
+  //background: #151515;
 `
 
 export const Navbar = styled.nav`
@@ -43,7 +43,7 @@ export const Navbar = styled.nav`
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
-  background: #151515;
+  //background: #151515;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 `
@@ -65,17 +65,4 @@ export const RaidLink = styled.div`
 export const Comment = styled.input`
   margin-bottom: 0.5rem;
   min-width: 15rem;
-`
-
-export const Action = styled.div`
-  background: grey;
-  color: black;
-  cursor: pointer;
-  width: max-content;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-
-  :hover{
-    background: lightgrey;
-  }
 `

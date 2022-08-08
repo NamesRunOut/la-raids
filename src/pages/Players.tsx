@@ -9,7 +9,7 @@ import {raidData} from "../data/raidData";
 
 const Wrapper = styled.div`
   padding: 1rem;
-  color: white;
+  color: #fefefe;
 `
 
 const PlayersGrid = styled.div`
@@ -19,45 +19,45 @@ const PlayersGrid = styled.div`
 `
 
 const PlayerTile = styled.div`
-  flex: 1 1 20%;
+  flex: 1 1 min-content;
   border-radius: 0.5rem;
   background: #2c2c2c;
   margin: 0.25rem;
   padding: 0 0.5rem;
-
-  @media (max-width: 468px){
-    flex: 0 1 100%;
-  }
 `
 
 const PlayerName = styled.h3`
   padding: 0.25rem;
-  margin: 0;
+  margin-bottom: 0;
+  margin-top: 0.5rem;
 `
 
 const PlayerCharacters = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
 `
 
 const PlayerCharacter = styled.div`
   border-radius: 0.25rem;
-  background: #151515;
+  //background: #151515;
   margin: 0.25rem 0;
   padding: 0.25rem;
+  
   display: grid;
-  grid-template-columns: max-content auto 1fr auto;
+  grid-template-columns: min-content 1fr 1fr min-content;
+  gap: 0.1rem;
+  grid-column-gap: 0.5rem;
 `
 
 const CharName = styled.div`
-  padding: 0 0.25rem;
 `
 
 const CharClass = styled.div`
-  margin: auto;
 `
 
 const CharIlvl = styled.div``
+
+const Lp = styled.div`
+  margin-right: 0.5rem;
+`
 
 const Player: React.FC <{player: player}> = ({player}) => {
     let i=1
@@ -67,12 +67,12 @@ const Player: React.FC <{player: player}> = ({player}) => {
             <PlayerCharacters>
                 {player.characters?.map(char =>
                     <PlayerCharacter>
-                        <div>{i++}.</div>
+                        <Lp>{i++}.</Lp>
                         <CharName>{char.name}</CharName>
                         {/*@ts-ignore*/}
-                        <CharClass style={{color: classData[char.class].color || "white", filter: "brightness(2.69)"}}>{char.class}</CharClass>
+                        <CharClass style={{color: classData[char.class].color || "black", filter: "brightness(2.69) grayscale(0.5)"}}>{char.class}</CharClass>
                         {/*@ts-ignore*/}
-                        <CharIlvl style={{color: getIlvlRating(char.ilvl, raidData["Argos_p3"].minlvl || 0) || "white", filter: "brightness(1.25)"}}>{char.ilvl}</CharIlvl>
+                        <CharIlvl style={{color: getIlvlRating(char.ilvl, raidData["Argos_p3"].minlvl || 0) || "black"}}>{char.ilvl}</CharIlvl>
                     </PlayerCharacter>)}
             </PlayerCharacters>
         </PlayerTile>

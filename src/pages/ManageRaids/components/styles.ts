@@ -5,6 +5,7 @@ export const DragItem = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   background: white;
   margin: 0 0 8px 0;
+  color: black;
 //   gap: 0.25rem;
 
   min-width: 16rem;
@@ -14,7 +15,7 @@ export const DragDropContextContainer = styled.div`
 // padding: 0.1rem;
     // border: 4px solid indianred;
   // border-radius: 6px;
-  
+  color: #fefefe;
 `;
 
 export const ListsWrapper = styled.div`
@@ -52,7 +53,7 @@ export const DroppableStyles = styled.div`
   flex: 1 1 17rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  background: #d4d4d4;
+  background: #2c2c2c;
   height: min-content;
   min-width: 17rem;
   max-width: 40%;
@@ -61,9 +62,9 @@ export const DroppableStyles = styled.div`
 export const DroppableStylesSignup = styled.div`
   padding: 0.5rem;
   border-radius: 0.5rem;
-  background: #d4d4d4;
+  background: #2c2c2c;
   height: min-content;
-  min-width: 17rem;
+  min-width: 15rem;
 `;
 
 export const PlayerName = styled.div`
@@ -72,12 +73,16 @@ export const PlayerName = styled.div`
 
 export const Character = styled.div`
   display: grid;
-  grid-template-columns: max-content auto max-content;
+  grid-template-columns: min-content 1fr min-content;
   gap: 0.5rem;
 `
 
-export const Class = styled.div`
+export const BasicCInfo = styled.div`
+  display: flex;
+`
 
+export const Class = styled.div`
+  margin: auto;
 `
 
 export const Ilvl = styled.div`
@@ -85,7 +90,7 @@ export const Ilvl = styled.div`
 `
 
 export const Name = styled.div`
-  margin: auto;
+    
 `
 
 export const CharacterBgColor = styled.div`
@@ -104,15 +109,33 @@ export const ActionsBar = styled.div`
 `
 
 export const Action = styled.div`
-  background: grey;
-  color: black;
+  color: #6dafff;
+  background: #2c2c2c;
   cursor: pointer;
   width: max-content;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   :hover{
-    background: lightgrey;
+    color: #4168b2;
+  }
+`
+
+export const Save = styled.div`
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background: #6dafff;
+  color: black;
+  font-weight: bold;
+  width: max-content;
+  font-size: 1rem;
+  cursor: pointer;
+
+  :hover {
+    background: #4168b2;
   }
 `
 

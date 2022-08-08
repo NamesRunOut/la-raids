@@ -3,7 +3,28 @@ import styled from "styled-components";
 import React, {useContext, useEffect, useState} from "react";
 import {Droppable, Draggable} from 'react-beautiful-dnd'
 import { DragDropContext } from "react-beautiful-dnd";
-import { DroppableStylesSignup, Action, RemoveGroup, Signups, CharacterBgColor, Character, Class, ColumnHeader, DragDropContextContainer, DragItem, DroppableStyles, Ilvl, ListGrid, Name, PlayerName, ListsWrapper, ActionsBar, GroupName } from "../styles";
+import {
+  DroppableStylesSignup,
+  Action,
+  RemoveGroup,
+  Signups,
+  CharacterBgColor,
+  Character,
+  Class,
+  ColumnHeader,
+  DragDropContextContainer,
+  DragItem,
+  DroppableStyles,
+  Ilvl,
+  ListGrid,
+  Name,
+  PlayerName,
+  ListsWrapper,
+  ActionsBar,
+  GroupName,
+  BasicCInfo,
+    Save
+} from "../styles";
 import { classData } from "../../../../data/classData";
 import { raidData } from "../../../../data/raidData";
 import Loading from '../../../../components/Loading'
@@ -11,6 +32,7 @@ import {doc, getDoc, setDoc} from "firebase/firestore";
 import {db} from "../../../../firebase/init";
 import {NotificationContext} from "../../../../contexts/NotificationContext";
 import {Comment} from "../../styles";
+import {Remove} from '../../../../styles/common'
 
 const DraggableElement = ({ prefix, elements, allElements, setElements, raid }) => {
     // console.log(prefix, elements)
@@ -30,7 +52,7 @@ const DraggableElement = ({ prefix, elements, allElements, setElements, raid }) 
         <ColumnHeader>
           <GroupName>{prefix}</GroupName>
           <div>{elements.length}/{raidData[raid].groupSize}</div>
-          <RemoveGroup onClick={removeGroup}>X</RemoveGroup>
+          <Remove onClick={removeGroup}>X</Remove>
         </ColumnHeader>
 
         <Droppable droppableId={`${prefix}`}>
@@ -320,7 +342,7 @@ const DragList = ({raid, data}) => {
   return (
     <DragDropContextContainer>
       <ActionsBar>
-        <Action onClick={onSave}>Save</Action>
+        <Save onClick={onSave}>Save</Save>
         <Action onClick={() => autoAssign(elements, setElements)}>Auto assign</Action>
         <Action onClick={addGroup}>Add group</Action>
         {/* <Action onClick={addRun}>Divide into simultaneous runs</Action> */}
@@ -377,9 +399,9 @@ const ListItem = ({ item, index, raid }) => {
               <CharacterBgColor style={{background: bgcolor}}>
                 <PlayerName>{item.playerName}</PlayerName>
                 <Character>
+                  <Name>{item.name}</Name>
                   <Class style={{color: classData[item.class]?.color || "black"}}>{item.class}</Class>
-                  <Name>{item.name}</Name> 
-                  <Ilvl style={{color: getIlvlRating(item.ilvl, raidData[raid]?.minlvl || 0)}}>{item.ilvl}</Ilvl>
+                  <Ilvl style={{color: getIlvlRating(item.ilvl, raidData[raid]?.minlvl || 0), filter: "brightness(0.69) grayscale(0.5)"}}>{item.ilvl}</Ilvl>
                 </Character>
               </CharacterBgColor> 
             </DragItem>
@@ -394,20 +416,20 @@ export const getIlvlRating = (clvl, minlvl) => {
   let relative = clvl-minlvl
 
   // equal ilvl
-  if (relative === 0) return "#b8bd2d"
+  if (relative === 0) return "#dada00"
 
   // less ilvl
-  if (relative < 0 && Math.abs(relative) >= 20) return "#bd3b2d"
-  if (relative < 0 && Math.abs(relative) >= 10) return "#bd7a2d"
+  if (relative < 0 && Math.abs(relative) >= 20) return "#d2200c"
+  if (relative < 0 && Math.abs(relative) >= 10) return "#c4770e"
 
   // more ilvl
-  if (relative >= 20) return "#2dbd6b"
-  if (relative >= 15) return "#2dbd4a"
-  if (relative >= 10) return "#3ebd2d"
-  if (relative >= 5) return "#64bd2d"
-  if (relative >= 2) return "#88bd2d"
+  if (relative >= 20) return "#10d269"
+  if (relative >= 15) return "#11ce39"
+  if (relative >= 10) return "#30dc13"
+  if (relative >= 5) return "#5fd90f"
+  if (relative >= 2) return "#91da10"
   
-  return "#afbd2d"
+  return "#cfdc13"
 }
 
 const hexToRgb = hex =>

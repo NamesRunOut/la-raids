@@ -12,7 +12,7 @@ export const raidData = {
         groupSize: 8
     },
     Valtan_hm: {
-        color: "#393bce",
+        color: "#5657d3",
         minlvl: 1445,
         reclvl: 1445,
         groupSize: 8

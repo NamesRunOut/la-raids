@@ -4,10 +4,11 @@ import {Reorder, useMotionValue} from "framer-motion";
 import {getPlayers, getSignups, player, raids, signups} from "../../firebase/utils";
 import {db} from "../../firebase/init";
 import { raidData } from "../../data/raidData";
-import { Character, Characters, Navbar, Player, PName, RaidLink, RaidWrapper, SectionTitle, Signups, Title, Wrapper, Comment, Action } from "./styles";
+import { Character, Characters, Navbar, Player, PName, RaidLink, RaidWrapper, SectionTitle, Signups, Title, Wrapper, Comment } from "./styles";
 import DragList, { signedupgroupname } from "./components/Raid/Raid";
 import {doc, Firestore, getDoc, setDoc} from "firebase/firestore";
 import {NotificationContext} from "../../contexts/NotificationContext";
+import {Action} from './components/styles'
 
 export const getSignup = async (db: Firestore, raid: string) => {
     const raidRef = doc(db, "signups", raid);
@@ -33,18 +34,21 @@ const ManageRaids = () => {
     }, [selected])
 
     const clearRaidsAndSignups = async () => {
-        for (let key of Object.keys(raidData)) {
-            await setDoc(doc(db, "signups", key), {
-                comment: "",
-                players: []
-            })
+        // eslint-disable-next-line no-restricted-globals
+        if (confirm("Are you sure you want to clear all raid and signup data?")) {
+            for (let key of Object.keys(raidData)) {
+                await setDoc(doc(db, "signups", key), {
+                    comment: "",
+                    players: []
+                })
 
-            await setDoc(doc(db, "raids", key), {
-                comment: ""
-            })
+                await setDoc(doc(db, "raids", key), {
+                    comment: ""
+                })
+            }
+            setSignups({comment: "", players: []})
+            setNotification({color: "lightgreen", message: "Data cleared"})
         }
-        setSignups({comment: "", players: []})
-        setNotification({color: "lightgreen", message: "Data cleared"})
     }
 
     return (<Wrapper>

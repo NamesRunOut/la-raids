@@ -5,11 +5,12 @@ import styled from "styled-components";
 import {player as playerI} from "../../../firebase/utils";
 import {collection, doc, Firestore, getDoc, getDocs, query, setDoc, where} from "firebase/firestore";
 import {classData} from "../../../data/classData";
-import {Add, Character, Header, Input, PlayerSelect, Remove, Save} from "./styles";
+import { Character, Header, Input} from "./styles";
 import {NotificationContext} from "../../../contexts/NotificationContext";
+import {PlayerSelect, Option, Save, Add, Remove} from '../../../styles/common'
 
 const Wrapper = styled.div`
-  color: white;
+  color: black;
 `
 
 const getPlayerId = async (db: Firestore, playerName: string) => {
@@ -128,11 +129,11 @@ const EditPlayer = () => {
         <Wrapper>
             <Header>
                 <PlayerSelect value={player.origName} onChange={changePlayer}>
-                    {allPlayers.map((p: any) => <option key={p.origName} value={p.name}>{p.name}</option>)}
+                    {allPlayers.map((p: any) => <Option key={p.origName} value={p.name}>{p.name}</Option>)}
                 </PlayerSelect>
             </Header>
 
-            <Header>Discord name <Input value={player.name} onChange={e => setPlayer({...player, name: e.target.value})} /></Header>
+            {/*<Header>Discord name <Input value={player.name} onChange={e => setPlayer({...player, name: e.target.value})} /></Header>*/}
             <Header>Characters:</Header>
             <Add onClick={addCharacter}>Add character</Add>
 
@@ -149,7 +150,7 @@ const EditPlayer = () => {
                     </select>
                     <input value={char.name} onChange={e => changeName(e, char.id)} />
                     <input type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id)} />
-                    <Remove onClick={() => removeCharacter(char)}>remove</Remove>
+                    <Remove onClick={() => removeCharacter(char)}>X</Remove>
                 </Character>
             )}
 

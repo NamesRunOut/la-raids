@@ -2,28 +2,11 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   padding: 1rem;
-  color: white;
+  color: #fefefe;
 `
 
 export const Header = styled.div`
-  padding: 0 0 0.25rem 0;
-  background: #2c2c2c;
   width: min-content;
-  border-radius: 0.5rem 0.5rem 0 0;
-`
-
-export const PlayerSelect = styled.select`
-  background: transparent;
-  border: none;
-  color: white;
-  border-radius: 0.5rem 0.5rem 0 0;
-  padding: 0.25rem;
-  font-size: 1rem;
-`
-
-export const Option = styled.option`
-  color: white;
-  background: #2c2c2c;
 `
 
 export const Input = styled.input`
@@ -32,7 +15,7 @@ export const Input = styled.input`
 
 export const RaidName = styled.div`
   text-decoration: none;
-  color: white;
+  color: #fefefe;
   width: max-content;
   border-radius: 0.25rem 0.25rem 0 0;
   font-weight: bold;
@@ -64,24 +47,9 @@ export const Character = styled.div`
     gap: 0.25rem;
 `
 
-export const Save = styled.div`
-  padding: 0.5rem 1rem;
-  background: #a4d6a2;
-  color: black;
-  font-weight: bold;
-  border-radius: 1rem;
-  width: max-content;
-  font-size: 1rem;
-  margin-top: 1rem;
-
-  :hover {
-    background: #7b9669;
-  }
-`
-
 export const Raid = styled.div`
-  flex: 1 1 20%;
-  background: #151515;
+  flex: 1 1 min-content;
+  background: #2c2c2c;
   border-radius: 0.5rem;
   padding: 0.5rem;
 `
@@ -91,8 +59,8 @@ export const RaidWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
-  background: #2c2c2c;
-  padding: 0.5rem;
-  border-radius: 0 0.5rem 0.5rem 0.5rem;
+  //background: #2c2c2c;
+  //padding: 0.5rem;
+  //border-radius: 0 0.5rem 0.5rem 0.5rem;
 
 `

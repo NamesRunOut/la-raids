@@ -26,7 +26,7 @@ const Home = () => {
                         key={raid}
                         onClick={() => setSelected(raid)}
                         //@ts-ignore
-                        style={{color: raidData[raid].color || "white", background: selected === raid ? "#2c2c2c" : "#151515"}}>
+                        style={{color: raidData[raid].color || "white", background: selected === raid ? "#2c2c2c" : "black"}}>
                         {raid}
                     </RaidLink>)
                 })}
@@ -49,9 +49,9 @@ const Home = () => {
                                                 <Lp>{i++}.</Lp>
                                                 <PName>{c.name}</PName>
                                                 {/*@ts-ignore*/}
-                                                <PClass style={{color: classData[c.class].color || "white", filter: "brightness(2.69)"}}>{c.class}</PClass>
+                                                <PClass style={{color: classData[c.class].color || "black", filter: "brightness(2.69) grayscale(0.5)"}}>{c.class}</PClass>
                                                 {/*@ts-ignore*/}
-                                                <Pilvl style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "white", filter: "brightness(1.25)"}}>{c.ilvl}</Pilvl>
+                                                <Pilvl style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "black"}}>{c.ilvl}</Pilvl>
                                             </React.Fragment>)}
                                         </Roster>
                                     </Group>

@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Raid = styled.div`
-  color: white;
-  background: #2c2c2c;
-  padding: 0.5rem;
-  border-radius: 0 0.5rem 0.5rem 0.5rem;
+  //background: #2c2c2c;
+  //padding: 0.5rem;
+  border-radius: 0.5rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -41,9 +40,10 @@ export const Character = styled.div`
 
 export const Group = styled.div`
   flex: 1 1 min-content;
-  background: #151515;
+  background: #2c2c2c;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  color: #fefefe;
 `
 
 export const Wrapper = styled.div`
@@ -55,16 +55,17 @@ export const Navbar = styled.nav`
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
-  background: #000000;
+  //background: #000000;
 `
 
 export const RaidLink = styled.div`
   text-decoration: none;
-  color: white;
+  color: black;
   width: max-content;
   padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem 0.25rem 0 0;
+  border-radius: 0.25rem;
   font-weight: bold;
+  cursor: pointer;
 
   :hover {
     background: rgba(0, 0, 0, 0.2);
@@ -72,17 +73,18 @@ export const RaidLink = styled.div`
 `
 
 export const PageWrapper = styled.div`
-  color: white;
+  color: black;
   padding: 1rem;
-  background: #151515;
+  //background: #151515;
 `
 
 export const RaidsWrapper = styled.div`
-  background: #000000;
+  //background: #000000;
   padding: 0.5rem;
   border-radius: 0.5rem;
 `
 
 export const Comment = styled.div`
-    width: 100%;
+  width: 100%;
+  color: black;
 `
