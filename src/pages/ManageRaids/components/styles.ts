@@ -30,7 +30,7 @@ export const DragDropContextContainer = styled.div`
 
 export const ListsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr minmax(max-content, 25%);
+  grid-template-columns: 1fr min-content;
   gap: 0.25rem;
 `
 
