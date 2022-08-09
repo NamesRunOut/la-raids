@@ -23,6 +23,7 @@ const DragList: React.FC <{raid: string, data: {comment: string, players: Array<
 
   useEffect(() => {
     let tmp = structuredClone(data.players)
+    let dataClone = structuredClone(data)
     tmp.sort(compareIlvl).reverse()
     let raidD = {
       [signedupgroupname]: []
@@ -37,13 +38,26 @@ const DragList: React.FC <{raid: string, data: {comment: string, players: Array<
       i++
     }
 
-    for (let gr=1;gr<=(Math.floor(tmp.length/raidData[raid].groupSize)+1 || 2);gr++){
+    let allPlayers = 0
+    for (let [key, value] of Object.entries(dataClone)){
+      if (key === "comment") continue
+      allPlayers += value.length
+      for (let p of value){
+        p.id = i.toString()
+        i++
+      }
+    }
+
+    for (let gr=1;gr<=(Math.floor(allPlayers/raidData[raid].groupSize)+1 || 2);gr++){
       raidD[`group${gr}`] = []
-      if (gr > tmp.length) break
+      if (dataClone[`group${gr}`] && dataClone[`group${gr}`].length > 0){
+        raidD[`group${gr}`] = [...dataClone[`group${gr}`]]
+      }
+      if (gr > allPlayers/4) break
     }
 
     setElements({...raidD})
-    setRcomment(data.comment)
+    setRcomment(dataClone.comment)
   }, [raid, data]);
 
   return (
