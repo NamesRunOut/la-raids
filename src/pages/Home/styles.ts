@@ -27,8 +27,7 @@ export const Lp = styled.div`
     margin-right: 0.5rem;
 `
 
-export const PName = styled.div`
-`
+export const PName = styled.div``
 
 export const PClass = styled.div``
 

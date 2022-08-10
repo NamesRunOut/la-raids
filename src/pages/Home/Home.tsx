@@ -22,9 +22,14 @@ import {classData} from "../../data/classData";
 import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
 
+const isHighlighted = (highlightedPlayer: string, playerName: string) => {
+    return highlightedPlayer === playerName
+}
+
 const Home = () => {
     const [selected, setSelected] = useState(Object.keys(raidData)[0])
     const [raid, setRaid] = useState<any>({comment: ""})
+    const [highlightedPlayer, setHighlightedPlayer] = useState("")
 
     useEffect(() => {
         getRaid(db, selected)
@@ -62,7 +67,7 @@ const Home = () => {
                                 <Roster>
                                     {players.map((c:any) => <React.Fragment key={c.name}>
                                         <Lp>{i++}.</Lp>
-                                        <PName>{c.name}</PName>
+                                        <PName onClick={() => setHighlightedPlayer(c.playerName)} style={isHighlighted(highlightedPlayer, c.playerName) ? {background: "#d7d4cf", color: "black"} : {}}>{c.name}</PName>
                                         {/*@ts-ignore*/}
                                         <PClass style={{color: classData[c.class].color || "black", filter: classfilter}}>{c.class}</PClass>
                                         {/*@ts-ignore*/}
