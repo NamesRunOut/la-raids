@@ -84,17 +84,17 @@ const AddPlayer = () => {
             <Add onClick={addCharacter}>Add character</Add>
 
             {player.characters.length > 0 && <Character>
-                <div style={{width: "110px"}}>Class</div>
                 <div style={{width: "150px"}}>Character name</div>
+                <div style={{width: "110px"}}>Class</div>
                 <div style={{width: "150px"}}>Item level</div>
                 <div style={{width: "70px"}}/>
             </Character>}
             {player.characters.map((char: any) =>
                 <Character key={char.id}>
+                    <input value={char.name} onChange={e => changeName(e, char.id)} />
                     <select value={char.class || character_class[character_class.Berserker]} onChange={(e) => changeClass(e, char.id)}>
                         {Object.keys(classData).map((spec: any) => <option key={`${char.id}-${spec}`} value={spec}>{spec}</option>)}
                     </select>
-                    <input value={char.name} onChange={e => changeName(e, char.id)} />
                     <input type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id)} />
                     <Remove onClick={() => removeCharacter(char)}>X</Remove>
                 </Character>
