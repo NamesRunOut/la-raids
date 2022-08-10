@@ -7,7 +7,7 @@ import hexToRgb from "../utils/hexToRgb";
 import {Draggable} from 'react-beautiful-dnd'
 import getIlvlRating from "../utils/getIlvlRating";
 
-const ListItem = ({ item, index, raid }) => {
+const ListItem = ({ item, index, raid, unique }) => {
     let torgb = hexToRgb(classData[item.class]?.color || "#000000")
     let bgcolor = `rgba(${torgb[0]}, ${torgb[1]}, ${torgb[2]}, 0.2)`
 
@@ -21,7 +21,7 @@ const ListItem = ({ item, index, raid }) => {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                     >
-                        <CharacterBgColor style={{background: bgcolor}}>
+                        <CharacterBgColor style={{background: unique ? bgcolor : "red"}}>
                             <PlayerName>{item.playerName}</PlayerName>
                             <Character>
                                 <Name>{item.name}</Name>

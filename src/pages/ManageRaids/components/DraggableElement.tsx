@@ -20,6 +20,14 @@ const DraggableElement:React.FC <{prefix: string, elements: any, allElements: an
         setElements({...tmp})
     }
 
+    const isPlayerUnique = (playerName: string) => {
+        let count = 0
+        for (let char of elements){
+            if (char.playerName === playerName) count++
+        }
+        return count === 1
+    }
+
     return(
         <DroppableStyles>
             <ColumnHeader>
@@ -32,7 +40,7 @@ const DraggableElement:React.FC <{prefix: string, elements: any, allElements: an
                 {(provided) => (
                     <div {...provided.droppableProps} ref={provided.innerRef}>
                         {elements?.map((item: { id: React.Key | null | undefined; }, index: any) => (
-                            <ListItem key={item.id} item={item} index={index} raid={raid} />
+                            <ListItem key={item.id} item={item} index={index} raid={raid} unique={isPlayerUnique(item.playerName)} />
                         ))}
                         {provided.placeholder}
                     </div>

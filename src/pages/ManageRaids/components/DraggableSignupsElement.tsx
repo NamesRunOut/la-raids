@@ -15,7 +15,7 @@ const DraggableSignupsElement:React.FC <{prefix: string, elements: any, raid: st
                 {(provided) => (
                     <div {...provided.droppableProps} ref={provided.innerRef}>
                         {elements?.map((item: { id: React.Key | null | undefined; }, index: any) => (
-                            <ListItem key={item.id} item={item} index={index} raid={raid} />
+                            <ListItem key={item.id} item={item} index={index} raid={raid} unique={true} />
                         ))}
                         {provided.placeholder}
                     </div>
