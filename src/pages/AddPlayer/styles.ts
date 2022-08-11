@@ -1,11 +1,17 @@
 import styled from "styled-components";
+import {darktext, lighttext} from "../../styles/palette";
+
+export const Wrapper = styled.div`
+  padding: 1rem;
+  color: ${darktext};
+`
 
 export const Header = styled.h3`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.5rem;
-  //padding: 1rem 0;
+  gap: 0.25rem;
+  margin-top: 0;
 `
 
 export const Input = styled.input`
@@ -21,11 +27,4 @@ export const Character = styled.div`
   gap: 0.5rem;
   flex-wrap: wrap;
   margin: 0.5rem;
-`
-
-export const PlayerSelect = styled.select`
-  font-size: 1rem;
-  border: none;
-  padding: 0.5rem 0.5rem;
-  border-radius: 0.5rem;
 `

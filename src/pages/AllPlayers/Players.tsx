@@ -1,73 +1,27 @@
 import React, {useEffect, useState} from "react";
-import {getPlayers, player} from "../../firebase/utils";
+import {getPlayers} from "../../firebase/utils";
 import {db} from "../../firebase/init";
-import {classData} from "../../data/classData";
-import {raidData} from "../../data/raidData";
-import {classfilter} from "../../styles/palette";
-import {
-    CharClass,
-    CharIlvl,
-    CharName,
-    Lp,
-    PlayerCharacter,
-    PlayerCharacters,
-    PlayerName,
-    PlayersGrid,
-    PlayerTile,
-    Wrapper
-} from "./styles";
-import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
-
-const Player: React.FC <{player: player}> = ({player}) => {
-    let i=1
-    return(
-        <PlayerTile>
-            <PlayerName>{player.name}</PlayerName>
-            <PlayerCharacters>
-                {player.characters?.map(char =>
-                    <PlayerCharacter>
-                        <Lp>{i++}.</Lp>
-                        <CharName>{char.name}</CharName>
-                        {/*@ts-ignore*/}
-                        <CharClass style={{color: classData[char.class].color || "black", filter: classfilter}}>{char.class}</CharClass>
-                        {/*@ts-ignore*/}
-                        <CharIlvl style={{color: getIlvlRating(char.ilvl, raidData["Argos_p3"].minlvl || 0) || "black"}}>{char.ilvl}</CharIlvl>
-                    </PlayerCharacter>)}
-            </PlayerCharacters>
-        </PlayerTile>
-    )
-}
-
-export const sortByName = (a: any, b: any) => {
-    if (a.name < b.name)
-        return -1
-    if (a.name > b.name)
-        return 1
-    return 0
-}
-
-export const sortByPlayerName = (a: any, b: any) => {
-    if (a.playerName < b.playerName)
-        return -1
-    if (a.playerName > b.playerName)
-        return 1
-    return 0
-}
+import {PlayersGrid, Wrapper} from "./styles";
+import {sortByName} from "../../utils/sortByName";
+import Player from "./components/Player";
+import {rawPlayerI} from "../../interfaces/rawPlayerI";
 
 const Players = () => {
-    const [players, setPlayers] = useState<Array<player>>([])
+    const [players, setPlayers] = useState<Array<rawPlayerI>>([])
 
     useEffect(() => {
         getPlayers(db)
-            // @ts-ignore
-            .then(r => setPlayers(r.sort(sortByName)))
+            .then(r => {
+                // @ts-ignore
+                setPlayers(r.sort(sortByName))
+            })
             .catch(err => console.log(err))
     }, [])
 
     return (
         <Wrapper>
             <PlayersGrid>
-                {players.map(player => <Player key={player.name} player={player} />)}
+                {players.map(player => <Player key={player.name} player={player}/>)}
             </PlayersGrid>
         </Wrapper>
     );

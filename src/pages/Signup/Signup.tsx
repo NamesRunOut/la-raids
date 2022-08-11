@@ -9,7 +9,7 @@ import {NotificationContext} from "../../contexts/NotificationContext";
 import {Option, PlayerSelect, Save} from "../../styles/common";
 import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
-import {sortByName} from "../AllPlayers/Players";
+import { sortByName } from "../../utils/sortByName";
 
 const getAllRaidSignupData = async (db: Firestore) => {
     const q = query(collection(db, "signups"))

@@ -26,7 +26,7 @@ const onSave = async (raid: string, rcomment: any, elements: { [s: string]: unkn
         })
             .then(r => setNotification({color: "lightgreen", message: "Raid saved"}))
             .catch(err => {
-                setNotification({color: "lightred", message: "Error saving raid"})
+                setNotification({color: "lightcoral", message: "Error saving raid"})
                 console.log(err)
             })
 

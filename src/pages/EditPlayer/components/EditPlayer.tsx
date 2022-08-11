@@ -8,7 +8,7 @@ import {Character, Header} from "./styles";
 import {NotificationContext} from "../../../contexts/NotificationContext";
 import {Add, Option, PlayerSelect, Remove, Save} from '../../../styles/common'
 import {darktext} from "../../../styles/palette";
-import {sortByName} from "../../AllPlayers/Players";
+import { sortByName } from "../../../utils/sortByName";
 
 const Wrapper = styled.div`
   color: ${darktext};
