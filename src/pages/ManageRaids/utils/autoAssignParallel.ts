@@ -18,6 +18,21 @@ const playerIsInNextGroup = (nextGroup, player) => {
     return nextGroup.some(el => el.playerName === player.playerName)
 }
 
+const playerIsInCurrentSplit = (groups, groupNum, player) => {
+    for (let i=0;i<groups.length;i=i+2){
+        if (groupNum === i || groupNum === i+1){
+            let inGroup = groups[i].some(el => el.playerName === player.playerName)
+            if (inGroup) return true
+
+            if (groups[i+1] !== undefined){
+                let inNextGroup = groups[i].some(el => el.playerName === player.playerName)
+                if (inNextGroup) return true
+            }
+        }
+    }
+    return false
+}
+
 const retries = 5
 
 const autoAssignParallel = (raid: string, elements: any, setElements: any) => {
@@ -51,7 +66,8 @@ const autoAssignParallel = (raid: string, elements: any, setElements: any) => {
 
             eIdx--
 
-            if (playerIsAlreadyInGroup(groups[group], newSups[eIdx]) || playerIsInPreviousGroup(groups[group-1], newSups[eIdx])) continue
+            // if (playerIsAlreadyInGroup(groups[group], newSups[eIdx]) || playerIsInPreviousGroup(groups[group-1], newSups[eIdx])) continue
+            if (playerIsAlreadyInGroup(groups[group], newSups[eIdx]) || playerIsInCurrentSplit(groups, group, newSups[eIdx])) continue
 
             suppsInGroup++
             groups[group].push(newSups[eIdx])
@@ -74,8 +90,8 @@ const autoAssignParallel = (raid: string, elements: any, setElements: any) => {
             if (dpsPlayers.length < 1 || groups[group].length >= (halfReqDps+halfReqSupports) || groups[group].length >= groupMax || eIdx < 0) break
 
             eIdx = eIdx-1
-// console.log(group+1, newDps[eIdx].playerName, playerIsAlreadyInGroup(groups[group], newDps[eIdx]), playerIsInPreviousGroup(groups[group-1], newDps[eIdx]))
-            if (playerIsAlreadyInGroup(groups[group], newDps[eIdx]) || playerIsInPreviousGroup(groups[group-1], newDps[eIdx]) || playerIsInNextGroup(groups[group+1], newDps[eIdx])) continue
+            // if (playerIsAlreadyInGroup(groups[group], newDps[eIdx]) || playerIsInPreviousGroup(groups[group-1], newDps[eIdx]) || playerIsInNextGroup(groups[group+1], newDps[eIdx])) continue
+            if (playerIsAlreadyInGroup(groups[group], newDps[eIdx]) || playerIsInCurrentSplit(groups, group, newDps[eIdx])) continue
 
             dpsInGroup++
             groups[group].push(newDps[eIdx])
@@ -94,7 +110,7 @@ const autoAssignParallel = (raid: string, elements: any, setElements: any) => {
                     if (supportClasses.some(el => el === p.class)) noSupportsInGroup++
                 }
                 if (supportPlayers.length < 1 || groups[group].length >= groupMax || noSupportsInGroup >= supportNumber) continue
-                if (playerIsAlreadyInGroup(groups[group], newSups[player]) || playerIsInPreviousGroup(groups[group-1], newSups[player]) || playerIsInNextGroup(groups[group+1], newSups[player])) continue
+                if (playerIsAlreadyInGroup(groups[group], newSups[player]) || playerIsInCurrentSplit(groups, group, newSups[player])) continue
 
                 groups[group].push(newSups[player])
                 let elIdx = supportPlayers.findIndex(c => c.name === newSups[player].name && c.playerName === newSups[player].playerName)
@@ -110,7 +126,7 @@ const autoAssignParallel = (raid: string, elements: any, setElements: any) => {
         for (let player=0;player<newDps.length;player++){
             for (let group=0;group<groups.length;group++){
                 if (dpsPlayers.length < 1 || groups[group].length >= groupMax) continue
-                if (playerIsAlreadyInGroup(groups[group], newDps[player]) || playerIsInPreviousGroup(groups[group-1], newDps[player]) || playerIsInNextGroup(groups[group+1], newDps[player])) continue
+                if (playerIsAlreadyInGroup(groups[group], newDps[player]) || playerIsInCurrentSplit(groups, group, newDps[player])) continue
 
                 groups[group].push(newDps[player])
                 let elIdx = dpsPlayers.findIndex(c => c.name === newDps[player].name && c.playerName === newDps[player].playerName)
@@ -127,7 +143,7 @@ const autoAssignParallel = (raid: string, elements: any, setElements: any) => {
         for (let player=0;player<newLeftovers.length;player++){
             for (let group=0;group<groups.length;group++){
                 if (leftovers.length < 1 || groups[group].length >= groupMax) continue
-                if (playerIsAlreadyInGroup(groups[group], newLeftovers[player]) || playerIsInPreviousGroup(groups[group-1], newLeftovers[player]) || playerIsInNextGroup(groups[group+1], newLeftovers[player])) continue
+                if (playerIsAlreadyInGroup(groups[group], newLeftovers[player]) || playerIsInCurrentSplit(groups, group, newLeftovers[player])) continue
 
                 groups[group].push(newLeftovers[player])
                 let elIdx = leftovers.findIndex(c => c.name === newLeftovers[player].name && c.playerName === newLeftovers[player].playerName)
