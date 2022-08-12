@@ -12,6 +12,7 @@ import {Notification as NotificationContext} from "./contexts/NotificationContex
 import Notification from './components/Notification'
 import {lighttext, navbuttonbg, navbuttonhover} from "./styles/palette";
 import {raidData} from "./data/raidData";
+import {Player as PlayerContext} from "./contexts/PlayerContext";
 
 const Navbar = styled.nav`
   padding: 0.25rem;
@@ -49,25 +50,27 @@ const App = () => {
 
   return(
       <NotificationContext>
-          <BrowserRouter>
-              <Notification />
-              <Navbar>
-                  <PageLink to={"/"} style={{background: isSelected("") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("")}>Home</PageLink>
-                  <PageLink to={"/signup"} style={{background: isSelected("signup") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("signup")}>Raid signups</PageLink>
-                  <PageLink to={"/players"} style={{background: isSelected("players") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("players")}>All players</PageLink>
-                  <PageLink to={"/addPlayer"} style={{background: isSelected("addPlayer") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("addPlayer")}>Add players</PageLink>
-                  <PageLink to={"/editPlayer"} style={{background: isSelected("editPlayer") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("editPlayer")}>Edit players</PageLink>
-                  <PageLink to={"/manageRaids"} style={{background: isSelected("manageRaids") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("manageRaids")}>Manage raids</PageLink>
-              </Navbar>
-              <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="signup" element={<Signup />} />
-                  <Route path="players" element={<Players />} />
-                  <Route path="addPlayer" element={<AddPlayer />} />
-                  <Route path="editPlayer" element={<EditPlayer />} />
-                  <Route path="manageRaids" element={<ManageRaids />} />
-              </Routes>
-          </BrowserRouter>
+          <PlayerContext>
+              <BrowserRouter>
+                  <Notification />
+                  <Navbar>
+                      <PageLink to={"/"} style={{background: isSelected("") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("")}>Home</PageLink>
+                      <PageLink to={"/signup"} style={{background: isSelected("signup") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("signup")}>Raid signups</PageLink>
+                      <PageLink to={"/players"} style={{background: isSelected("players") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("players")}>All players</PageLink>
+                      <PageLink to={"/addPlayer"} style={{background: isSelected("addPlayer") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("addPlayer")}>Add players</PageLink>
+                      <PageLink to={"/editPlayer"} style={{background: isSelected("editPlayer") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("editPlayer")}>Edit players</PageLink>
+                      <PageLink to={"/manageRaids"} style={{background: isSelected("manageRaids") ? "#151515" : "#2c2c2c"}} onClick={() => setSelected("manageRaids")}>Manage raids</PageLink>
+                  </Navbar>
+                  <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="signup" element={<Signup />} />
+                      <Route path="players" element={<Players />} />
+                      <Route path="addPlayer" element={<AddPlayer />} />
+                      <Route path="editPlayer" element={<EditPlayer />} />
+                      <Route path="manageRaids" element={<ManageRaids />} />
+                  </Routes>
+              </BrowserRouter>
+          </PlayerContext>
       </NotificationContext>
   )
 }

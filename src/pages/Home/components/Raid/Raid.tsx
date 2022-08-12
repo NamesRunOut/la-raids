@@ -82,7 +82,6 @@ const DraggableSignupsElement = ({ prefix, elements, raid }) => {
 }
 
 export const signedupgroupname = "signedup"
-// TODO change to automatically detect unique players in subsequent groups instead and divide into runs
 
 const removeFromList = (list, index) => {
   const result = Array.from(list);
@@ -159,7 +158,6 @@ const DragList = ({raid, data}) => {
     let supportPlayers = signedUp.filter(c => supportClasses.includes(c.class))
 
     // console.log(signedUp, groups)
-    // TODO rownlolegle raidy
 
     // assign at least groupMax/4 supports
     let supportNumber = groupMax/4

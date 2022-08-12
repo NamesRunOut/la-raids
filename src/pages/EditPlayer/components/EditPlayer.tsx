@@ -4,11 +4,13 @@ import {db} from "../../../firebase/init";
 import styled from "styled-components";
 import {collection, doc, Firestore, getDocs, query, setDoc, where} from "firebase/firestore";
 import {classData} from "../../../data/classData";
-import {Character, Header} from "./styles";
+import {Character, Header, Setting} from "./styles";
 import {NotificationContext} from "../../../contexts/NotificationContext";
 import {Add, Option, PlayerSelect, Remove, Save} from '../../../styles/common'
 import {darktext} from "../../../styles/palette";
 import { sortByName } from "../../../utils/sortByName";
+import {PlayerContext} from "../../../contexts/PlayerContext";
+import toggleTrackedPlayer from "../utils/toggleTrackedPlayer";
 
 const Wrapper = styled.div`
   color: ${darktext};
@@ -29,6 +31,7 @@ const EditPlayer = () => {
     const [player, setPlayer] = useState<any>({origName: "", name: "", characters: []})
     const [allPlayers, setAllPlayers] = useState<any>([])
     const [setNotification] = useContext(NotificationContext)
+    const [trackedPlayer, updateTrackedPlayer] = useContext(PlayerContext)
 
     useEffect(() => {
         getPlayers(db)
@@ -42,11 +45,20 @@ const EditPlayer = () => {
                     }
                     result.push(tmp)
                 }
-                if (result.length > 0) setPlayer({...result[0], origName: result[0].name})
+                if (result.length > 0) {
+                    setPlayer({...result[0], origName: result[0].name})
+                }
                 setAllPlayers(result)
             })
             .catch(err => console.log(err))
     }, []);
+
+    useEffect(() => {
+        if (allPlayers.length < 1 || trackedPlayer === "") return
+        let findTrackedPlayer = allPlayers.find((el: { name: any; }) => el.name === trackedPlayer)
+        if (findTrackedPlayer !== undefined) setPlayer({...findTrackedPlayer, origName: findTrackedPlayer.name})
+        else setPlayer({...allPlayers[0], origName: allPlayers[0].name})
+    }, [allPlayers, trackedPlayer])
 
     const saveChanges = () => {
         getPlayerId(db, player.origName)
@@ -157,6 +169,9 @@ const EditPlayer = () => {
             )}
 
             <Save onClick={saveChanges}>Save changes</Save>
+
+            <Header>Settings</Header>
+            <Setting><input checked={trackedPlayer === player.name} onChange={(e) => toggleTrackedPlayer(e, player.name, updateTrackedPlayer)} type="checkbox" /> <div>Is that you? - Next time you open up any related page it will redirect you to your own characters</div></Setting>
         </Wrapper>
     );
 }

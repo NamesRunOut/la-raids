@@ -10,6 +10,7 @@ import {Option, PlayerSelect, Save} from "../../styles/common";
 import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
 import { sortByName } from "../../utils/sortByName";
+import {PlayerContext} from "../../contexts/PlayerContext";
 
 const getAllRaidSignupData = async (db: Firestore) => {
     const q = query(collection(db, "signups"))
@@ -28,6 +29,7 @@ const Signup = () => {
     const [allPlayers, setAllPlayers] = useState<any>([])
     const [player, setPlayer] = useState<any>({name: "", characters: []})
     const [setNotification] = useContext(NotificationContext)
+    const [trackedPlayer] = useContext(PlayerContext)
 
     useEffect(() => {
         // get all players
@@ -71,7 +73,14 @@ const Signup = () => {
         }
 
         setCurrentPlayerSignups(result)
-    }, [player.characters, player.name, signups]);
+    }, [player.characters, player.name, signups])
+
+    useEffect(() => {
+        if (allPlayers.length < 1 || trackedPlayer === "") return
+        let findTrackedPlayer = allPlayers.find((el: { name: any; }) => el.name === trackedPlayer)
+        if (findTrackedPlayer !== undefined) setPlayer({...findTrackedPlayer, origName: findTrackedPlayer.name})
+        else setPlayer({...allPlayers[0], origName: allPlayers[0].name})
+    }, [allPlayers, trackedPlayer])
 
     const changePlayer = (e: any) => {
         let tmp = player

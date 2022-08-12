@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {raidgropbg, raidsignupgroupbg, tilegb} from "../../../styles/palette";
 
 export const Header = styled.h3`
   display: flex;
@@ -28,4 +29,15 @@ export const PlayerSelect = styled.select`
   border: none;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
+`
+
+export const Setting = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  
+  background: ${tilegb};
 `
