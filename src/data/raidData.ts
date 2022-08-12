@@ -40,5 +40,12 @@ export const raidData = {
         reclvl: 1460,
         groupSize: 8,
         name: "Vykas Hard"
+    },
+    Kakul_saydon: {
+        color: "#6339ce",
+        minlvl: 1475,
+        reclvl: 1485,
+        groupSize: 4,
+        name: "Kakul Saydon"
     }
 }
