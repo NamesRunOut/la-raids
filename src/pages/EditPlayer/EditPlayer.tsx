@@ -9,9 +9,9 @@ const Wrapper = styled.div`
 `
 
 const EditPlayer = () => {
-    return(
+    return (
         <Wrapper>
-            <Edit />
+            <Edit/>
         </Wrapper>
     )
 }

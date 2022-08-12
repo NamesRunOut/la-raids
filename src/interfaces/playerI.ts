@@ -1,4 +1,4 @@
-import { characterI } from "./characterI";
+import {characterI} from "./characterI";
 
 export interface playerI {
     name: string,

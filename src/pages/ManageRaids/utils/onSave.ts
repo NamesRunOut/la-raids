@@ -16,7 +16,7 @@ const onSave = async (raid: string, rcomment: any, elements: { [s: string]: unkn
             comment: rcomment
         }
 
-        for (let [key, value] of Object.entries(elements)){
+        for (let [key, value] of Object.entries(elements)) {
             if (key === signedupgroupname) continue
             // @ts-ignore
             roster[key] = value
@@ -29,14 +29,14 @@ const onSave = async (raid: string, rcomment: any, elements: { [s: string]: unkn
                 setNotification({color: "lightgreen", message: "Raid saved"})
 
                 let logText = `comment: ${rcomment}, `
-                for (let [key, value] of Object.entries(elements)){
+                for (let [key, value] of Object.entries(elements)) {
                     if (key === "comment") continue
                     let tmp = `${key}: [`
                     // @ts-ignore
-                    for (let g of value){
-                        tmp = tmp+`${g.name}, `
+                    for (let g of value) {
+                        tmp = tmp + `${g.name}, `
                     }
-                    logText = logText+tmp+"], "
+                    logText = logText + tmp + "], "
                 }
                 let log = {
                     player: trackedPlayer === "" ? "unknown" : trackedPlayer,

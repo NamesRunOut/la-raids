@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {raidgropbg, raidsignupgroupbg, tilegb} from "../../../styles/palette";
+import {tilegb} from "../../../styles/palette";
 
 export const Header = styled.h3`
   display: flex;
@@ -38,6 +38,6 @@ export const Setting = styled.div`
   gap: 0.25rem;
   padding: 0.25rem;
   border-radius: 0.5rem;
-  
+
   background: ${tilegb};
 `

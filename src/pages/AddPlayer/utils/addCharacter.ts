@@ -7,12 +7,13 @@ const addCharacter = (player: playerI, setPlayer: any) => {
         characters: [
             ...player.characters,
             {
-                id: player.characters.length === 0 ? 0 : player.characters[player.characters.length-1].id+1,
+                id: player.characters.length === 0 ? 0 : player.characters[player.characters.length - 1].id + 1,
                 name: "",
                 class: character_class[character_class.Berserker],
                 ilvl: 0
             }
-        ]})
+        ]
+    })
 }
 
 export default addCharacter

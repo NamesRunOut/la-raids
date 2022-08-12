@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import {ChangeEvent} from "react";
 
 const changeIlvl = (e: ChangeEvent<HTMLInputElement>, i: number, player: any, setPlayer: any) => {
     let tmp = player.characters

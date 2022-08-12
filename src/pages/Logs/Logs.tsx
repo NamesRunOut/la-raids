@@ -1,14 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {db} from "../../firebase/init";
-import {
-    NextPage,
-    Row,
-    Wrapper,
-    LogsTable,
-    Header,
-    Td
-} from "./styles";
-import {collection, DocumentData, endAt, Firestore, getDocs, limit, orderBy, query, startAt} from "firebase/firestore";
+import {Header, LogsTable, Row, Td, Wrapper} from "./styles";
+import {collection, Firestore, getDocs, limit, orderBy, query} from "firebase/firestore";
 
 const getLogs = async (db: Firestore, start: number, plimit: number) => {
     const logsPath = collection(db, 'logs')
@@ -41,18 +34,18 @@ const Logs = () => {
         {/*<NextPage onClick={() => setPage(page+limit)}>Next page</NextPage>*/}
         <LogsTable>
             <thead>
-                <Row>
-                    <Header>Source</Header>
-                    <Header>Action</Header>
-                    <Header>Date</Header>
-                </Row>
+            <Row>
+                <Header>Source</Header>
+                <Header>Action</Header>
+                <Header>Date</Header>
+            </Row>
             </thead>
             <tbody>
-                {logs.map((log: any) => <Row key={log.timestamp.seconds}>
-                    <Td>{log.player}</Td>
-                    <Td>{log.text}</Td>
-                    <Td>{log.timestamp.toDate().toLocaleTimeString()} {log.timestamp.toDate().toDateString()}</Td>
-                </Row>)}
+            {logs.map((log: any) => <Row key={log.timestamp.seconds}>
+                <Td>{log.player}</Td>
+                <Td>{log.text}</Td>
+                <Td>{log.timestamp.toDate().toLocaleTimeString()} {log.timestamp.toDate().toDateString()}</Td>
+            </Row>)}
             </tbody>
         </LogsTable>
     </Wrapper>);

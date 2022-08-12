@@ -1,7 +1,7 @@
 import {addDoc, collection, Firestore, getDocs, query, where} from "firebase/firestore";
 import {playerI} from "../../../interfaces/playerI";
 
-export async function addPlayer(db: Firestore, player: playerI, setNotification: any){
+export async function addPlayer(db: Firestore, player: playerI, setNotification: any) {
     const q = query(collection(db, "players"), where("name", "==", player.name))
     const querySnapshot = await getDocs(q)
     let result = null
@@ -10,7 +10,7 @@ export async function addPlayer(db: Firestore, player: playerI, setNotification:
         result = doc.id
     })
 
-    if (result !== null){
+    if (result !== null) {
         setNotification({color: "lightcoral", message: "A player with this name already exists!"})
         return
     }

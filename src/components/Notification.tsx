@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import styled from "styled-components"
 import {motion} from "framer-motion";
-import { NotificationContext } from '../contexts/NotificationContext';
+import {NotificationContext} from '../contexts/NotificationContext';
 
 const Wrapper = styled(motion.div)`
   position: fixed;

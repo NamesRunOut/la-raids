@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {darktext, lighttext} from "../../styles/palette";
+import {darktext} from "../../styles/palette";
 
 export const Wrapper = styled.div`
   padding: 1rem;

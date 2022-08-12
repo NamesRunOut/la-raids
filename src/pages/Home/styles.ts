@@ -24,7 +24,7 @@ export const Roster = styled.div`
 `
 
 export const Lp = styled.div`
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 `
 
 export const PName = styled.div``
@@ -35,7 +35,7 @@ export const Pilvl = styled.div`
 `
 
 export const Character = styled.div`
-    display: flex;
+  display: flex;
 `
 
 export const Group = styled.div`

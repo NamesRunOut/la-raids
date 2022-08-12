@@ -8,7 +8,7 @@ import {Character, Header, Setting} from "./styles";
 import {NotificationContext} from "../../../contexts/NotificationContext";
 import {Add, Option, PlayerSelect, Remove, Save} from '../../../styles/common'
 import {darktext} from "../../../styles/palette";
-import { sortByName } from "../../../utils/sortByName";
+import {sortByName} from "../../../utils/sortByName";
 import {PlayerContext} from "../../../contexts/PlayerContext";
 import toggleTrackedPlayer from "../utils/toggleTrackedPlayer";
 
@@ -40,7 +40,7 @@ const EditPlayer = () => {
                 let result = []
                 for (let [key, value] of Object.entries(r)) {
                     let tmp = value
-                    for (let i=0;i<value.characters.length;i++) {
+                    for (let i = 0; i < value.characters.length; i++) {
                         tmp.characters[i].id = i
                     }
                     result.push(tmp)
@@ -69,7 +69,7 @@ const EditPlayer = () => {
                     characters: []
                 }
 
-                for (let i=0;i<player.characters.length;i++){
+                for (let i = 0; i < player.characters.length; i++) {
                     tmp.characters.push({
                         class: player.characters[i].class,
                         ilvl: player.characters[i].ilvl,
@@ -83,7 +83,7 @@ const EditPlayer = () => {
                         setNotification({color: "lightgreen", message: "Changes saved"})
                         let log = {
                             player: trackedPlayer === "" ? "unknown" : trackedPlayer,
-                            text: "Edited a player: "+player.name
+                            text: "Edited a player: " + player.name
                         }
                         addLog(db, log)
                     })
@@ -98,14 +98,15 @@ const EditPlayer = () => {
             characters: [
                 ...player.characters,
                 {
-                    id: player.characters.length === 0 ? 0 : player.characters[player.characters.length-1].id+1,
+                    id: player.characters.length === 0 ? 0 : player.characters[player.characters.length - 1].id + 1,
                     name: "",
                     class: character_class[character_class.Berserker],
                     ilvl: 0
                 }
-            ]})
+            ]
+        })
     }
-    
+
     const removeCharacter = (char: any) => {
         let tmp = player.characters
         tmp.splice(tmp.findIndex((el: { id: number; }) => el.id === char.id), 1)
@@ -140,7 +141,7 @@ const EditPlayer = () => {
     const changePlayer = (e: any) => {
         let tmp = player
         let idx = allPlayers.findIndex((p: any) => p.name === e.target.value)
-        if (idx !== -1){
+        if (idx !== -1) {
             tmp = allPlayers[idx]
             setPlayer({...tmp, origName: allPlayers[idx].name})
         }
@@ -166,11 +167,13 @@ const EditPlayer = () => {
             </Character>}
             {player.characters?.map((char: any) =>
                 <Character key={char.id}>
-                    <input value={char.name} onChange={e => changeName(e, char.id)} />
-                    <select value={char.class || character_class[character_class.Berserker]} onChange={(e) => changeClass(e, char.id)}>
-                        {Object.keys(classData).map((spec: any) => <option key={char.name+spec} value={spec}>{spec}</option>)}
+                    <input value={char.name} onChange={e => changeName(e, char.id)}/>
+                    <select value={char.class || character_class[character_class.Berserker]}
+                            onChange={(e) => changeClass(e, char.id)}>
+                        {Object.keys(classData).map((spec: any) => <option key={char.name + spec}
+                                                                           value={spec}>{spec}</option>)}
                     </select>
-                    <input type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id)} />
+                    <input type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id)}/>
                     <Remove onClick={() => removeCharacter(char)}>X</Remove>
                 </Character>
             )}
@@ -178,7 +181,11 @@ const EditPlayer = () => {
             <Save onClick={saveChanges}>Save changes</Save>
 
             <Header>Settings</Header>
-            <Setting><input checked={trackedPlayer === player.name} onChange={(e) => toggleTrackedPlayer(e, player.name, updateTrackedPlayer)} type="checkbox" /> <div>Is that you? - Next time you open up any related page it will redirect you to your own characters</div></Setting>
+            <Setting><input checked={trackedPlayer === player.name}
+                            onChange={(e) => toggleTrackedPlayer(e, player.name, updateTrackedPlayer)} type="checkbox"/>
+                <div>Is that you? - Next time you open up any related page it will redirect you to your own characters
+                </div>
+            </Setting>
         </Wrapper>
     );
 }

@@ -4,7 +4,7 @@ import {db} from "../../firebase/init";
 import {raidData} from "../../data/raidData";
 import {Navbar, RaidLink, RaidWrapper, SectionTitle, Wrapper} from "./styles";
 import DragList from "./components/DragList";
-import {doc, Firestore, getDoc, setDoc} from "firebase/firestore";
+import {doc, setDoc} from "firebase/firestore";
 import {NotificationContext} from "../../contexts/NotificationContext";
 import {Action} from './components/styles'
 import {getSignup} from "./utils/getSignup";
@@ -55,7 +55,7 @@ const ManageRaids = () => {
         <RaidWrapper>
             <Navbar>
                 {Object.keys(raidData).map((raid: any) => {
-                    return(<RaidLink
+                    return (<RaidLink
                         key={raid}
                         onClick={() => setSelected(raid)}
                         //@ts-ignore
@@ -66,7 +66,7 @@ const ManageRaids = () => {
                 })}
             </Navbar>
 
-            <DragList raid={selected} data={signups} />
+            <DragList raid={selected} data={signups}/>
         </RaidWrapper>
     </Wrapper>);
 }

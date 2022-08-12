@@ -1,4 +1,4 @@
-import { ChangeEvent, SetStateAction} from "react";
+import {ChangeEvent} from "react";
 import {playerI} from "../../../interfaces/playerI";
 
 const changeName = (e: ChangeEvent<HTMLInputElement>, i: number, player: playerI, setPlayer: any) => {

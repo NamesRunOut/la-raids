@@ -15,13 +15,13 @@ export const getSignup = async (db: Firestore, raid: string) => {
         if (rSnap.exists()) {
             result.comment = rSnap.data().comment
             let signups = sSnap.data().players
-            for (let [key, value] of Object.entries(rSnap.data())){
+            for (let [key, value] of Object.entries(rSnap.data())) {
                 key = key.toLowerCase()
                 if (key === "comment") continue
                 let tmp = []
                 // if players canceled signup, remove from group
                 // get fresh data from signups, replace
-                for (let player of value){
+                for (let player of value) {
                     let pIdx = signups.findIndex((el: any) => el.name === player.name && el.playerName === player.playerName)
                     if (pIdx !== -1) {
                         tmp.push(signups[pIdx])

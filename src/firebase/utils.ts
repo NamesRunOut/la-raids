@@ -1,4 +1,4 @@
-import {addDoc, collection, doc, Firestore, getDocs, query, serverTimestamp, setDoc, where} from "firebase/firestore";
+import {addDoc, collection, Firestore, getDocs, serverTimestamp} from "firebase/firestore";
 import {classData} from "../data/classData";
 
 export async function getPlayers(db: Firestore) {
@@ -20,7 +20,7 @@ export const getClassData = (spec: character_class) => {
     return classData[spec] || null
 }
 
-export enum character_class{
+export enum character_class {
     Berserker,
     Paladin,
     Gunlancer,
@@ -41,18 +41,18 @@ export enum character_class{
     Deathblade,
 }
 
-export interface character{
+export interface character {
     name: string,
     class: character_class,
     ilvl: number
 }
 
-export interface player{
+export interface player {
     name: string,
     characters: Array<character>
 }
 
-export enum raids{
+export enum raids {
     Argos_p3,
     Valtan_nm,
     Valtan_hm,
@@ -61,7 +61,7 @@ export enum raids{
     Vykas_hm
 }
 
-export interface group{
+export interface group {
     p1: {
         1: character,
         2: character,
@@ -76,7 +76,7 @@ export interface group{
     }
 }
 
-export interface signups{
+export interface signups {
     date: string,
     raid: raids,
     characters: Array<character>,

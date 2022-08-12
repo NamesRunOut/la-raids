@@ -7,13 +7,19 @@ import {Droppable} from "react-beautiful-dnd";
 import {signedupgroupname} from "../utils/consts";
 import ListItem from "./ListItem";
 
-const DraggableElement:React.FC <{prefix: string, elements: any, allElements: any, setElements: any, raid: string}> = ({ prefix, elements, allElements, setElements, raid }) => {
+const DraggableElement: React.FC<{ prefix: string, elements: any, allElements: any, setElements: any, raid: string }> = ({
+                                                                                                                             prefix,
+                                                                                                                             elements,
+                                                                                                                             allElements,
+                                                                                                                             setElements,
+                                                                                                                             raid
+                                                                                                                         }) => {
     // console.log(prefix, elements)
 
     const removeGroup = () => {
         let tmp = allElements
         delete tmp[prefix]
-        for (let i=0;i<elements.length;i++){
+        for (let i = 0; i < elements.length; i++) {
             tmp[signedupgroupname].push(elements[i])
         }
 
@@ -22,13 +28,13 @@ const DraggableElement:React.FC <{prefix: string, elements: any, allElements: an
 
     const isPlayerUnique = (playerName: string) => {
         let count = 0
-        for (let char of elements){
+        for (let char of elements) {
             if (char.playerName === playerName) count++
         }
         return count === 1
     }
 
-    return(
+    return (
         <DroppableStyles>
             <ColumnHeader>
                 <GroupName>{prefix}</GroupName>
@@ -40,7 +46,8 @@ const DraggableElement:React.FC <{prefix: string, elements: any, allElements: an
                 {(provided) => (
                     <div {...provided.droppableProps} ref={provided.innerRef}>
                         {elements?.map((item: { id: React.Key | null | undefined; }, index: any) => (
-                            <ListItem key={item.id} item={item} index={index} raid={raid} unique={isPlayerUnique(item.playerName)} />
+                            <ListItem key={item.id} item={item} index={index} raid={raid}
+                                      unique={isPlayerUnique(item.playerName)}/>
                         ))}
                         {provided.placeholder}
                     </div>

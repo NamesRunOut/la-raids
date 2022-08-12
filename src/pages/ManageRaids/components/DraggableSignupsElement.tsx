@@ -3,8 +3,12 @@ import React from "react";
 import {Droppable} from "react-beautiful-dnd";
 import ListItem from "./ListItem";
 
-const DraggableSignupsElement:React.FC <{prefix: string, elements: any, raid: string}> = ({ prefix, elements, raid }) => {
-    return(
+const DraggableSignupsElement: React.FC<{ prefix: string, elements: any, raid: string }> = ({
+                                                                                                prefix,
+                                                                                                elements,
+                                                                                                raid
+                                                                                            }) => {
+    return (
         <DroppableStylesSignup>
             <ColumnHeader>
                 <GroupName>{prefix}</GroupName>
@@ -15,7 +19,7 @@ const DraggableSignupsElement:React.FC <{prefix: string, elements: any, raid: st
                 {(provided) => (
                     <div {...provided.droppableProps} ref={provided.innerRef}>
                         {elements?.map((item: { id: React.Key | null | undefined; }, index: any) => (
-                            <ListItem key={item.id} item={item} index={index} raid={raid} unique={true} />
+                            <ListItem key={item.id} item={item} index={index} raid={raid} unique={true}/>
                         ))}
                         {provided.placeholder}
                     </div>

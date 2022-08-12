@@ -43,11 +43,14 @@ const Home = () => {
         <RaidsWrapper>
             <Navbar>
                 {Object.keys(raidData).map((raid: any) => {
-                    return(<RaidLink
+                    return (<RaidLink
                         key={raid}
                         onClick={() => setSelected(raid)}
-                        //@ts-ignore
-                        style={{color: raidData[raid].color || "white", background: selected === raid ? "black" : "#2c2c2c"}}>
+                        style={{
+                            //@ts-ignore
+                            color: raidData[raid].color || "white",
+                            background: selected === raid ? "black" : "#2c2c2c"
+                        }}>
                         {/*@ts-ignore*/}
                         {raidData[raid].name}
                     </RaidLink>)
@@ -58,24 +61,34 @@ const Home = () => {
                 <Raid>
                     <Comment>{raid["comment"]}</Comment>
                     {Object.entries(raid).filter(el => el[0] !== "comment").sort(compareGroupName).map((c: any) => {
-                        let name = c[0]
-                        let players = c[1]
-                        let i=1
-                        return(
-                            <Group key={name}>
-                                <Title>{name}</Title>
-                                <Roster>
-                                    {players.map((c:any) => <React.Fragment key={c.name}>
-                                        <Lp>{i++}.</Lp>
-                                        <PName onClick={() => setHighlightedPlayer(c.playerName)} style={isHighlighted(highlightedPlayer, c.playerName) ? {background: "#d7d4cf", color: "black"} : {}}>{c.name}</PName>
-                                        {/*@ts-ignore*/}
-                                        <PClass style={{color: classData[c.class].color || "black", filter: classfilter}}>{c.class}</PClass>
-                                        {/*@ts-ignore*/}
-                                        <Pilvl style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "black"}}>{c.ilvl}</Pilvl>
-                                    </React.Fragment>)}
-                                </Roster>
-                            </Group>
-                        )}
+                            let name = c[0]
+                            let players = c[1]
+                            let i = 1
+                            return (
+                                <Group key={name}>
+                                    <Title>{name}</Title>
+                                    <Roster>
+                                        {players.map((c: any) => <React.Fragment key={c.name}>
+                                            <Lp>{i++}.</Lp>
+                                            <PName onClick={() => setHighlightedPlayer(c.playerName)}
+                                                   style={isHighlighted(highlightedPlayer, c.playerName) ? {
+                                                       background: "#d7d4cf",
+                                                       color: "black"
+                                                   } : {}}>{c.name}</PName>
+                                            <PClass style={{
+                                                //@ts-ignore
+                                                color: classData[c.class].color || "black",
+                                                filter: classfilter
+                                            }}>{c.class}</PClass>
+
+                                            <Pilvl
+                                                //@ts-ignore
+                                                style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "black"}}>{c.ilvl}</Pilvl>
+                                        </React.Fragment>)}
+                                    </Roster>
+                                </Group>
+                            )
+                        }
                     )}
                 </Raid>
             </Wrapper>

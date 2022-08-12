@@ -15,15 +15,15 @@ export const DragItem = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   background: ${dragitembg};
   margin: 0 0 8px 0;
-  color: black;//${darktext};
-//   gap: 0.25rem;
+  color: black; //${darktext};
+  //   gap: 0.25rem;
 
   min-width: 16rem;
 `;
 
 export const DragDropContextContainer = styled.div`
-// padding: 0.1rem;
-    // border: 4px solid indianred;
+  // padding: 0.1rem;
+  // border: 4px solid indianred;
   // border-radius: 6px;
   color: ${lighttext};
 `;
@@ -100,7 +100,7 @@ export const Ilvl = styled.div`
 `
 
 export const Name = styled.div`
-    
+
 `
 
 export const CharacterBgColor = styled.div`
@@ -129,7 +129,7 @@ export const Action = styled.div`
   justify-content: center;
   align-items: center;
 
-  :hover{
+  :hover {
     color: ${primarybuttonhover};
   }
 `
@@ -157,7 +157,7 @@ export const RemoveGroup = styled.div`
   color: ${remove};
   cursor: pointer;
 
-  :hover{
+  :hover {
     color: ${removehover};
   }
 `

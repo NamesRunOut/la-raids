@@ -9,7 +9,7 @@ import {NotificationContext} from "../../contexts/NotificationContext";
 import {Option, PlayerSelect, Save} from "../../styles/common";
 import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
-import { sortByName } from "../../utils/sortByName";
+import {sortByName} from "../../utils/sortByName";
 import {PlayerContext} from "../../contexts/PlayerContext";
 
 const getAllRaidSignupData = async (db: Firestore) => {
@@ -39,7 +39,7 @@ const Signup = () => {
                 let result = []
                 for (let [key, value] of r.entries()) {
                     let tmp = value
-                    for (let i=0;i<value.characters.length;i++) {
+                    for (let i = 0; i < value.characters.length; i++) {
                         tmp.characters[i].playerName = value.name
                     }
                     result.push(tmp)
@@ -59,12 +59,12 @@ const Signup = () => {
         // update current signups for the selected player
         let result = new Map()
 
-        for (let [key, value] of signups.entries()){
+        for (let [key, value] of signups.entries()) {
             let tmp = []
             // @ts-ignore
-            for (let i=0;i<value.players.length;i++) {
+            for (let i = 0; i < value.players.length; i++) {
                 // @ts-ignore
-                if (value.players[i].playerName === player.name) { 
+                if (value.players[i].playerName === player.name) {
                     // @ts-ignore
                     tmp.push(player.characters.find((char: any) => char.name === value.players[i].name) || value.players[i])
                 }
@@ -85,7 +85,7 @@ const Signup = () => {
     const changePlayer = (e: any) => {
         let tmp = player
         let idx = allPlayers.findIndex((p: any) => p.name === e.target.value)
-        if (idx !== -1){
+        if (idx !== -1) {
             tmp = allPlayers[idx]
             setPlayer({...tmp, origName: allPlayers[idx].name})
             setCurrentPlayerSignups(new Map())
@@ -98,7 +98,7 @@ const Signup = () => {
         let tmp = curr.get(raid)
 
         if (val) {
-            if (tmp !== undefined){
+            if (tmp !== undefined) {
                 let char = player.characters.find((c: any) => c.name === charName)
                 tmp.push({...char, playerName: player.name})
                 curr.set(raid, [...tmp])
@@ -119,7 +119,7 @@ const Signup = () => {
         let raid = currentPlayerSignups.get(raidName)
         if (raid === undefined) return false
 
-        for (let char of raid){
+        for (let char of raid) {
             if (char.name === charName && char.playerName === playerName) return true
         }
         return false
@@ -133,12 +133,12 @@ const Signup = () => {
             if (docSnap.exists()) {
                 // console.log("Document data:", docSnap.data());
                 let tmp = docSnap.data().players
-                tmp = tmp.filter((char:any) => char.playerName !== player.name)
+                tmp = tmp.filter((char: any) => char.playerName !== player.name)
 
                 let signedChars = currentPlayerSignups.get(key)
                 if (key === undefined) continue
 
-                for (let char of signedChars){
+                for (let char of signedChars) {
                     tmp.push(char)
                 }
 
@@ -176,7 +176,7 @@ const Signup = () => {
 
         <RaidWrapper>
             {Object.keys(raidData).map((raid: any) => {
-                return(<Raid key={raid}>
+                return (<Raid key={raid}>
                     {/*@ts-ignore*/}
                     <RaidName style={{color: raidData[raid].color || "white"}}>
                         {/*@ts-ignore*/}
@@ -185,16 +185,22 @@ const Signup = () => {
 
                     <Roster>
                         {player.characters?.map((char: any) => {
-                            //@ts-ignore
-                            if (char.ilvl >= raidData[raid].minlvl) return <React.Fragment key={char.id}>
-                                <Checkbox type="checkbox" checked={checkIfSignedUp(raid, player.name, char.name)} onChange={(e) => signUp(e, raid, char.name)} /> {/* checked if matches found in signups */}
-                                <PName>{char.name}</PName>
-                                {/*@ts-ignore*/}
-                                <PClass style={{color: classData[char.class].color || "black", filter: classfilter}}>{char.class}</PClass>
-                                {/*@ts-ignore*/}
-                                <Pilvl style={{color: getIlvlRating(char.ilvl, raidData[raid].minlvl || 0) || "black"}}>{char.ilvl}</Pilvl>
-                            </React.Fragment>
-                            else return <></>}
+                                //@ts-ignore
+                                if (char.ilvl >= raidData[raid].minlvl) return <React.Fragment key={char.id}>
+                                    <Checkbox type="checkbox" checked={checkIfSignedUp(raid, player.name, char.name)}
+                                              onChange={(e) => signUp(e, raid, char.name)}/> {/* checked if matches found in signups */}
+                                    <PName>{char.name}</PName>
+                                    <PClass style={{
+                                        //@ts-ignore
+                                        color: classData[char.class].color || "black",
+                                        filter: classfilter
+                                    }}>{char.class}</PClass>
+                                    <Pilvl
+                                        //@ts-ignore
+                                        style={{color: getIlvlRating(char.ilvl, raidData[raid].minlvl || 0) || "black"}}>{char.ilvl}</Pilvl>
+                                </React.Fragment>
+                                else return <></>
+                            }
                         )}
                     </Roster>
                 </Raid>)

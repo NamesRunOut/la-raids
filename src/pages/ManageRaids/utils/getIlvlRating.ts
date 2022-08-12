@@ -1,5 +1,5 @@
 export const getIlvlRating = (clvl: number, minlvl: number) => {
-    let relative = clvl-minlvl
+    let relative = clvl - minlvl
 
     // equal ilvl
     if (relative === 0) return "#da9c00"

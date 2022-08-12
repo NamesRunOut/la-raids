@@ -8,7 +8,7 @@ const onDragEnd = (result: DropResult, elements: {}, setElements: { (value: SetS
     if (!result.destination) {
         return;
     }
-    const listCopy = { ...elements };
+    const listCopy = {...elements};
 
     const sourceList = listCopy[result.source.droppableId];
     const [removedElement, newSourceList] = removeFromList(

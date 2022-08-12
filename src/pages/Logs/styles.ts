@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import {darktext, lighttext, primarybutton, raidlinkbg, secondarybuttonbg, tilegb} from "../../styles/palette";
+import {lighttext, primarybutton, secondarybuttonbg, tilegb} from "../../styles/palette";
 
 export const Wrapper = styled.div`
-    padding: 1rem;
+  padding: 1rem;
 `
 
 export const LogsTable = styled.table`
