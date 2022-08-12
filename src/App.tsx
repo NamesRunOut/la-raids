@@ -13,6 +13,7 @@ import Notification from './components/Notification'
 import {lighttext, navbuttonbg, navbuttonhover} from "./styles/palette";
 import {raidData} from "./data/raidData";
 import {Player as PlayerContext} from "./contexts/PlayerContext";
+import Logs from "./pages/Logs/Logs";
 
 const Navbar = styled.nav`
   padding: 0.25rem;
@@ -68,6 +69,7 @@ const App = () => {
                       <Route path="addPlayer" element={<AddPlayer />} />
                       <Route path="editPlayer" element={<EditPlayer />} />
                       <Route path="manageRaids" element={<ManageRaids />} />
+                      <Route path="logs" element={<Logs />} />
                   </Routes>
               </BrowserRouter>
           </PlayerContext>

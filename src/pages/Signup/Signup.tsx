@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {raidData} from "../../data/raidData";
-import {getPlayers} from "../../firebase/utils";
+import {addLog, getPlayers} from "../../firebase/utils";
 import {db} from "../../firebase/init";
 import {Checkbox, Header, PClass, Pilvl, PName, Raid, RaidName, RaidWrapper, Roster, Wrapper} from "./styles";
 import {collection, doc, Firestore, getDoc, getDocs, query, setDoc} from "firebase/firestore";
@@ -146,12 +146,23 @@ const Signup = () => {
                     ...docSnap.data(),
                     players: [...tmp]
                 })
+                    .then(() => {
+                        setNotification({color: "lightgreen", message: "Changes saved"})
+                    })
+                    .catch(err => {
+                        console.log("Error signing up", err)
+                        setNotification({color: "lightcoral", message: "Error signing up"})
+                    })
             } else {
                 console.log("No such raid!", key);
             }
         }
 
-        setNotification({color: "lightgreen", message: "Changes saved"})
+        let log = {
+            player: trackedPlayer === "" ? "unknown" : trackedPlayer,
+            text: `Updated signups of a player: ${player.name}`
+        }
+        addLog(db, log)
     }
 
     return (<Wrapper>

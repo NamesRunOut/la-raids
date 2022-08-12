@@ -15,11 +15,13 @@ import compareIlvl from "../utils/compareIlvl";
 import autoAssign from "../utils/autoAssign";
 import onDragEnd from "../utils/onDragEnd";
 import autoAssignParallel from "../utils/autoAssignParallel";
+import {PlayerContext} from "../../../contexts/PlayerContext";
 
 const DragList: React.FC <{raid: string, data: {comment: string, players: Array<any>}}> = ({raid, data}) => {
   const [elements, setElements] = useState({})
   const [rcomment, setRcomment] = useState("")
   const [setNotification] = useContext(NotificationContext)
+  const [trackedPlayer] = useContext(PlayerContext)
 
   useEffect(() => {
     let tmp = structuredClone(data.players)
@@ -63,7 +65,7 @@ const DragList: React.FC <{raid: string, data: {comment: string, players: Array<
   return (
     <DragDropContextContainer>
       <ActionsBar>
-        <Save onClick={() => onSave(raid, rcomment, elements, setNotification)}>Save</Save>
+        <Save onClick={() => onSave(raid, rcomment, elements, setNotification, trackedPlayer)}>Save</Save>
         <Action onClick={() => autoAssign(raid, elements, setElements)}>Auto assign</Action>
         <Action onClick={() => autoAssignParallel(raid, elements, setElements)}>Auto assign (force 2 parallel groups)</Action>
         <Action onClick={() => addGroup(elements, setElements)}>Add group</Action>

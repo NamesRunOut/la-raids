@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {character_class, getPlayers, player as playerI} from "../../../firebase/utils";
+import {addLog, character_class, getPlayers, player as playerI} from "../../../firebase/utils";
 import {db} from "../../../firebase/init";
 import styled from "styled-components";
 import {collection, doc, Firestore, getDocs, query, setDoc, where} from "firebase/firestore";
@@ -79,7 +79,14 @@ const EditPlayer = () => {
 
                 const playersRef = collection(db, "players");
                 setDoc(doc(playersRef, pid), tmp)
-                    .then(r => setNotification({color: "lightgreen", message: "Changes saved"}))
+                    .then(r => {
+                        setNotification({color: "lightgreen", message: "Changes saved"})
+                        let log = {
+                            player: trackedPlayer === "" ? "unknown" : trackedPlayer,
+                            text: "Edited a player: "+player.name
+                        }
+                        addLog(db, log)
+                    })
                     .catch(err => console.log(err))
             })
             .catch(err => console.log(err))

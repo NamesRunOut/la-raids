@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import {raids, signups} from "../../firebase/utils";
+import {addLog, raids, signups} from "../../firebase/utils";
 import {db} from "../../firebase/init";
 import {raidData} from "../../data/raidData";
 import {Navbar, RaidLink, RaidWrapper, SectionTitle, Wrapper} from "./styles";
@@ -7,51 +7,14 @@ import DragList from "./components/DragList";
 import {doc, Firestore, getDoc, setDoc} from "firebase/firestore";
 import {NotificationContext} from "../../contexts/NotificationContext";
 import {Action} from './components/styles'
-
-export const getSignup = async (db: Firestore, raid: string) => {
-    let result: any = {
-        comment: "",
-        players: []
-    }
-    const signupRef = doc(db, "signups", raid)
-    const sSnap = await getDoc(signupRef)
-
-    const raidRef = doc(db, "raids", raid);
-    const rSnap = await getDoc(raidRef);
-
-    if (sSnap.exists()) {
-        if (rSnap.exists()) {
-            result.comment = rSnap.data().comment
-            let signups = sSnap.data().players
-            for (let [key, value] of Object.entries(rSnap.data())){
-                key = key.toLowerCase()
-                if (key === "comment") continue
-                let tmp = []
-                // if players canceled signup, remove from group
-                // get fresh data from signups, replace
-                for (let player of value){
-                    let pIdx = signups.findIndex((el: any) => el.name === player.name && el.playerName === player.playerName)
-                    if (pIdx !== -1) {
-                        tmp.push(signups[pIdx])
-                        signups.splice(pIdx, 1)
-                    }
-                }
-                result[key] = [...tmp]
-            }
-            result.players = [...signups]
-            return result
-        }
-        return sSnap.data()
-    } else {
-        console.log("No such raid!", raid)
-        return {comment: "", players: []}
-    }
-}
+import {getSignup} from "./utils/getSignup";
+import {PlayerContext} from "../../contexts/PlayerContext";
 
 const ManageRaids = () => {
     const [signups, setSignups] = useState<any>({comment: "", players: []})//useState<Array<signups>>([])
     const [selected, setSelected] = useState(Object.keys(raidData)[0])
     const [setNotification] = useContext(NotificationContext)
+    const [trackedPlayer] = useContext(PlayerContext)
 
     useEffect(() => {
         getSignup(db, selected)
@@ -65,12 +28,18 @@ const ManageRaids = () => {
             for (let key of Object.keys(raidData)) {
                 await setDoc(doc(db, "signups", key), {
                     comment: "",
-                    players: []
+                    players: [],
                 })
 
                 await setDoc(doc(db, "raids", key), {
-                    comment: ""
+                    comment: "",
                 })
+
+                let log = {
+                    player: trackedPlayer === "" ? "unknown" : trackedPlayer,
+                    text: "Cleared all signups and raid data"
+                }
+                addLog(db, log)
             }
             setSignups({comment: "", players: []})
             setNotification({color: "lightgreen", message: "Data cleared"})

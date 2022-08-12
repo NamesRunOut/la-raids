@@ -11,6 +11,7 @@ import changeIlvl from "./utils/changeIlvl";
 import {Add, Remove, Save} from "../../styles/common";
 import removeCharacter from "./utils/removeCharacter";
 import saveChanges from "./utils/saveChanges";
+import {PlayerContext} from "../../contexts/PlayerContext";
 
 const AddPlayer = () => {
     const [setNotification] = useContext(NotificationContext)
@@ -18,6 +19,7 @@ const AddPlayer = () => {
         name: "",
         characters: []
     })
+    const [trackedPlayer] = useContext(PlayerContext)
 
     return (
         <Wrapper>
@@ -47,7 +49,7 @@ const AddPlayer = () => {
                 </Character>
             )}
 
-            <Save onClick={() => saveChanges(player, setPlayer, setNotification)}>Save changes</Save>
+            <Save onClick={() => saveChanges(player, setPlayer, setNotification, trackedPlayer)}>Save changes</Save>
         </Wrapper>
     )
 }

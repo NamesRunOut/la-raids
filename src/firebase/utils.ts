@@ -1,4 +1,4 @@
-import {addDoc, collection, doc, Firestore, getDocs, query, setDoc, where} from "firebase/firestore";
+import {addDoc, collection, doc, Firestore, getDocs, query, serverTimestamp, setDoc, where} from "firebase/firestore";
 import {classData} from "../data/classData";
 
 export async function getPlayers(db: Firestore) {
@@ -81,5 +81,13 @@ export interface signups{
     raid: raids,
     characters: Array<character>,
     groups: Array<group>
+}
+
+export const addLog = async (db: Firestore, log: any) => {
+    try {
+        const docRef = await addDoc(collection(db, "logs"), {...log, timestamp: serverTimestamp()});
+    } catch (e) {
+        console.error("Error adding log: ", e);
+    }
 }
 
