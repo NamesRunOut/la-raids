@@ -34,6 +34,13 @@ export const raidData = {
         groupSize: 8,
         name: "Vykas Normal"
     },
+    Vykas_hm: {
+        color: "#ce399a",
+        minlvl: 1460,
+        reclvl: 1460,
+        groupSize: 8,
+        name: "Vykas Hard"
+    },
     Vykas_hm_1: {
         color: "#ce399a",
         minlvl: 1460,
