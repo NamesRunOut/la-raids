@@ -1,6 +1,6 @@
 //@ts-nocheck
 import reset from "./reset";
-import {signedupgroupname} from "./consts";
+import {signedupgroupname} from "../../../data/consts";
 import {raidData} from "../../../data/raidData";
 import compareIlvl from "./compareIlvl";
 

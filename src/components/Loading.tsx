@@ -3,24 +3,26 @@ import {motion, useTime, useTransform} from "framer-motion";
 import styled from "styled-components";
 
 const Square = styled.div`
-    position: absolute;
-    top: 40%;
-    left: 40%;
+  border: 1rem solid #f3f3f3;
+  border-top: 1rem solid #11c2c3;
+  border-right: 1rem solid #151515;
+  border-bottom: 1rem solid #11c2c3;
+  border-left: 1rem solid #151515;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  animation: spin 2s linear infinite;
 
-    background: white;
-    border-radius: 30px;
-    width: 150px;
-    height: 150px;
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 `
 
 const Loading = () => {
-    const time = useTime();
-    const rotate = useTransform(time, [0, 4000], [0, 360], {clamp: false});
 
     return (
-        <Square>
-            <motion.div style={{rotate}}/>
-        </Square>
+        <Square></Square>
     );
 }
 

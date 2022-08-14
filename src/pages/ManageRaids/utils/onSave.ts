@@ -1,6 +1,6 @@
 import {doc, getDoc, setDoc} from "firebase/firestore";
 import {db} from "../../../firebase/init";
-import {signedupgroupname} from "./consts";
+import {signedupgroupname} from "../../../data/consts";
 import {addLog} from "../../../firebase/utils";
 
 const onSave = async (raid: string, rcomment: any, elements: { [s: string]: unknown; } | ArrayLike<unknown>, setNotification: any, trackedPlayer: string) => {

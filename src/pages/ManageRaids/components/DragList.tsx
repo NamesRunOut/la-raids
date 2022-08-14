@@ -5,7 +5,7 @@ import {Action, ActionsBar, DragDropContextContainer, ListGrid, ListsWrapper, Sa
 import {raidData} from "../../../data/raidData";
 import {NotificationContext} from "../../../contexts/NotificationContext";
 import {Comment} from "../styles";
-import {signedupgroupname} from "../utils/consts";
+import {signedupgroupname} from "../../../data/consts";
 import DraggableElement from "./DraggableElement";
 import DraggableSignupsElement from "./DraggableSignupsElement";
 import addGroup from "../utils/addGroup";
@@ -16,6 +16,7 @@ import autoAssign from "../utils/autoAssign";
 import onDragEnd from "../utils/onDragEnd";
 import autoAssignParallel from "../utils/autoAssignParallel";
 import {PlayerContext} from "../../../contexts/PlayerContext";
+import clearSingleRaidAndSignup from "../utils/clearSingleRaidAndSignup";
 
 const DragList: React.FC<{ raid: string, data: { comment: string, players: Array<any> } }> = ({raid, data}) => {
     const [elements, setElements] = useState({})
@@ -72,6 +73,7 @@ const DragList: React.FC<{ raid: string, data: { comment: string, players: Array
                 <Action onClick={() => addGroup(elements, setElements)}>Add group</Action>
                 {/* <Action onClick={addRun}>Divide into simultaneous runs</Action> */}
                 <Action onClick={() => reset(elements, setElements)}>Reset</Action>
+                <Action onClick={() => clearSingleRaidAndSignup(trackedPlayer, raid, setNotification)}>Clear data for this raid</Action>
             </ActionsBar>
 
             <Comment value={rcomment} placeholder="Add raid description / comment / schedule etc"

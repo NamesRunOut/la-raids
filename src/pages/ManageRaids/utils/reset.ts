@@ -1,4 +1,4 @@
-import {signedupgroupname} from "./consts";
+import {signedupgroupname} from "../../../data/consts";
 
 const reset = (elements: any, setElements: (arg0: any) => void) => {
     let tmp = elements

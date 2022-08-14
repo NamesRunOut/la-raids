@@ -21,6 +21,7 @@ import {compareGroupName, getRaid} from "./utils";
 import {classData} from "../../data/classData";
 import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
+import Loading from "../../components/Loading";
 
 const isHighlighted = (highlightedPlayer: string, playerName: string) => {
     return highlightedPlayer === playerName
