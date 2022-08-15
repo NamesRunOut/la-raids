@@ -9,6 +9,10 @@ export const PlayerSelect = styled.select`
   padding: 0.25rem;
   font-size: 1rem;
   margin-bottom: 0.5rem;
+
+  @media (max-width: 468px) {
+    width: 100%;
+  }
 `
 
 export const Option = styled.option`
@@ -26,9 +30,17 @@ export const Save = styled.div`
   font-size: 1rem;
   //margin-top: 1rem;
   cursor: pointer;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 
   :hover {
     background: ${primarybuttonhover};
+  }
+
+  @media (max-width: 468px) {
+    margin: auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 `
 
@@ -43,6 +55,11 @@ export const Add = styled.div`
 
   :hover {
     color: ${primarybuttonhover};
+  }
+
+  @media (max-width: 468px) {
+    margin: auto;
+    margin-bottom: 0.5rem;
   }
 `
 

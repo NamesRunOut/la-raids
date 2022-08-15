@@ -9,11 +9,20 @@ export const Raid = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+
+  @media (max-width: 468px) {
+    gap: 0.25rem;
+  }
 `
 
 export const Title = styled.h2`
   margin-top: 0;
   margin-bottom: 0.5rem;
+
+  @media (max-width: 468px) {
+    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+  }
 `
 
 export const Roster = styled.div`
@@ -27,7 +36,16 @@ export const Lp = styled.div`
   margin-right: 0.5rem;
 `
 
-export const PName = styled.div``
+export const PName = styled.div`
+  max-width: 10rem;
+  overflow: hidden;
+  width: max-content;
+  
+  @media (max-width: 468px) {
+    max-width: 7rem;
+    overflow: hidden;
+  }
+`
 
 export const PClass = styled.div``
 
@@ -44,6 +62,11 @@ export const Group = styled.div`
   padding: 0.5rem;
   border-radius: 0.5rem;
   color: ${lighttext};
+  max-width: 28rem;
+
+  @media (max-width: 468px) {
+    flex: 100%;
+  }
 `
 
 export const Wrapper = styled.div`
@@ -56,6 +79,10 @@ export const Navbar = styled.nav`
   align-items: center;
   gap: 0.5rem;
   //background: #000000;
+
+  @media (max-width: 468px) {
+    gap: 0.25rem;
+  }
 `
 
 export const RaidLink = styled.div`
@@ -72,12 +99,20 @@ export const PageWrapper = styled.div`
   color: ${darktext};
   padding: 1rem;
   //background: #151515;
+
+  @media (max-width: 468px) {
+    padding: 0.25rem;
+  }
 `
 
 export const RaidsWrapper = styled.div`
   //background: #000000;
   padding: 0.5rem;
   border-radius: 0.5rem;
+
+  @media (max-width: 468px) {
+    padding: 0rem;
+  }
 `
 
 export const Comment = styled.div`

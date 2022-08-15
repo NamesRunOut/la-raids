@@ -27,8 +27,15 @@ const isHighlighted = (highlightedPlayer: string, playerName: string) => {
     return highlightedPlayer === playerName
 }
 
+const getRaidForToday = () => {
+    let day = (new Date()).getDay()
+    let raid = Object.entries(raidData).find(el => el[1].raidDay === day)
+    if (raid === undefined) return Object.keys(raidData)[0]
+    return raid[0]
+}
+
 const Home = () => {
-    const [selected, setSelected] = useState(Object.keys(raidData)[0])
+    const [selected, setSelected] = useState(getRaidForToday())
     const [raid, setRaid] = useState<any>({comment: ""})
     const [highlightedPlayer, setHighlightedPlayer] = useState("")
 
@@ -58,41 +65,39 @@ const Home = () => {
                 })}
             </Navbar>
 
-            <Wrapper>
-                <Raid>
-                    <Comment>{raid["comment"]}</Comment>
-                    {Object.entries(raid).filter(el => el[0] !== "comment").sort(compareGroupName).map((c: any) => {
-                            let name = c[0]
-                            let players = c[1]
-                            let i = 1
-                            return (
-                                <Group key={name}>
-                                    <Title>{name}</Title>
-                                    <Roster>
-                                        {players.map((c: any) => <React.Fragment key={c.name}>
-                                            <Lp>{i++}.</Lp>
-                                            <PName onClick={() => setHighlightedPlayer(c.playerName)}
-                                                   style={isHighlighted(highlightedPlayer, c.playerName) ? {
-                                                       background: "#d7d4cf",
-                                                       color: "black"
-                                                   } : {}}>{c.name}</PName>
-                                            <PClass style={{
-                                                //@ts-ignore
-                                                color: classData[c.class].color || "black",
-                                                filter: classfilter
-                                            }}>{c.class}</PClass>
+            <Raid>
+                <Comment>{raid["comment"]}</Comment>
+                {Object.entries(raid).filter(el => el[0] !== "comment").sort(compareGroupName).map((c: any) => {
+                        let name = c[0]
+                        let players = c[1]
+                        let i = 1
+                        return (
+                            <Group key={name}>
+                                <Title>{name}</Title>
+                                <Roster>
+                                    {players.map((c: any) => <React.Fragment key={c.name}>
+                                        <Lp>{i++}.</Lp>
+                                        <PName onClick={() => setHighlightedPlayer(c.playerName)}
+                                               style={isHighlighted(highlightedPlayer, c.playerName) ? {
+                                                   background: "#d7d4cf",
+                                                   color: "black"
+                                               } : {}}>{c.name}</PName>
+                                        <PClass style={{
+                                            //@ts-ignore
+                                            color: classData[c.class].color || "black",
+                                            filter: classfilter
+                                        }}>{c.class}</PClass>
 
-                                            <Pilvl
-                                                //@ts-ignore
-                                                style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "black"}}>{c.ilvl}</Pilvl>
-                                        </React.Fragment>)}
-                                    </Roster>
-                                </Group>
-                            )
-                        }
-                    )}
-                </Raid>
-            </Wrapper>
+                                        <Pilvl
+                                            //@ts-ignore
+                                            style={{color: getIlvlRating(c.ilvl, raidData[selected].minlvl || 0) || "black"}}>{c.ilvl}</Pilvl>
+                                    </React.Fragment>)}
+                                </Roster>
+                            </Group>
+                        )
+                    }
+                )}
+            </Raid>
         </RaidsWrapper>
     </PageWrapper>);
 }

@@ -2,8 +2,8 @@ import styled from "styled-components";
 import {darktext, tilegb} from "../../styles/palette";
 
 export const Wrapper = styled.div`
-  padding: 1rem;
   color: ${darktext};
+  padding: 1rem;
 
   @media (max-width: 468px) {
     padding: 0.25rem;
@@ -14,12 +14,9 @@ export const Header = styled.h3`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.25rem;
-  margin-top: 0;
-
-  @media (max-width: 468px) {
-    margin-bottom: 0.25rem;
-  }
+  gap: 0.5rem;
+  //padding: 1rem 0;
+  margin: 0.25rem 0 0.5rem;
 `
 
 export const Input = styled.input`
@@ -47,6 +44,24 @@ export const Character = styled(CharacterTemplate)`
   padding: 0.25rem;
   width: max-content;
   border-radius: 0.5rem;
+`
+
+export const PlayerSelect = styled.select`
+  font-size: 1rem;
+  border: none;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+`
+
+export const Setting = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+
+  background: ${tilegb};
 `
 
 export const CName = styled.input`

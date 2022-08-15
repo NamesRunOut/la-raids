@@ -73,7 +73,7 @@ const DragList: React.FC<{ raid: string, data: { comment: string, players: Array
                 <Action onClick={() => addGroup(elements, setElements)}>Add group</Action>
                 {/* <Action onClick={addRun}>Divide into simultaneous runs</Action> */}
                 <Action onClick={() => reset(elements, setElements)}>Reset</Action>
-                <Action onClick={() => clearSingleRaidAndSignup(trackedPlayer, raid, setNotification)}>Clear data for this raid</Action>
+                {/*<Action onClick={() => clearSingleRaidAndSignup(trackedPlayer, raid, setNotification)}>Clear assignments and sign ups for this raid</Action>*/}
             </ActionsBar>
 
             <Comment value={rcomment} placeholder="Add raid description / comment / schedule etc"
