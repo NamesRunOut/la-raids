@@ -33,9 +33,6 @@ export const PlayerName = styled.h3`
   padding: 0.25rem;
   margin-bottom: 0;
   margin-top: 0.5rem;
-  max-width: 10rem;
-  overflow: hidden;
-  width: max-content;
   
   @media (max-width: 468px) {
     padding: 0;
@@ -64,6 +61,10 @@ export const PlayerCharacter = styled.div`
 `
 
 export const CharName = styled.div`
+  max-width: 10rem;
+  overflow: hidden;
+  width: max-content;
+  
   @media (max-width: 468px) {
     max-width: 7rem;
     overflow: hidden;
