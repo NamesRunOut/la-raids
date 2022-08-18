@@ -59,6 +59,16 @@ export const ColumnHeader = styled.div`
   gap: 1rem;
 `;
 
+export const SignupsColumnHeader = styled.div`
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.25rem;
+`;
+
 export const DroppableStyles = styled.div`
   flex: 1 1 17rem;
   padding: 0.5rem;

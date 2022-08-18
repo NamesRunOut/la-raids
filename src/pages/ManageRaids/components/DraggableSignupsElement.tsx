@@ -1,4 +1,4 @@
-import {ColumnHeader, DroppableStylesSignup, GroupName} from "./styles";
+import {ColumnHeader, DroppableStylesSignup, GroupName, SignupsColumnHeader} from "./styles";
 import React from "react";
 import {Droppable} from "react-beautiful-dnd";
 import ListItem from "./ListItem";
@@ -8,12 +8,16 @@ const DraggableSignupsElement: React.FC<{ prefix: string, elements: any, raid: s
                                                                                                 elements,
                                                                                                 raid
                                                                                             }) => {
+
+    const playersSet = new Set(elements.map((el: any) => el.playerName));
+
     return (
         <DroppableStylesSignup>
-            <ColumnHeader>
+            <SignupsColumnHeader>
                 <GroupName>{prefix}</GroupName>
-                {elements.length}
-            </ColumnHeader>
+                <div>Unique players: {playersSet.size}</div>
+                <div>No characters: {elements.length}</div>
+            </SignupsColumnHeader>
 
             <Droppable droppableId={`${prefix}`}>
                 {(provided) => (
