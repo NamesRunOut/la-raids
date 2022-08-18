@@ -25,7 +25,7 @@ const playerIsInCurrentSplit = (groups, groupNum, player) => {
             if (inGroup) return true
 
             if (groups[i + 1] !== undefined) {
-                let inNextGroup = groups[i].some(el => el.playerName === player.playerName)
+                let inNextGroup = groups[i+1].some(el => el.playerName === player.playerName)
                 if (inNextGroup) return true
             }
         }
