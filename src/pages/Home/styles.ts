@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {darktext, lighttext, raidlinkbg, tilegb} from "../../styles/palette";
+import {darktext, lighttext, raidlinkbg, secondarybuttonbg, tilegb} from "../../styles/palette";
 
 export const Raid = styled.div`
   //background: #2c2c2c;
@@ -89,7 +89,6 @@ export const RaidLink = styled.div`
   text-decoration: none;
   color: ${raidlinkbg};
   width: max-content;
-  padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-weight: bold;
   cursor: pointer;
@@ -107,7 +106,7 @@ export const PageWrapper = styled.div`
 
 export const RaidsWrapper = styled.div`
   //background: #000000;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
   border-radius: 0.5rem;
 
   @media (max-width: 468px) {
@@ -118,4 +117,38 @@ export const RaidsWrapper = styled.div`
 export const Comment = styled.div`
   width: 100%;
   color: ${darktext};
+`
+
+export const Calendar = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  //align-items: flex-start;
+  gap: 0.25rem;
+
+  @media (max-width: 468px) {
+    gap: 0.25rem;
+  }
+`
+
+export const Day = styled.div`
+  background: ${tilegb};
+  flex: 1 1 min-content;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  
+  b{
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+`
+
+export const SecondaryTitle = styled.h2`
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  @media (max-width: 468px) {
+    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+  }
 `

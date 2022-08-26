@@ -2,7 +2,9 @@ import React, {useEffect, useState} from "react";
 import {db} from "../../firebase/init";
 import {raidData} from "../../data/raidData";
 import {
+    Calendar,
     Comment,
+    Day,
     Group,
     Lp,
     Navbar,
@@ -14,6 +16,7 @@ import {
     RaidLink,
     RaidsWrapper,
     Roster,
+    SecondaryTitle,
     Title,
     Wrapper
 } from "./styles";
@@ -48,22 +51,138 @@ const Home = () => {
     return (<PageWrapper>
         <Title>Upcoming raids</Title>
 
-        <RaidsWrapper>
-            <Navbar>
-                {Object.keys(raidData).map((raid: any) => {
+        <Calendar>
+            <Day>
+                <b>Monday</b>
+                {Object.entries(raidData).filter(el => el[1].raidDay === 1).map((raid: any) => {
                     return (<RaidLink
-                        key={raid}
-                        onClick={() => setSelected(raid)}
+                        key={raid[0]}
+                        onClick={() => setSelected(raid[0])}
                         style={{
-                            //@ts-ignore
-                            color: raidData[raid].color || "white",
-                            background: selected === raid ? "black" : "#2c2c2c"
+                            color: raid[1].color || "white",
+                            background: selected === raid[0] ? "black" : "#2c2c2c",
+                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
                         }}>
-                        {/*@ts-ignore*/}
-                        {raidData[raid].name}
+                        {raid[1].name}
                     </RaidLink>)
                 })}
-            </Navbar>
+            </Day>
+
+            <Day>
+                <b>Tuesday</b>
+                {Object.entries(raidData).filter(el => el[1].raidDay === 2).map((raid: any) => {
+                    return (<RaidLink
+                        key={raid[0]}
+                        onClick={() => setSelected(raid[0])}
+                        style={{
+                            color: raid[1].color || "white",
+                            background: selected === raid[0] ? "black" : "#2c2c2c",
+                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
+                        }}>
+                        {raid[1].name}
+                    </RaidLink>)
+                })}
+            </Day>
+
+            <Day>
+                <b>Wednesday</b>
+                {Object.entries(raidData).filter(el => el[1].raidDay === 3).map((raid: any) => {
+                    return (<RaidLink
+                        key={raid[0]}
+                        onClick={() => setSelected(raid[0])}
+                        style={{
+                            color: raid[1].color || "white",
+                            background: selected === raid[0] ? "black" : "#2c2c2c",
+                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
+                        }}>
+                        {raid[1].name}
+                    </RaidLink>)
+                })}
+            </Day>
+
+            <Day>
+                <b>Thursday</b>
+                {Object.entries(raidData).filter(el => el[1].raidDay === 4).map((raid: any) => {
+                    return (<RaidLink
+                        key={raid[0]}
+                        onClick={() => setSelected(raid[0])}
+                        style={{
+                            color: raid[1].color || "white",
+                            background: selected === raid[0] ? "black" : "#2c2c2c",
+                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
+                        }}>
+                        {raid[1].name}
+                    </RaidLink>)
+                })}
+            </Day>
+
+            <Day>
+                <b>Friday</b>
+                {Object.entries(raidData).filter(el => el[1].raidDay === 5).map((raid: any) => {
+                    return (<RaidLink
+                        key={raid[0]}
+                        onClick={() => setSelected(raid[0])}
+                        style={{
+                            color: raid[1].color || "white",
+                            background: selected === raid[0] ? "black" : "#2c2c2c",
+                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
+                        }}>
+                        {raid[1].name}
+                    </RaidLink>)
+                })}
+            </Day>
+
+            <Day>
+                <b>Saturday</b>
+                {Object.entries(raidData).filter(el => el[1].raidDay === 6).map((raid: any) => {
+                    return (<RaidLink
+                        key={raid[0]}
+                        onClick={() => setSelected(raid[0])}
+                        style={{
+                            color: raid[1].color || "white",
+                            background: selected === raid[0] ? "black" : "#2c2c2c",
+                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
+                        }}>
+                        {raid[1].name}
+                    </RaidLink>)
+                })}
+            </Day>
+
+            <Day>
+                <b>Sunday</b>
+                {Object.entries(raidData).filter(el => el[1].raidDay === 0).map((raid: any) => {
+                    return (<RaidLink
+                        key={raid[0]}
+                        onClick={() => setSelected(raid[0])}
+                        style={{
+                            color: raid[1].color || "white",
+                            background: selected === raid[0] ? "black" : "#2c2c2c",
+                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
+                        }}>
+                        {raid[1].name}
+                    </RaidLink>)
+                })}
+            </Day>
+        </Calendar>
+
+        <RaidsWrapper>
+            {/*<Navbar>*/}
+            {/*    {Object.keys(raidData).map((raid: any) => {*/}
+            {/*        return (<RaidLink*/}
+            {/*            key={raid}*/}
+            {/*            onClick={() => setSelected(raid)}*/}
+            {/*            style={{*/}
+            {/*                //@ts-ignore*/}
+            {/*                color: raidData[raid].color || "white",*/}
+            {/*                background: selected === raid ? "black" : "#2c2c2c"*/}
+            {/*            }}>*/}
+            {/*            /!*@ts-ignore*!/*/}
+            {/*            {raidData[raid].name}*/}
+            {/*        </RaidLink>)*/}
+            {/*    })}*/}
+            {/*</Navbar>*/}
+
+            <SecondaryTitle>Groups</SecondaryTitle>
 
             <Raid>
                 <Comment>{raid["comment"]}</Comment>
