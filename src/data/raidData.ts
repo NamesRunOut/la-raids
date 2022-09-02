@@ -62,5 +62,13 @@ export const raidData = {
         groupSize: 4,
         name: "Kakul Saydon",
         raidDay: -1
+    },
+    Brelshaza: {
+        color: "#3957ce",
+        minlvl: 1490,
+        reclvl: 1505,
+        groupSize: 4,
+        name: "2nd best waifu",
+        raidDay: -1
     }
 }

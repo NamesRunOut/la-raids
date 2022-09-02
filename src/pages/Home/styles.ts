@@ -152,3 +152,24 @@ export const SecondaryTitle = styled.h2`
     font-size: 1.25rem;
   }
 `
+
+export const Setting = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+
+  background: ${tilegb};
+`
+
+export const Copy = styled.span`
+  margin-right: 0.25rem;
+  color: lightgreen;
+  cursor: pointer;
+  
+  :hover{
+    color: darkgreen;
+  }
+`

@@ -4,6 +4,7 @@ import {raidData} from "../../data/raidData";
 import {
     Calendar,
     Comment,
+    Copy,
     Day,
     Group,
     Lp,
@@ -17,6 +18,7 @@ import {
     RaidsWrapper,
     Roster,
     SecondaryTitle,
+    Setting,
     Title,
     Wrapper
 } from "./styles";
@@ -41,6 +43,7 @@ const Home = () => {
     const [selected, setSelected] = useState(getRaidForToday())
     const [raid, setRaid] = useState<any>({comment: ""})
     const [highlightedPlayer, setHighlightedPlayer] = useState("")
+    const [showCopy, setShowCopy] = useState(false)
 
     useEffect(() => {
         getRaid(db, selected)
@@ -200,7 +203,10 @@ const Home = () => {
                                                style={isHighlighted(highlightedPlayer, c.playerName) ? {
                                                    background: "#d7d4cf",
                                                    color: "black"
-                                               } : {}}>{c.name}</PName>
+                                               } : {}}>
+                                            {showCopy && <Copy onClick={() => {navigator.clipboard.writeText(c.name)}}>copy</Copy>}
+                                            <span>{c.name}</span>
+                                        </PName>
                                         <PClass style={{
                                             //@ts-ignore
                                             color: classData[c.class].color || "black",
@@ -218,6 +224,8 @@ const Home = () => {
                 )}
             </Raid>
         </RaidsWrapper>
+
+        <Setting><input type="checkbox" checked={showCopy} onChange={e => setShowCopy(e.target.checked)} /><div>Show copy button next to player names</div></Setting>
     </PageWrapper>);
 }
 
