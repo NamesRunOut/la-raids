@@ -70,5 +70,13 @@ export const raidData = {
         groupSize: 4,
         name: "2nd best waifu",
         raidDay: -1
+    },
+    Gvg: {
+        color: "#60bd31",
+        minlvl: 1370,
+        reclvl: 1400,
+        groupSize: 16,
+        name: "GvG",
+        raidDay: 0
     }
 }
