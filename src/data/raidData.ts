@@ -76,7 +76,7 @@ export const raidData = {
         minlvl: 1370,
         reclvl: 1400,
         groupSize: 16,
-        name: "GvG",
+        name: "Snowpang Enjoyers",
         raidDay: 0
     }
 }
