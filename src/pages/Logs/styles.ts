@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import {lighttext, primarybutton, secondarybuttonbg, tilegb} from "../../styles/palette";
 
 export const Wrapper = styled.div`
   padding: 1rem;
 `
 
 export const LogsTable = styled.table`
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
   border-radius: 0.25rem;
-  color: ${lighttext};
+  color: ${({ theme }) => theme.lighttext};
   border-collapse: collapse;
-  border: 1px solid ${lighttext};
+  border: 1px solid ${({ theme }) => theme.lighttext};
 `
 
 export const Row = styled.tr`
@@ -19,18 +18,18 @@ export const Row = styled.tr`
 `
 
 export const Td = styled.td`
-  border-left: 1px solid ${lighttext};
+  border-left: 1px solid ${({ theme }) => theme.lighttext};
   padding: 0.25rem;
 `
 
 export const Header = styled.th`
-  border-left: 1px solid ${lighttext};
+  border-left: 1px solid ${({ theme }) => theme.lighttext};
 `
 
 export const NextPage = styled.div`
   cursor: pointer;
-  background: ${secondarybuttonbg};
-  color: ${primarybutton};
+  background: ${({ theme }) => theme.secondarybuttonbg};
+  color: ${({ theme }) => theme.primarybutton};
   margin-bottom: 0.5rem;
   border-radius: 0.5rem;
   padding: 0.25rem 0.5rem;

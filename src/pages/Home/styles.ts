@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {darktext, lighttext, raidlinkbg, secondarybuttonbg, tilegb} from "../../styles/palette";
 
 export const Raid = styled.div`
   //background: #2c2c2c;
@@ -47,6 +46,17 @@ export const PName = styled.div`
   }
 `
 
+export const PclassWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+`
+
+export const PClassImage = styled.img`
+  width: 1.25rem;
+  height: 1.25rem;
+`
+
 export const PClass = styled.div``
 
 export const Pilvl = styled.div`
@@ -58,10 +68,11 @@ export const Character = styled.div`
 
 export const Group = styled.div`
   flex: 1 1 min-content;
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
+  border: ${({ theme }) => theme.tileborder};
   padding: 0.5rem;
   border-radius: 0.5rem;
-  color: ${lighttext};
+  color: ${({ theme }) => theme.lighttext};
   max-width: 28rem;
 
   @media (max-width: 468px) {
@@ -87,7 +98,7 @@ export const Navbar = styled.nav`
 
 export const RaidLink = styled.div`
   text-decoration: none;
-  color: ${raidlinkbg};
+  color: ${({ theme }) => theme.raidlinkbg};
   width: max-content;
   border-radius: 0.25rem;
   font-weight: bold;
@@ -95,7 +106,7 @@ export const RaidLink = styled.div`
 `
 
 export const PageWrapper = styled.div`
-  color: ${darktext};
+  color: ${({ theme }) => theme.darktext};
   padding: 1rem;
   //background: #151515;
 
@@ -116,7 +127,7 @@ export const RaidsWrapper = styled.div`
 
 export const Comment = styled.div`
   width: 100%;
-  color: ${darktext};
+  color: ${({ theme }) => theme.darktext};
 `
 
 export const Calendar = styled.div`
@@ -132,7 +143,7 @@ export const Calendar = styled.div`
 `
 
 export const Day = styled.div`
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
   flex: 1 1 min-content;
   border-radius: 0.25rem;
   padding: 0.25rem;
@@ -160,8 +171,11 @@ export const Setting = styled.div`
   gap: 0.25rem;
   padding: 0.25rem;
   border-radius: 0.5rem;
+  
+  margin-bottom: 0.5rem;
 
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
+  border: ${({ theme }) => theme.tileborder};
 `
 
 export const Copy = styled.span`

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {darktext, tilegb} from "../../styles/palette";
 
 export const Wrapper = styled.div`
-  color: ${darktext};
+  color: ${({ theme }) => theme.darktext};
   padding: 1rem;
 
   @media (max-width: 468px) {
@@ -40,7 +40,8 @@ export const CharacterTemplate = styled.div`
 `
 
 export const Character = styled(CharacterTemplate)`
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
+  border: ${({ theme }) => theme.tileborder};
   padding: 0.25rem;
   width: max-content;
   border-radius: 0.5rem;
@@ -61,7 +62,7 @@ export const Setting = styled.div`
   padding: 0.25rem;
   border-radius: 0.5rem;
 
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
 `
 
 export const CName = styled.input`

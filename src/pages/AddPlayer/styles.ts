@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import {darktext, tilegb} from "../../styles/palette";
 
 export const Wrapper = styled.div`
   padding: 1rem;
-  color: ${darktext};
+  color: ${({ theme }) => theme.darktext};
 
   @media (max-width: 468px) {
     padding: 0.25rem;
@@ -43,7 +42,8 @@ export const CharacterTemplate = styled.div`
 `
 
 export const Character = styled(CharacterTemplate)`
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
+  border: ${({ theme }) => theme.tileborder};
   padding: 0.25rem;
   width: max-content;
   border-radius: 0.5rem;

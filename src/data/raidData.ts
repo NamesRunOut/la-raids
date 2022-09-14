@@ -29,7 +29,7 @@ export const raidData = {
         reclvl: 1415,
         groupSize: 8,
         name: "Valtan Inferno",
-        raidDay: -1
+        raidDay: 2
     },
     Vykas_nm: {
         color: "#ae39ce",
@@ -75,7 +75,7 @@ export const raidData = {
         color: "#60bd31",
         minlvl: 1370,
         reclvl: 1400,
-        groupSize: 16,
+        groupSize: 8,
         name: "Snowpang Enjoyers",
         raidDay: 0
     }

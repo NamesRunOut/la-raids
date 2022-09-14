@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {darktext, primarybutton, primarybuttonhover, remove, removehover} from "./palette";
 
 export const PlayerSelect = styled.select`
   background: #d9e6f4;
@@ -22,9 +21,9 @@ export const Option = styled.option`
 
 export const Save = styled.div`
   padding: 0.5rem 1rem;
-  background: ${primarybutton};
-  color: black;//${darktext};
-  font-weight: bold;
+  background: ${({ theme }) => theme.primarybutton};
+  color: black;//${({ theme }) => theme.darktext};
+  //font-weight: bold;
   border-radius: 1rem;
   width: max-content;
   font-size: 1rem;
@@ -34,7 +33,7 @@ export const Save = styled.div`
   margin-bottom: 0.5rem;
 
   :hover {
-    background: ${primarybuttonhover};
+    background: ${({ theme }) => theme.primarybuttonhover};
   }
 
   @media (max-width: 468px) {
@@ -45,7 +44,7 @@ export const Save = styled.div`
 `
 
 export const Add = styled.div`
-  color: ${primarybutton};
+  color: ${({ theme }) => theme.primarybutton};
   background: #2c2c2c;
   width: max-content;
   padding: 0.5rem 1rem;
@@ -54,7 +53,7 @@ export const Add = styled.div`
   cursor: pointer;
 
   :hover {
-    color: ${primarybuttonhover};
+    color: ${({ theme }) => theme.primarybuttonhover};
   }
 
   @media (max-width: 468px) {
@@ -64,13 +63,13 @@ export const Add = styled.div`
 `
 
 export const Remove = styled.div`
-  color: ${remove};
+  color: ${({ theme }) => theme.remove};
   width: max-content;
   padding: 0.25rem 0.5rem;
   border-radius: 1rem;
   cursor: pointer;
 
   :hover {
-    color: ${removehover};
+    color: ${({ theme }) => theme.removehover};
   }
 `

@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import {lighttext, tilegb} from "../../styles/palette";
 
 export const Wrapper = styled.div`
   padding: 1rem;
-  color: ${lighttext};
+  color: ${({ theme }) => theme.lighttext};
 
   @media (max-width: 468px) {
     padding: 0.25rem;
@@ -20,7 +19,8 @@ export const PlayersGrid = styled.div`
 export const PlayerTile = styled.div`
   flex: 1 1 min-content;
   border-radius: 0.5rem;
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
+  border: ${({ theme }) => theme.tileborder};
   padding: 0 0.5rem;
   max-width: 28rem;
 

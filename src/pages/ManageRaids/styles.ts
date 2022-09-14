@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import {darktext, tilegb} from "../../styles/palette";
 
 export const SectionTitle = styled.h3`
   //margin-top: 0;
-  color: ${darktext};
+  color: ${({ theme }) => theme.darktext};
 `
 
 export const Signups = styled.div`
-  color: ${darktext};
+  color: ${({ theme }) => theme.darktext};
 `
 
 export const Title = styled.h3`
@@ -56,7 +55,7 @@ export const RaidLink = styled.div`
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-weight: bold;
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
   cursor: pointer;
 `
 

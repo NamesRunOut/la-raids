@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import {lighttext, tilegb} from "../../styles/palette";
 
 export const Wrapper = styled.div`
   padding: 1rem;
-  color: ${lighttext};
+  color: ${({ theme }) => theme.lighttext};
 
   @media (max-width: 468px) {
     padding: 0.25rem;
@@ -24,7 +23,7 @@ export const Input = styled.input`
 
 export const RaidName = styled.div`
   text-decoration: none;
-  color: ${lighttext};
+  color: ${({ theme }) => theme.lighttext};
   width: max-content;
   border-radius: 0.25rem 0.25rem 0 0;
   font-weight: bold;
@@ -70,10 +69,11 @@ export const Character = styled.div`
 
 export const Raid = styled.div`
   flex: 1 1 min-content;
-  background: ${tilegb};
+  background: ${({ theme }) => theme.tilegb};
   border-radius: 0.5rem;
   padding: 0.5rem;
   max-width: 28rem;
+  border: ${({ theme }) => theme.tileborder};
 `
 
 export const RaidWrapper = styled.div`

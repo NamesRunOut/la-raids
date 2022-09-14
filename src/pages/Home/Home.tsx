@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {db} from "../../firebase/init";
 import {raidData} from "../../data/raidData";
 import {
@@ -11,6 +11,8 @@ import {
     Navbar,
     PageWrapper,
     PClass,
+    PClassImage,
+    PclassWrapper,
     Pilvl,
     PName,
     Raid,
@@ -27,6 +29,7 @@ import {classData} from "../../data/classData";
 import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
 import Loading from "../../components/Loading";
+import {PlayerContext} from "../../contexts/PlayerContext";
 
 const isHighlighted = (highlightedPlayer: string, playerName: string) => {
     return highlightedPlayer === playerName
@@ -42,14 +45,38 @@ const getRaidForToday = () => {
 const Home = () => {
     const [selected, setSelected] = useState(getRaidForToday())
     const [raid, setRaid] = useState<any>({comment: ""})
-    const [highlightedPlayer, setHighlightedPlayer] = useState("")
+
+    const [player] = useContext(PlayerContext)
+    const [highlightedPlayer, setHighlightedPlayer] = useState(player)
+
+    //settings
     const [showCopy, setShowCopy] = useState(false)
+    const [showClassIcon, setShowClassIcon] = useState(false)
+    const [showClass, setShowClass] = useState(true)
+
+    const setLocalShowClassIcon = (val: boolean) => {
+        window.localStorage.setItem('la-raids-show-class-icon', val.toString())
+        setShowClassIcon(val)
+    }
+
+    const setLocalShowClass = (val: boolean) => {
+        window.localStorage.setItem('la-raids-show-class', val.toString())
+        setShowClass(val)
+    }
 
     useEffect(() => {
         getRaid(db, selected)
             .then(r => setRaid(r))
             .catch(err => console.log(err))
     }, [selected])
+
+    useEffect(() => {
+        const localShowClassIcon = window.localStorage.getItem('la-raids-show-class-icon')
+        localShowClassIcon && setShowClassIcon(localShowClassIcon === 'true')
+
+        const localShowClass = window.localStorage.getItem('la-raids-show-class')
+        localShowClass && setShowClass(localShowClass === "true")
+    }, [])
 
     return (<PageWrapper>
         <Title>Upcoming raids</Title>
@@ -199,7 +226,7 @@ const Home = () => {
                                 <Roster>
                                     {players.map((c: any) => <React.Fragment key={c.name}>
                                         <Lp>{i++}.</Lp>
-                                        <PName onClick={() => setHighlightedPlayer(c.playerName)}
+                                        <PName onClick={() => highlightedPlayer === c.playerName ? setHighlightedPlayer("") : setHighlightedPlayer(c.playerName)}
                                                style={isHighlighted(highlightedPlayer, c.playerName) ? {
                                                    background: "#d7d4cf",
                                                    color: "black"
@@ -207,11 +234,21 @@ const Home = () => {
                                             {showCopy && <Copy onClick={() => {navigator.clipboard.writeText(c.name)}}>copy</Copy>}
                                             <span>{c.name}</span>
                                         </PName>
-                                        <PClass style={{
-                                            //@ts-ignore
-                                            color: classData[c.class].color || "black",
-                                            filter: classfilter
-                                        }}>{c.class}</PClass>
+
+                                        <PclassWrapper>
+                                            {showClassIcon && <PClassImage
+                                                //@ts-ignore
+                                                src={classData[c.class].image}
+                                                //@ts-ignore
+                                                style={{filter: `brightness(50%) sepia(100) saturate(10) grayscale(0.7) hue-rotate(${classData[c.class].imageHue}deg)`}}
+                                            />}
+                                            {showClass && <PClass style={{
+                                                //@ts-ignore
+                                                color: classData[c.class].color || "black",
+                                                filter: classfilter
+                                            }}>{c.class}</PClass>}
+                                        </PclassWrapper>
+
 
                                         <Pilvl
                                             //@ts-ignore
@@ -225,7 +262,10 @@ const Home = () => {
             </Raid>
         </RaidsWrapper>
 
+        <SecondaryTitle>Settings</SecondaryTitle>
         <Setting><input type="checkbox" checked={showCopy} onChange={e => setShowCopy(e.target.checked)} /><div>Show copy button next to player names</div></Setting>
+        <Setting><input type="checkbox" checked={showClassIcon} onChange={e => setLocalShowClassIcon(e.target.checked)} /><div>Show class icon</div></Setting>
+        <Setting><input type="checkbox" checked={showClass} onChange={e => setLocalShowClass(e.target.checked)} /><div>Show class name</div></Setting>
     </PageWrapper>);
 }
 
