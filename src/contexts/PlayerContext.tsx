@@ -12,47 +12,46 @@ const Player = (props: { children: boolean | React.ReactChild | React.ReactFragm
     }, [])
 
     useEffect(() => {
-        setPersistence(auth, browserLocalPersistence)
-            .then(() => {
-                return signInAnonymously(auth)
-                    .then(r => {
-                        // set player to display name
-                        console.log(r.user.displayName)
-                    })
-            })
-            .catch((error) => {
-                const errorCode = error.code
-                const errorMessage = error.message
-            })
+        // setPersistence(auth, browserLocalPersistence)
+        //     .then(() => {
+        //         return signInAnonymously(auth)
+        //             .then(r => {
+        //                 // set player to display name
+        //                 console.log(r.user.displayName)
+        //             })
+        //     })
+        //     .catch((error) => {
+        //         const errorCode = error.code
+        //         const errorMessage = error.message
+        //     })
     }, [auth])
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                const uid = user.uid
-                console.log(user.displayName)
-            } else {
-                // User is signed out
-            }
-        })
+        // onAuthStateChanged(auth, (user) => {
+        //     if (user) {
+        //         const uid = user.uid
+        //         console.log(user.displayName)
+        //     } else {
+        //         // User is signed out
+        //     }
+        // })
     }, [auth, player])
 
     const updateTrackedPlayer = (playerName: string) => {
         localStorage.setItem("trackedPlayer", playerName)
         setPlayer(playerName)
 
-        if (auth.currentUser !== null){
-            updateProfile(auth.currentUser, {
-                displayName: playerName
-            })
-                .then(() => {
-                    console.log("profile updated")
-                })
-                .catch((err: any) => {
-                    console.log(err)
-                })
-        }
-
+        // if (auth.currentUser !== null){
+        //     updateProfile(auth.currentUser, {
+        //         displayName: playerName
+        //     })
+        //         .then(() => {
+        //             console.log("profile updated")
+        //         })
+        //         .catch((err: any) => {
+        //             console.log(err)
+        //         })
+        // }
     }
 
     return (

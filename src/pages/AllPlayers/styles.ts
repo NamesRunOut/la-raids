@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrapper = styled.div`
   padding: 1rem;
@@ -23,9 +24,14 @@ export const PlayerTile = styled.div`
   border: ${({ theme }) => theme.tileborder};
   padding: 0 0.5rem;
   max-width: 28rem;
-
+  
   @media (max-width: 468px) {
     flex: 100%;
+  }
+  
+  :hover{
+    filter: invert(1);
+    cursor: pointer;
   }
 `
 
@@ -44,6 +50,11 @@ export const PlayerName = styled.h3`
 export const PlayerCharacters = styled.div`
 `
 
+export const PClassImage = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+`
+
 export const PlayerCharacter = styled.div`
   border-radius: 0.25rem;
   //background: #151515;
@@ -51,7 +62,7 @@ export const PlayerCharacter = styled.div`
   padding: 0.25rem;
   
   display: grid;
-  grid-template-columns: min-content 1fr 1fr min-content;
+  grid-template-columns: min-content min-content 1fr min-content;
   gap: 0.1rem;
   grid-column-gap: 0.5rem;
 
