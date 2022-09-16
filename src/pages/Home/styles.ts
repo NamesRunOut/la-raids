@@ -39,6 +39,9 @@ export const PName = styled.div`
   max-width: 10rem;
   overflow: hidden;
   width: max-content;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
   
   @media (max-width: 468px) {
     max-width: 7rem;

@@ -12,6 +12,8 @@ const saveChanges = (player: any, setPlayer: any, setNotification: any, trackedP
         }
     }
 
+    localStorage.setItem("trackedPlayer", tmp.name)
+
     addPlayer(db, tmp, setNotification)
         .then(r => {
             let log = {

@@ -55,7 +55,7 @@ const EditPlayer = () => {
         <Wrapper>
             <Header>
                 <PlayerSelect value={player.origName} onChange={(e) => changePlayer(e, player, allPlayers, setPlayer)}>
-                    {allPlayers.map((p: any) => <Option key={p.origName} value={p.name}>{p.name}</Option>)}
+                    {allPlayers.map((p: any, i: number) => <Option key={i} value={p.name}>{p.name}</Option>)}
                 </PlayerSelect>
             </Header>
 
