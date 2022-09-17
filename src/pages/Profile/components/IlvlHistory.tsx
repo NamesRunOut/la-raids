@@ -4,12 +4,7 @@ import formatCharacterData from "../utils/formatCharacterData";
 import {classData} from "../../../data/classData";
 import { IlvlHistory } from "../styles";
 
-const Profile:React.FC <{player: any}> = ({player}) => {
-    const [ilvlData, setIlvlData] = useState<Array<any>>([])
-
-    useEffect(() => {
-        setIlvlData(formatCharacterData(player?.characters || [], player?.ilvlHistory || []))
-    }, [player])
+const Profile:React.FC <{player: any, ilvlData: Array<any>}> = ({player, ilvlData}) => {
 
     return (
         <IlvlHistory>

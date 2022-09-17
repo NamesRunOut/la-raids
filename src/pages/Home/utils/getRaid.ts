@@ -1,6 +1,6 @@
 import {doc, Firestore, getDoc} from "firebase/firestore";
 
-export const getRaid = async (db: Firestore, raid: string) => {
+const getRaid = async (db: Firestore, raid: string) => {
     const raidRef = doc(db, "raids", raid);
     const docSnap = await getDoc(raidRef)
 
@@ -12,12 +12,4 @@ export const getRaid = async (db: Firestore, raid: string) => {
     }
 }
 
-export const compareGroupName = (a: any, b: any) => {
-    let n1 = parseInt(a[0].slice(5))
-    let n2 = parseInt(b[0].slice(5))
-    if (n1 < n2)
-        return -1
-    if (n1 > n2)
-        return 1
-    return 0
-}
+export default getRaid

@@ -24,27 +24,22 @@ import {
     Title,
     Wrapper
 } from "./styles";
-import {compareGroupName, getRaid} from "./utils";
 import {classData} from "../../data/classData";
 import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
 import Loading from "../../components/Loading";
 import {PlayerContext} from "../../contexts/PlayerContext";
-
-const isHighlighted = (highlightedPlayer: string, playerName: string) => {
-    return highlightedPlayer === playerName
-}
-
-const getRaidForToday = () => {
-    let day = (new Date()).getDay()
-    let raid = Object.entries(raidData).find(el => el[1].raidDay === day)
-    if (raid === undefined) return Object.keys(raidData)[0]
-    return raid[0]
-}
+import getRaidForToday from "./utils/getRaidForToday";
+import getRaid from "./utils/getRaid";
+import compareGroupName from "./utils/compareGroupName";
+import isHighlighted from "./utils/isHighlighted";
+import calculateTimetable from "./utils/calculateTimetable";
+import Timetable from "./components/Timetable/Timetable";
 
 const Home = () => {
     const [selected, setSelected] = useState(getRaidForToday())
     const [raid, setRaid] = useState<any>({comment: ""})
+    const [timetable, setTimtable] = useState([])
 
     const [player] = useContext(PlayerContext)
     const [highlightedPlayer, setHighlightedPlayer] = useState(player)
@@ -69,6 +64,10 @@ const Home = () => {
             .then(r => setRaid(r))
             .catch(err => console.log(err))
     }, [selected])
+
+    useEffect(() => {
+        calculateTimetable(Object.entries(raid).filter(el => el[0] !== "comment").sort(compareGroupName))
+    }, [raid])
 
     useEffect(() => {
         const localShowClassIcon = window.localStorage.getItem('la-raids-show-class-icon')
@@ -195,25 +194,10 @@ const Home = () => {
             </Day>
         </Calendar>
 
+        <Timetable selected={selected} raid={raid} highlightedPlayer={highlightedPlayer} />
+
         <RaidsWrapper>
-            {/*<Navbar>*/}
-            {/*    {Object.keys(raidData).map((raid: any) => {*/}
-            {/*        return (<RaidLink*/}
-            {/*            key={raid}*/}
-            {/*            onClick={() => setSelected(raid)}*/}
-            {/*            style={{*/}
-            {/*                //@ts-ignore*/}
-            {/*                color: raidData[raid].color || "white",*/}
-            {/*                background: selected === raid ? "black" : "#2c2c2c"*/}
-            {/*            }}>*/}
-            {/*            /!*@ts-ignore*!/*/}
-            {/*            {raidData[raid].name}*/}
-            {/*        </RaidLink>)*/}
-            {/*    })}*/}
-            {/*</Navbar>*/}
-
-            <SecondaryTitle>Groups</SecondaryTitle>
-
+            <SecondaryTitle>Group Details</SecondaryTitle>
             <Raid>
                 <Comment>{raid["comment"]}</Comment>
                 {Object.entries(raid).filter(el => el[0] !== "comment").sort(compareGroupName).map((c: any) => {
@@ -248,7 +232,6 @@ const Home = () => {
                                                 filter: classfilter
                                             }}>{c.class}</PClass>}
                                         </PclassWrapper>
-
 
                                         <Pilvl
                                             //@ts-ignore

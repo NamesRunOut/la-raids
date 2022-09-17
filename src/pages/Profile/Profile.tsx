@@ -21,6 +21,7 @@ const Profile = () => {
     const {id} = useParams()
     const [player, setPlayer] = useState<any>(null)
     const [mainClass, setMainClass] = useState<string>("Berserker")
+    const [ilvlData, setIlvlData] = useState<Array<any>>([])
 
     useEffect(() => {
         fetchPlayer(id || "", setPlayer, setNotification)
@@ -28,6 +29,7 @@ const Profile = () => {
 
     useEffect(() => {
         setMainClass(player?.characters?.[0].class || "Berserker")
+        setIlvlData(formatCharacterData(player?.characters || [], player?.ilvlHistory || []))
     }, [player])
 
     if (player === null) return(<LoadWrapper><Loading /></LoadWrapper>)
@@ -47,7 +49,7 @@ const Profile = () => {
             <Stats>
                 <Ilvl>
                     <SecondaryTitle>Item lvl History</SecondaryTitle>
-                    <IlvlHistory player={player} />
+                    <IlvlHistory player={player} ilvlData={ilvlData} />
                 </Ilvl>
 
                 <Characters>

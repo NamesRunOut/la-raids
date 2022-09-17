@@ -27,14 +27,17 @@ export const Card = styled.div`
 `
 
 export const Ilvl = styled.div`
-  flex: 1 1 min-content;
+  flex: 1 1 50vw;
   width: 50vw;
+  
   @media(max-width: 1024px){
     width: 75vw;
+    flex: 1 1 75vw;
   }
 
   @media(max-width: 468px){
     width: 85vw;
+    flex: 1 1 85vw;
   }
 `
 
@@ -100,16 +103,15 @@ export const PClassImage = styled.img`
 `
 
 export const PlayerCharacter = styled.div`
-  border-radius: 0.5rem;
   //background: #151515;
-  margin: 0.25rem 0;
-  padding: 0.5rem;
-  
   display: grid;
   grid-template-columns: min-content min-content 1fr min-content;
   gap: 0.1rem;
   grid-column-gap: 0.5rem;
-
+  
+  border-radius: 0.5rem;
+  margin: 0.25rem 0;
+  padding: 0.5rem;
   background: ${({ theme }) => theme.tilegb};
   
   @media (max-width: 468px) {
@@ -118,14 +120,7 @@ export const PlayerCharacter = styled.div`
 `
 
 export const CharName = styled.div`
-  max-width: 10rem;
-  overflow: hidden;
   width: max-content;
-  
-  @media (max-width: 468px) {
-    max-width: 7rem;
-    overflow: hidden;
-  }
 `
 
 export const CharClass = styled.div`

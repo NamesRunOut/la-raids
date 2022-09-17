@@ -43,7 +43,11 @@ const saveChanges = (player: any, trackedPlayer: string, setNotification: any) =
                 })
             }
 
-            tmp.ilvlHistory = [...player.ilvlHistory, ...ilvlChanges]
+            if (player.ilvlHistory === undefined){
+                tmp.ilvlHistory = [...ilvlChanges]
+            } else {
+                tmp.ilvlHistory = [...player.ilvlHistory, ...ilvlChanges]
+            }
 
             const playersRef = collection(db, "players");
             // @ts-ignore
