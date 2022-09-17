@@ -29,23 +29,14 @@ const calculateTimetable = (raid: any) => {
         }
 
         if (arePlayersUnique(allPlayersInSlot, players)){
-            slot.push({
-                name: name,
-                players: players
-            })
+            slot.push({name: name, players: players})
         } else {
             result.push(slot)
-            slot = [{
-                name: name,
-                players: players
-            }]
-
-            if (i === raid.length-1) result.push([{
-                name: name,
-                players: players
-            }])
+            slot = [{name: name, players: players}]
         }
     }
+
+    if (slot.length > 0) result.push(slot)
 
     return result
 }

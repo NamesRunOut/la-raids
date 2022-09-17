@@ -9,12 +9,14 @@ import {
     Roster,
     Lp,
     PName,
-    TimeIndicator
+    TimeIndicator,
+    Disclaimer
 } from "./styles";
 import compareGroupName from "../../utils/compareGroupName";
 import calculateTimetable from "../../utils/calculateTimetable";
 import isHighlighted from "../../utils/isHighlighted";
 import {raidData} from "../../../../data/raidData";
+import isInGroup from "../../utils/isInGroup";
 
 const Timetable:React.FC <{selected: string, raid: any, highlightedPlayer: string}> = ({selected, raid, highlightedPlayer}) => {
     const [timetable, setTimetable] = useState([])
@@ -29,7 +31,7 @@ const Timetable:React.FC <{selected: string, raid: any, highlightedPlayer: strin
     useEffect(() => {
         let timer = setInterval(() => {
             let date = new Date()
-            // let date = new Date('2022-09-17T22:22:00')
+            // let date = new Date('2022-09-17T20:22:00')
             let weekDay = date.getDay()
             let startTime = new Date(`${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T20:00:00`)
             let finishTime = new Date(startTime.getTime() + (timetable.length+1)*minutesPerSlot*60000)
@@ -50,6 +52,7 @@ const Timetable:React.FC <{selected: string, raid: any, highlightedPlayer: strin
 
     return (<Wrapper>
         <SecondaryTitle>Suggested timetable</SecondaryTitle>
+        <Disclaimer>(start times not final, just suggestions/expectations)</Disclaimer>
         <Table>
             <TimeIndicator
                 style={{
@@ -67,16 +70,16 @@ const Timetable:React.FC <{selected: string, raid: any, highlightedPlayer: strin
                     {parsedDate}
                     {slot.map((group: any, j: number) => {
                         return(
-                            <Group key={j}>
+                            <Group key={j} style={isInGroup(highlightedPlayer, group.players) ? {background: "#d7d4cf", color: "black"} : {}}>
                                 <Title>{group.name}</Title>
-                                <Roster>
-                                    {group.players.map((c: any, k: number) => <React.Fragment key={k}>
-                                        <Lp>{k+1}. </Lp>
-                                        <PName style={isHighlighted(highlightedPlayer, c.playerName) ? {background: "#d7d4cf", color: "black"} : {}}>
-                                            <span>{c.playerName}</span>
-                                        </PName>
-                                    </React.Fragment>)}
-                                </Roster>
+                                {/*<Roster>*/}
+                                {/*    {group.players.map((c: any, k: number) => <React.Fragment key={k}>*/}
+                                {/*        <Lp>{k+1}. </Lp>*/}
+                                {/*        <PName style={isHighlighted(highlightedPlayer, c.playerName) ? {background: "#d7d4cf", color: "black"} : {}}>*/}
+                                {/*            <span>{c.playerName}</span>*/}
+                                {/*        </PName>*/}
+                                {/*    </React.Fragment>)}*/}
+                                {/*</Roster>*/}
                             </Group>
                         )
                     })}

@@ -71,6 +71,11 @@ export const TimeIndicator = styled.div`
   position: absolute;
   top: 0;
   width: 3px;
-  height: 100%;
+  height: 105%;
   border-radius: 2px;
+`
+
+export const Disclaimer = styled.div`
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
 `
