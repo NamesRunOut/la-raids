@@ -66,8 +66,8 @@ const formatCharacterData = (characters: Array<any>, ilvlhistory: Array<any>) =>
         result.push(record)
     }
 
-    console.table(ilvlhistory)
-    console.table(result)
+    // console.table(ilvlhistory)
+    // console.table(result)
 
     return result
 }

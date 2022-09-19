@@ -3,7 +3,6 @@ import {NotificationContext} from "../../contexts/NotificationContext";
 import {PlayerContext} from "../../contexts/PlayerContext";
 import {Card, CharName, CharIlvl, ClassImage, Ilvl, LoadWrapper, Lp,
     PClassImage, PlayerCharacter, PlayerCharacters, PlayerName, SecondaryTitle, Wrapper, BigPlayerName, Characters, Stats} from "./styles";
-import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line} from 'recharts';
 import {useParams} from "react-router-dom";
 import {fetchPlayer} from "./utils/fetchPlayer";
 import {classData} from "../../data/classData";
