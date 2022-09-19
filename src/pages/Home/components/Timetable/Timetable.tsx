@@ -52,7 +52,7 @@ const Timetable:React.FC <{selected: string, raid: any, highlightedPlayer: strin
 
     return (<Wrapper>
         <SecondaryTitle>Suggested timetable</SecondaryTitle>
-        <Disclaimer>(start times not final, just suggestions/expectations)</Disclaimer>
+        <Disclaimer>(start times not final, just suggestions/assumptions)</Disclaimer>
         <Table>
             <TimeIndicator
                 style={{

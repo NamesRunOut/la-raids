@@ -1,8 +1,25 @@
 import getWeekNumber from "../../../utils/getWeekNumber";
 
+const compareYear = (a: { year: number }, b: { year: number }) => {
+    if (a.year < b.year)
+        return -1
+    if (a.year > b.year)
+        return 1
+    return 0
+}
+
+const compareWeek = (a: { week: number }, b: { week: number }) => {
+    if (a.week < b.week)
+        return -1
+    if (a.week > b.week)
+        return 1
+    return 0
+}
+
 const formatCharacterData = (characters: Array<any>, ilvlhistory: Array<any>) => {
     let dataRange = 7
-    ilvlhistory = ilvlhistory.reverse()
+    ilvlhistory = ilvlhistory.sort(compareYear)
+    ilvlhistory = ilvlhistory.sort(compareWeek)
     let result: Array<any>
     result = []
 
@@ -28,7 +45,9 @@ const formatCharacterData = (characters: Array<any>, ilvlhistory: Array<any>) =>
                 if (historicalData !== undefined) {
                     charHistory[character.name].push(historicalData.ilvl)
                 } else {
-                    charHistory[character.name].push(character.ilvl)
+                    let minIlvl = Math.min.apply(null, ilvlhistory.filter(el => el.charName === character.name).map(el => el.ilvl))
+                    if (minIlvl === Infinity) charHistory[character.name].push(character.ilvl)
+                    else charHistory[character.name].push(minIlvl)
                 }
             } else {
                 charHistory[character.name].push(historicalData.ilvl)
@@ -46,6 +65,9 @@ const formatCharacterData = (characters: Array<any>, ilvlhistory: Array<any>) =>
         }
         result.push(record)
     }
+
+    console.table(ilvlhistory)
+    console.table(result)
 
     return result
 }
