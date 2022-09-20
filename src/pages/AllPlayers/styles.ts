@@ -92,5 +92,8 @@ export const Lp = styled.div`
 `
 
 export const StatsGrid = styled.div`
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 `
