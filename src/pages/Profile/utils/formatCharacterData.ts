@@ -18,6 +18,7 @@ const compareWeek = (a: { week: number }, b: { week: number }) => {
 
 const formatCharacterData = (characters: Array<any>, ilvlhistory: Array<any>) => {
     let dataRange = 7
+    // TODO remove duplicates, of same year and week
     ilvlhistory = ilvlhistory.sort(compareYear)
     ilvlhistory = ilvlhistory.sort(compareWeek)
     let result: Array<any>

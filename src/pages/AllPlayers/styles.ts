@@ -90,3 +90,7 @@ export const CharIlvl = styled.div``
 export const Lp = styled.div`
   margin-right: 0.5rem;
 `
+
+export const StatsGrid = styled.div`
+
+`

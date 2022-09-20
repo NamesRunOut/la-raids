@@ -35,6 +35,7 @@ import compareGroupName from "./utils/compareGroupName";
 import isHighlighted from "./utils/isHighlighted";
 import calculateTimetable from "./utils/calculateTimetable";
 import Timetable from "./components/Timetable/Timetable";
+import { doc, onSnapshot } from "firebase/firestore";
 
 const Home = () => {
     const [selected, setSelected] = useState(getRaidForToday())
@@ -60,9 +61,18 @@ const Home = () => {
     }
 
     useEffect(() => {
-        getRaid(db, selected)
-            .then(r => setRaid(r))
-            .catch(err => console.log(err))
+        const unsub = onSnapshot(doc(db, "raids", selected), (doc) => {
+            console.log(doc.exists(), doc.data())
+            if (doc.exists()) {
+                setRaid(doc.data())
+                return doc.data()
+            } else {
+                console.log("No such raid!", selected)
+                return {comment: ""}
+            }
+        })
+
+        return () => unsub()
     }, [selected])
 
     useEffect(() => {
