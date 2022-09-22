@@ -29,14 +29,14 @@ const countStats = (players: Array<any>) => {
         {name: 'Deathblade', value: 0, color: classData.Deathblade.color}
     ]
     let ilvls = [
-        {name: '<=1370', value: 0, color: '#ee8484'},
-        {name: '1370-1415', value: 0, color: '#FA8837'},
-        {name: '1415-1445', value: 0, color: '#D9BE3B'},
-        {name: '1445-1460', value: 0, color: '#7EF04D'},
-        {name: '1460-1475', value: 0, color: '#3bd96d'},
-        {name: '1475-1490', value: 0, color: '#4fe7a3'},
+        {name: '<=1370', value: 0, color: '#816ba8'},
+        {name: '1370-1415', value: 0, color: '#ad9453'},
+        {name: '1415-1445', value: 0, color: '#b96c32'},
+        {name: '1445-1460', value: 0, color: '#f04d4d'},
+        {name: '1460-1475', value: 0, color: '#d93b3b'},
+        {name: '1475-1490', value: 0, color: '#e74fe4'},
         {name: '1490-1505', value: 0, color: '#71b8ff'},
-        {name: '1505<', value: 0, color: '#8f93ff'},
+        {name: '1505<', value: 0, color: '#dbeaff'},
     ]
     for (let player of players){
         for (let char of player.characters){

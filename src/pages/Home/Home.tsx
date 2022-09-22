@@ -40,7 +40,6 @@ import { doc, onSnapshot } from "firebase/firestore";
 const Home = () => {
     const [selected, setSelected] = useState(getRaidForToday())
     const [raid, setRaid] = useState<any>({comment: ""})
-    const [timetable, setTimtable] = useState([])
 
     const [player] = useContext(PlayerContext)
     const [highlightedPlayer, setHighlightedPlayer] = useState(player)
@@ -62,7 +61,7 @@ const Home = () => {
 
     useEffect(() => {
         const unsub = onSnapshot(doc(db, "raids", selected), (doc) => {
-            console.log(doc.exists(), doc.data())
+            // console.log(doc.exists(), doc.data())
             if (doc.exists()) {
                 setRaid(doc.data())
                 return doc.data()
@@ -74,10 +73,6 @@ const Home = () => {
 
         return () => unsub()
     }, [selected])
-
-    useEffect(() => {
-        calculateTimetable(Object.entries(raid).filter(el => el[0] !== "comment").sort(compareGroupName))
-    }, [raid])
 
     useEffect(() => {
         const localShowClassIcon = window.localStorage.getItem('la-raids-show-class-icon')

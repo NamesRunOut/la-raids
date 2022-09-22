@@ -30,11 +30,11 @@ const Timetable:React.FC <{selected: string, raid: any, highlightedPlayer: strin
 
     useEffect(() => {
         let timer = setInterval(() => {
-            let date = new Date()
-            // let date = new Date('2022-09-17T20:22:00')
+            // let date = new Date()
+            let date = new Date('2022-09-22T21:30:00')
             let weekDay = date.getDay()
             let startTime = new Date(`${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T20:00:00`)
-            let finishTime = new Date(startTime.getTime() + (timetable.length+1)*minutesPerSlot*60000)
+            let finishTime = new Date(startTime.getTime() + (timetable.length)*minutesPerSlot*60000)
 
             // @ts-ignore
             let q = Math.abs(date-startTime)
