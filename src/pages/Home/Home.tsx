@@ -95,7 +95,6 @@ const Home = () => {
                         style={{
                             color: raid[1].color || "white",
                             background: selected === raid[0] ? "black" : "#2c2c2c",
-                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
                         }}>
                         {raid[1].name}
                     </RaidLink>)
@@ -111,7 +110,6 @@ const Home = () => {
                         style={{
                             color: raid[1].color || "white",
                             background: selected === raid[0] ? "black" : "#2c2c2c",
-                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
                         }}>
                         {raid[1].name}
                     </RaidLink>)
@@ -127,7 +125,6 @@ const Home = () => {
                         style={{
                             color: raid[1].color || "white",
                             background: selected === raid[0] ? "black" : "#2c2c2c",
-                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
                         }}>
                         {raid[1].name}
                     </RaidLink>)
@@ -143,7 +140,6 @@ const Home = () => {
                         style={{
                             color: raid[1].color || "white",
                             background: selected === raid[0] ? "black" : "#2c2c2c",
-                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
                         }}>
                         {raid[1].name}
                     </RaidLink>)
@@ -159,7 +155,6 @@ const Home = () => {
                         style={{
                             color: raid[1].color || "white",
                             background: selected === raid[0] ? "black" : "#2c2c2c",
-                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
                         }}>
                         {raid[1].name}
                     </RaidLink>)
@@ -175,7 +170,6 @@ const Home = () => {
                         style={{
                             color: raid[1].color || "white",
                             background: selected === raid[0] ? "black" : "#2c2c2c",
-                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
                         }}>
                         {raid[1].name}
                     </RaidLink>)
@@ -191,7 +185,6 @@ const Home = () => {
                         style={{
                             color: raid[1].color || "white",
                             background: selected === raid[0] ? "black" : "#2c2c2c",
-                            padding: selected === raid[0] ? "0.25rem 0.5rem" : "0.25rem 0"
                         }}>
                         {raid[1].name}
                     </RaidLink>)

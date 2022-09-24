@@ -5,7 +5,8 @@ export const raidData = {
         reclvl: 1400,
         groupSize: 8,
         name: "Argos P3",
-        raidDay: 4
+        raidDay: 4,
+        time: 20
     },
     Valtan_nm: {
         color: "#3990ce",
@@ -13,7 +14,8 @@ export const raidData = {
         reclvl: 1415,
         groupSize: 8,
         name: "Valtan Normal",
-        raidDay: 1
+        raidDay: 1,
+        time: 30
     },
     Valtan_hm: {
         color: "#5657d3",
@@ -21,7 +23,8 @@ export const raidData = {
         reclvl: 1445,
         groupSize: 8,
         name: "Valtan Hard",
-        raidDay: 5
+        raidDay: 5,
+        time: 30
     },
     Valtan_inferno: {
         color: "#ce3939",
@@ -29,7 +32,8 @@ export const raidData = {
         reclvl: 1415,
         groupSize: 8,
         name: "Valtan Inferno",
-        raidDay: 2
+        raidDay: 2,
+        time: 120
     },
     Vykas_nm: {
         color: "#ae39ce",
@@ -37,7 +41,8 @@ export const raidData = {
         reclvl: 1430,
         groupSize: 8,
         name: "Vykas Normal",
-        raidDay: 6
+        raidDay: 6,
+        time: 40
     },
     Vykas_hm_1: {
         color: "#ce399a",
@@ -45,7 +50,8 @@ export const raidData = {
         reclvl: 1460,
         groupSize: 8,
         name: "Vykas Hard Wednesday",
-        raidDay: 3
+        raidDay: 3,
+        time: 40
     },
     Vykas_hm_2: {
         color: "#ce399a",
@@ -53,7 +59,8 @@ export const raidData = {
         reclvl: 1460,
         groupSize: 8,
         name: "Vykas Hard Sunday",
-        raidDay: 0
+        raidDay: 0,
+        time: 40
     },
     Kakul_saydon: {
         color: "#6339ce",
@@ -61,7 +68,8 @@ export const raidData = {
         reclvl: 1485,
         groupSize: 4,
         name: "Kakul Saydon",
-        raidDay: -1
+        raidDay: -1,
+        time: 120
     },
     Brelshaza: {
         color: "#3957ce",
@@ -69,7 +77,8 @@ export const raidData = {
         reclvl: 1505,
         groupSize: 4,
         name: "2nd best waifu",
-        raidDay: -1
+        raidDay: -1,
+        time: 120,
     },
     Gvg: {
         color: "#60bd31",
@@ -77,6 +86,7 @@ export const raidData = {
         reclvl: 1400,
         groupSize: 8,
         name: "Snowpang Enjoyers",
-        raidDay: 0
+        raidDay: 0,
+        time: 60
     }
 }

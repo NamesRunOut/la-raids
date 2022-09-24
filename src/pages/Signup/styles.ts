@@ -90,3 +90,11 @@ export const RaidWrapper = styled.div`
     gap: 0.25rem;
   }
 `
+
+export const PreferenceDropdown = styled.select`
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.1rem 0.25rem;
+  background: #d9e6f4;
+  margin: 0 0 0.25rem 0;
+`

@@ -106,6 +106,7 @@ export const RaidLink = styled.div`
   border-radius: 0.25rem;
   font-weight: bold;
   cursor: pointer;
+  padding: 0.25rem 0.5rem;
 `
 
 export const PageWrapper = styled.div`

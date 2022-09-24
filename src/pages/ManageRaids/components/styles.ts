@@ -87,8 +87,19 @@ export const DroppableStylesSignup = styled.div`
   min-width: 15rem;
 `;
 
+export const Player = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
 export const PlayerName = styled.div`
   font-size: 0.75rem
+`
+
+export const PlayerPreference = styled.div`
+  font-size: 0.75rem;
+  color: indianred;
 `
 
 export const Character = styled.div`
@@ -110,7 +121,8 @@ export const Ilvl = styled.div`
 `
 
 export const Name = styled.div`
-
+  max-width: 7rem;
+  overflow: hidden;
 `
 
 export const CharacterBgColor = styled.div`

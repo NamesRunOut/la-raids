@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {raidData} from "../../data/raidData";
 import {addLog, getPlayers} from "../../firebase/utils";
 import {db} from "../../firebase/init";
-import {Checkbox, Header, PClass, Pilvl, PName, Raid, RaidName, RaidWrapper, Roster, Wrapper} from "./styles";
+import {Checkbox, Header, PClass, Pilvl, PName, PreferenceDropdown, Raid, RaidName, RaidWrapper, Roster, Wrapper} from "./styles";
 import {collection, doc, Firestore, getDoc, getDocs, query, setDoc} from "firebase/firestore";
 import {classData} from "../../data/classData";
 import {NotificationContext} from "../../contexts/NotificationContext";
@@ -11,23 +11,17 @@ import {classfilter} from "../../styles/palette";
 import getIlvlRating from "../ManageRaids/utils/getIlvlRating";
 import {sortByName} from "../../utils/sortByName";
 import {PlayerContext} from "../../contexts/PlayerContext";
-
-const getAllRaidSignupData = async (db: Firestore) => {
-    const q = query(collection(db, "signups"))
-    const querySnapshot = await getDocs(q)
-    let result = new Map()
-    querySnapshot.forEach((doc: { id: any; data: () => any; }) => {
-        // console.log(doc.id, " => ", doc.data());
-        result.set(doc.id, doc.data())
-    })
-    return result
-}
+import {ThemeDropdown} from "../../components/Navbar/styles";
+import getAllRaidSignupData from "./utils/getAllRaidSignupData";
+import preferenceData from "../../data/preferenceData";
 
 const Signup = () => {
     const [signups, setSignups] = useState<any>(new Map())
     const [currentPlayerSignups, setCurrentPlayerSignups] = useState<any>(new Map())
     const [allPlayers, setAllPlayers] = useState<any>([])
     const [player, setPlayer] = useState<any>({name: "", characters: []})
+    const [raidPreferences, setRaidPreferences] = useState<any>(new Map())
+
     const [setNotification] = useContext(NotificationContext)
     const [trackedPlayer] = useContext(PlayerContext)
 
@@ -58,20 +52,22 @@ const Signup = () => {
     useEffect(() => {
         // update current signups for the selected player
         let result = new Map()
+        let preferences = new Map()
 
         for (let [key, value] of signups.entries()) {
             let tmp = []
-            // @ts-ignore
+            let pref = 0
             for (let i = 0; i < value.players.length; i++) {
-                // @ts-ignore
                 if (value.players[i].playerName === player.name) {
-                    // @ts-ignore
+                    pref = value.players[i].preference
                     tmp.push(player.characters.find((char: any) => char.name === value.players[i].name) || value.players[i])
                 }
             }
             result.set(key, tmp)
+            preferences.set(key, pref)
         }
 
+        setRaidPreferences(preferences)
         setCurrentPlayerSignups(result)
     }, [player.characters, player.name, signups])
 
@@ -89,6 +85,7 @@ const Signup = () => {
             tmp = allPlayers[idx]
             setPlayer({...tmp, origName: allPlayers[idx].name})
             setCurrentPlayerSignups(new Map())
+            setRaidPreferences(new Map())
         }
     }
 
@@ -136,9 +133,11 @@ const Signup = () => {
                 tmp = tmp.filter((char: any) => char.playerName !== player.name)
 
                 let signedChars = currentPlayerSignups.get(key)
+                let pref = raidPreferences.get(key)
                 if (key === undefined) continue
 
                 for (let char of signedChars) {
+                    char.preference = pref
                     tmp.push(char)
                 }
 
@@ -165,6 +164,12 @@ const Signup = () => {
         addLog(db, log)
     }
 
+    const updateRaidPreferences = (raid: any, val: any) => {
+        let prefs = structuredClone(raidPreferences)
+        prefs.set(raid, parseInt(val))
+        setRaidPreferences(prefs)
+    }
+
     return (<Wrapper>
         <Header>
             <PlayerSelect value={player.origName} onChange={changePlayer}>
@@ -181,6 +186,11 @@ const Signup = () => {
                     <RaidName style={{color: raidData[raid].color || "white"}}>
                         {/*@ts-ignore*/}
                         {raidData[raid].name}</RaidName>
+
+                    <PreferenceDropdown value={raidPreferences.get(raid) || 0} onChange={e => updateRaidPreferences(raid, e.target.value)}>
+                        {preferenceData.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
+                    </PreferenceDropdown>
+
                     <div>Eligible characters:</div>
 
                     <Roster>
