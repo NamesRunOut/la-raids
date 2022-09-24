@@ -205,7 +205,7 @@ const Home = () => {
                         return (
                             <Group key={name}>
                                 <Title>{name}</Title>
-                                <Roster>
+                                <Roster layout>
                                     {players.map((c: any) => <React.Fragment key={c.name}>
                                         <Lp>{i++}.</Lp>
                                         <PName onClick={() => highlightedPlayer === c.playerName ? setHighlightedPlayer("") : setHighlightedPlayer(c.playerName)}

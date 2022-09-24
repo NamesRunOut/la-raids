@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Raid = styled.div`
@@ -24,18 +25,18 @@ export const Title = styled.h2`
   }
 `
 
-export const Roster = styled.div`
+export const Roster = styled(motion.div)`
   display: grid;
   grid-template-columns: min-content 1fr 1fr min-content;
   gap: 0.1rem;
   grid-column-gap: 0.5rem;
 `
 
-export const Lp = styled.div`
+export const Lp = styled(motion.div)`
   margin-right: 0.5rem;
 `
 
-export const PName = styled.div`
+export const PName = styled(motion.div)`
   max-width: 10rem;
   overflow: hidden;
   width: max-content;
@@ -49,7 +50,7 @@ export const PName = styled.div`
   }
 `
 
-export const PclassWrapper = styled.div`
+export const PclassWrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -62,7 +63,7 @@ export const PClassImage = styled.img`
 
 export const PClass = styled.div``
 
-export const Pilvl = styled.div`
+export const Pilvl = styled(motion.div)`
 `
 
 export const Character = styled.div`
