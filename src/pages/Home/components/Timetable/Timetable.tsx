@@ -21,30 +21,41 @@ import isInGroup from "../../utils/isInGroup";
 const Timetable:React.FC <{selected: string, raid: any, highlightedPlayer: string}> = ({selected, raid, highlightedPlayer}) => {
     const [timetable, setTimetable] = useState([])
     const [raidPercent, setRaidPercent] = useState(0)
-    let dStart = new Date("2022-12-01T20:00:00")
-    let minutesPerSlot = 30
+    // @ts-ignore
+    let minutesPerSlot = raidData[selected].time
+    let startHour = "19:05:00"
+    let dStart = new Date(`2022-12-01T${startHour}`)
 
     useEffect(() => {
         setTimetable(calculateTimetable(Object.entries(raid).filter(el => el[0] !== "comment").sort(compareGroupName)))
+        setRaidPercent(0)
     }, [raid])
+
+    const calcRaidPercent = () => {
+        let offset = 1 // UTC+1 == server time
+        let localDate = new Date()
+        let utcDate = localDate.getTime() + (localDate.getTimezoneOffset() * 60000)
+        let date = new Date(utcDate + (3600000*offset))
+
+        // let date = new Date('2022-09-22T21:30:00')
+        let weekDay = date.getDay()
+        let startTime = new Date(`${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T${startHour}`)
+        let finishTime = new Date(startTime.getTime() + (timetable.length)*minutesPerSlot*60000)
+
+        // @ts-ignore
+        let q = Math.abs(date-startTime)
+        // @ts-ignore
+        let d = Math.abs(finishTime-startTime)
+        // @ts-ignore
+        if (weekDay === raidData[selected].raidDay && date >= startTime){
+            // console.log(utcDate, date, Math.round((q/d)*100))
+            setRaidPercent(Math.round((q/d)*100))
+        }
+    }
 
     useEffect(() => {
         let timer = setInterval(() => {
-            let date = new Date()
-            // let date = new Date('2022-09-22T21:30:00')
-            let weekDay = date.getDay()
-            let startTime = new Date(`${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T20:00:00`)
-            let finishTime = new Date(startTime.getTime() + (timetable.length)*minutesPerSlot*60000)
-
-            // @ts-ignore
-            let q = Math.abs(date-startTime)
-            // @ts-ignore
-            let d = Math.abs(finishTime-startTime)
-            // @ts-ignore
-            if (weekDay === raidData[selected].raidDay && date >= startTime){
-                // console.log(Math.round((q/d)*100))
-                setRaidPercent(Math.round((q/d)*100))
-            }
+            calcRaidPercent()
         }, 1000)
 
         return () => clearInterval(timer)
@@ -52,7 +63,7 @@ const Timetable:React.FC <{selected: string, raid: any, highlightedPlayer: strin
 
     return (<Wrapper>
         <SecondaryTitle>Suggested timetable</SecondaryTitle>
-        <Disclaimer>(start times not final, just suggestions/assumptions)</Disclaimer>
+        <Disclaimer>(start times are in server time and are not final)</Disclaimer>
         <Table>
             <TimeIndicator
                 style={{
