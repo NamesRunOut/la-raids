@@ -11,7 +11,7 @@ import gunslinger from '../utils/classIcons/gunslinger.png'
 import artillerist from '../utils/classIcons/artillerist.png'
 import deadeye from '../utils/classIcons/deadeye.png'
 import sharpshooter from '../utils/classIcons/sharpshooter.png'
-import machinist from '../utils/classIcons/sharpshooter.png'
+import machinist from '../utils/classIcons/machinist.png'
 import bard from '../utils/classIcons/bard.png'
 import sorceress from '../utils/classIcons/sorceress.png'
 import arcanist from '../utils/classIcons/arcana.png'
@@ -85,7 +85,6 @@ export const classData = {
         color: "#603503"
     },
     Machinist: {
-        // TODO get icon for machinist
         image: machinist,
         imageHue: 0,
         color: "#603503"

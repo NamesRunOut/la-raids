@@ -4,7 +4,6 @@ import {NotificationContext} from "../../contexts/NotificationContext";
 import {PlayerContext} from "../../contexts/PlayerContext";
 import {addLog, character_class, getPlayers, player as playerI} from "../../firebase/utils";
 import {db} from "../../firebase/init";
-import {sortByName} from "../../utils/sortByName";
 import {CClass, Character, CharacterTemplate, CIlvl, CName, Header, Setting, Wrapper} from "./styles";
 import {Add, Option, PlayerSelect, Remove, Save} from "../../styles/common";
 import {classData} from "../../data/classData";
@@ -17,6 +16,7 @@ import changeClass from "./utils/changeClass";
 import changeIlvl from "./utils/changeIlvl";
 import removeCharacter from "./utils/removeCharacter";
 import saveChanges from "./utils/saveChanges";
+import {sortByName} from "../../utils/sortByName";
 
 const EditPlayer = () => {
     const [player, setPlayer] = useState<any>({origName: "", name: "", characters: []})
@@ -74,7 +74,7 @@ const EditPlayer = () => {
                     <CName value={char.name} onChange={e => changeName(e, char.id, player, setPlayer)}/>
                     <CClass value={char.class || character_class[character_class.Berserker]}
                             onChange={(e) => changeClass(e, char.id, player, setPlayer)}>
-                        {Object.keys(classData).map((spec: any) => <option key={char.name + spec} value={spec}>{spec}</option>)}
+                        {Object.keys(classData).sort().map((spec: any) => <option key={char.name + spec} value={spec}>{spec}</option>)}
                     </CClass>
                     <CIlvl type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id, player, setPlayer)}/>
                     <Remove onClick={() => removeCharacter(char, player, setPlayer)}>X</Remove>

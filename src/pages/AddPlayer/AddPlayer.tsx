@@ -41,7 +41,7 @@ const AddPlayer = () => {
                     <CName value={char.name} onChange={e => changeName(e, char.id, player, setPlayer)}/>
                     <CClass value={char.class || character_class[character_class.Berserker]}
                             onChange={(e) => changeClass(e, char.id, player, setPlayer)}>
-                        {Object.keys(classData).map((spec: any) => <option key={`${char.id}-${spec}`}
+                        {Object.keys(classData).sort().map((spec: any) => <option key={`${char.id}-${spec}`}
                                                                            value={spec}>{spec}</option>)}
                     </CClass>
                     <CIlvl type="number" value={char.ilvl} onChange={e => changeIlvl(e, char.id, player, setPlayer)}/>
