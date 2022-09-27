@@ -34,6 +34,7 @@ export enum character_class {
     Artillerist,
     Deadeye,
     Sharpshooter,
+    Machinist,
     Bard,
     Sorceress,
     Arcanist,

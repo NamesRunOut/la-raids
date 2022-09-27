@@ -36,6 +36,7 @@ import isHighlighted from "./utils/isHighlighted";
 import calculateTimetable from "./utils/calculateTimetable";
 import Timetable from "./components/Timetable/Timetable";
 import { doc, onSnapshot } from "firebase/firestore";
+import kikotot from '../../utils/youowememikotot.png'
 
 const Home = () => {
     const [selected, setSelected] = useState(getRaidForToday())
@@ -84,6 +85,8 @@ const Home = () => {
 
     return (<PageWrapper>
         <Title>Upcoming raids</Title>
+
+        <img src={kikotot} alt={"You owe me 1000g Mikotot"} style={{width: "max-content", height: "max-content"}} />
 
         <Calendar>
             <Day>

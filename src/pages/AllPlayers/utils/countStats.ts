@@ -22,6 +22,7 @@ const countStats = (players: Array<any>) => {
         {name: 'Artillerist', value: 0, color: classData.Artillerist.color},
         {name: 'Deadeye', value: 0, color: classData.Deadeye.color},
         {name: 'Sharpshooter', value: 0, color: classData.Sharpshooter.color},
+        {name: 'Machinist', value: 0, color: classData.Machinist.color},
         {name: 'Bard', value: 0, color: classData.Bard.color},
         {name: 'Sorceress', value: 0, color: classData.Sorceress.color},
         {name: 'Arcanist', value: 0, color: classData.Arcanist.color},
@@ -103,25 +104,29 @@ const countStats = (players: Array<any>) => {
                     classes[2].value = classes[2].value+1
                     specs[12].value = specs[12].value+1
                     break;
-                case "Bard":
-                    classes[3].value = classes[3].value+1
+                case "Machinist":
+                    classes[2].value = classes[2].value+1
                     specs[13].value = specs[13].value+1
                     break;
-                case "Sorceress":
+                case "Bard":
                     classes[3].value = classes[3].value+1
                     specs[14].value = specs[14].value+1
                     break;
-                case "Arcanist":
+                case "Sorceress":
                     classes[3].value = classes[3].value+1
                     specs[15].value = specs[15].value+1
                     break;
+                case "Arcanist":
+                    classes[3].value = classes[3].value+1
+                    specs[16].value = specs[16].value+1
+                    break;
                 case "Shadowhunter":
                     classes[4].value = classes[4].value+1
-                    specs[16].value = specs[16].value+1
+                    specs[17].value = specs[17].value+1
                     break;
                 case "Deathblade":
                     classes[4].value = classes[4].value+1
-                    specs[17].value = specs[17].value+1
+                    specs[18].value = specs[18].value+1
                     break;
             }
         }

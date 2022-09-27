@@ -68,7 +68,7 @@ export const raidData = {
         reclvl: 1485,
         groupSize: 4,
         name: "Kakul Saydon",
-        raidDay: -1,
+        raidDay: 3,
         time: 120
     },
     Brelshaza: {
