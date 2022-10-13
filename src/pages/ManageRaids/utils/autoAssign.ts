@@ -4,6 +4,10 @@ import {signedupgroupname} from "../../../data/consts";
 import {raidData} from "../../../data/raidData";
 import compareIlvl from "./compareIlvl";
 
+const playerIsAlreadyInGroup = (group, player) => {
+    return group.some(el => el.playerName === player.playerName)
+}
+
 const autoAssign = (raid: string, elements: any, setElements: any) => {
     reset(elements, setElements)
     let signedUp = elements[signedupgroupname]
@@ -15,92 +19,107 @@ const autoAssign = (raid: string, elements: any, setElements: any) => {
     let supportClasses = ["Bard", "Paladin"]
 
     // sort by ilvl
-    signedUp.sort(compareIlvl)
+    signedUp.sort(compareIlvl).reverse()
 
     let dpsPlayers = signedUp.filter(c => !supportClasses.includes(c.class))
     let supportPlayers = signedUp.filter(c => supportClasses.includes(c.class))
 
-    // assign at least groupMax/4 supports
+    // assign half required supports of lowest rank
     let supportNumber = groupMax / 4
+    let halfReqSupports = Math.ceil(supportNumber / 2)
+
+    // for (let i=0;i<retries;i++)
     for (let group = 0; group < groups.length; group++) {
         let suppsInGroup = 0
         let newSups = supportPlayers
-        let sIdx = 0
-        let eIdx = newSups.length - 1
+        let eIdx = newSups.length
 
-        while (suppsInGroup < Math.ceil(supportNumber / 2)) {
-            if (supportPlayers.length < 1 || groups[group].length >= groupMax || eIdx < 0) break
-            if (!groups[group].some(el => el.playerName === newSups[eIdx].playerName)) {
-                suppsInGroup++
-                groups[group].push(newSups[eIdx])
-                let elIdx = supportPlayers.indexOf(newSups[eIdx])
-                supportPlayers.splice(elIdx, 1)
-            }
+        while (suppsInGroup < halfReqSupports) {
+            if (supportPlayers.length < 1 || groups[group].length >= halfReqSupports || groups[group].length >= groupMax || eIdx < 0) break
+
             eIdx--
-        }
 
-        newSups = supportPlayers
+            if (playerIsAlreadyInGroup(groups[group], newSups[eIdx])) continue
 
-        while (suppsInGroup < supportNumber) {
-            if (supportPlayers.length < 1 || groups[group].length >= groupMax || sIdx > newSups.length - 1) break
-            if (!groups[group].some(el => el.playerName === newSups[sIdx].playerName)) {
-                suppsInGroup++
-                groups[group].push(newSups[sIdx])
-                let elIdx = supportPlayers.indexOf(newSups[sIdx])
-                supportPlayers.splice(elIdx, 1)
-            }
-            sIdx++
+            suppsInGroup++
+            groups[group].push(newSups[eIdx])
+            let elIdx = supportPlayers.indexOf(newSups[eIdx])
+            supportPlayers.splice(elIdx, 1)
         }
     }
 
-    // TODO recommended ilvl
-
-    // assign dps to groups
+    // assign half required dps of lowest rank
     let dpsNumber = groupMax - supportNumber
+    let halfReqDps = Math.ceil(dpsNumber / 2)
+    // for (let i=0;i<retries;i++)
     for (let group = 0; group < groups.length; group++) {
         let dpsInGroup = 0
         let newDps = dpsPlayers
-        let sIdx = 0
-        let eIdx = newDps.length - 1
 
-        while (dpsInGroup < Math.ceil(dpsNumber / 2)) {
-            if (dpsPlayers.length < 1 || groups[group].length >= groupMax || eIdx < 0) break
-            if (!groups[group].some(el => el.playerName === newDps[eIdx].playerName)) {
-                dpsInGroup++
-                groups[group].push(newDps[eIdx])
-                let elIdx = dpsPlayers.indexOf(newDps[eIdx])
-                dpsPlayers.splice(elIdx, 1)
-            }
-            eIdx--
-        }
+        let eIdx = newDps.length
 
-        newDps = dpsPlayers
+        while (dpsInGroup < halfReqDps) {
+            if (dpsPlayers.length < 1 || groups[group].length >= (halfReqDps + halfReqSupports) || groups[group].length >= groupMax || eIdx < 0) break
 
-        while (dpsInGroup < groupMax) {
-            if (dpsPlayers.length < 1 || groups[group].length >= groupMax || sIdx > newDps.length - 1) break
-            if (!groups[group].some(el => el.playerName === newDps[sIdx].playerName)) {
-                dpsInGroup++
-                groups[group].push(newDps[sIdx])
-                let elIdx = dpsPlayers.indexOf(newDps[sIdx])
-                dpsPlayers.splice(elIdx, 1)
-            }
-            sIdx++
+            eIdx = eIdx - 1
+            if (playerIsAlreadyInGroup(groups[group], newDps[eIdx])) continue
+
+            dpsInGroup++
+            groups[group].push(newDps[eIdx])
+            let elIdx = dpsPlayers.indexOf(newDps[eIdx])
+            dpsPlayers.splice(elIdx, 1)
         }
     }
 
+    // equally distribute highest ranking supports
+    // for (let i=0;i<retries;i++){
+    let newSups = structuredClone(supportPlayers)
+    for (let player = 0; player < newSups.length; player++) {
+        for (let group = 0; group < groups.length; group++) {
+            let noSupportsInGroup = 0
+            for (let p of groups[group]) {
+                if (supportClasses.some(el => el === p.class)) noSupportsInGroup++
+            }
+            if (supportPlayers.length < 1 || groups[group].length >= groupMax || noSupportsInGroup >= supportNumber) continue
+            if (playerIsAlreadyInGroup(groups[group], newSups[player])) continue
+
+            groups[group].push(newSups[player])
+            let elIdx = supportPlayers.findIndex(c => c.name === newSups[player].name && c.playerName === newSups[player].playerName)
+            supportPlayers.splice(elIdx, 1)
+            break
+        }
+    }
+    // }
+
+    // equally distribute highest ranking dps
+    // for (let i=0;i<retries;i++){
+    let newDps = structuredClone(dpsPlayers)
+    for (let player = 0; player < newDps.length; player++) {
+        for (let group = 0; group < groups.length; group++) {
+            if (dpsPlayers.length < 1 || groups[group].length >= groupMax) continue
+            if (playerIsAlreadyInGroup(groups[group], newDps[player])) continue
+
+            groups[group].push(newDps[player])
+            let elIdx = dpsPlayers.findIndex(c => c.name === newDps[player].name && c.playerName === newDps[player].playerName)
+            dpsPlayers.splice(elIdx, 1)
+            break
+        }
+    }
+    // }
+
     // assign leftovers to groups
     let leftovers = [dpsPlayers, supportPlayers].flat()
-    for (let group = 0; group < groups.length; group++) {
-        for (let i = 0; i < groupMax; i++) {
-            // weakest first
-            if (leftovers.length < 1 || groups[group].length >= groupMax) break
-            if (!groups[group].some(el => el.playerName === leftovers[0].playerName))
-                groups[group].push(leftovers.shift())
+    // for (let i=0;i<retries;i++)
+    let newLeftovers = leftovers
+    for (let player = 0; player < newLeftovers.length; player++) {
+        for (let group = 0; group < groups.length; group++) {
+            if (leftovers.length < 1 || groups[group].length >= groupMax) continue
+            if (playerIsAlreadyInGroup(groups[group], newLeftovers[player])) continue
 
-            // strongest last
-            if (leftovers.length < 1 || groups[group].length >= groupMax) break
-            if (!groups[group].some(el => el.playerName === leftovers[leftovers.length - 1].playerName))
-                groups[group].push(leftovers.pop())
+            groups[group].push(newLeftovers[player])
+            let elIdx = leftovers.findIndex(c => c.name === newLeftovers[player].name && c.playerName === newLeftovers[player].playerName)
+            leftovers.splice(elIdx, 1)
+            break
         }
     }
 

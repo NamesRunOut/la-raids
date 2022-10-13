@@ -34,11 +34,20 @@ const DraggableElement: React.FC<{ prefix: string, elements: any, allElements: a
         return count === 1
     }
 
+    const avgIlvl = (players) => {
+        let result = 0
+        for (let p of players){
+            result += p.ilvl
+        }
+        return players.length === 0 ? 0 : Math.round(result/players.length)
+    }
+
     return (
         <DroppableStyles>
             <ColumnHeader>
                 <GroupName>{prefix}</GroupName>
                 <div>{elements.length}/{raidData[raid].groupSize}</div>
+                <div>avg {avgIlvl(elements)}</div>
                 <Remove onClick={removeGroup}>X</Remove>
             </ColumnHeader>
 

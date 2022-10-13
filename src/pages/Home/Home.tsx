@@ -85,6 +85,11 @@ const Home = () => {
     return (<PageWrapper>
         <Title>Upcoming raids</Title>
 
+        {/*<iframe src="https://discord.com/widget?id=942365404116946955&theme=dark" width="350" height="500"*/}
+        {/*    //@ts-ignore*/}
+        {/*    allowTransparency="true" frameBorder="0"*/}
+        {/*    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"/>*/}
+
         <Calendar>
             <Day>
                 <b>Monday</b>
