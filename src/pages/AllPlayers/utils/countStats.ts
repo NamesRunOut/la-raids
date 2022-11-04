@@ -27,7 +27,8 @@ const countStats = (players: Array<any>) => {
         {name: 'Sorceress', value: 0, color: classData.Sorceress.color},
         {name: 'Arcanist', value: 0, color: classData.Arcanist.color},
         {name: 'Shadowhunter', value: 0, color: classData.Shadowhunter.color},
-        {name: 'Deathblade', value: 0, color: classData.Deathblade.color}
+        {name: 'Deathblade', value: 0, color: classData.Deathblade.color},
+        {name: 'Reaper', value: 0, color: classData.Reaper.color}
     ]
     let ilvls = [
         {name: '<=1370', value: 0, color: '#816ba8'},
@@ -127,6 +128,10 @@ const countStats = (players: Array<any>) => {
                 case "Deathblade":
                     classes[4].value = classes[4].value+1
                     specs[18].value = specs[18].value+1
+                    break;
+                case "Reaper":
+                    classes[4].value = classes[4].value+1
+                    specs[19].value = specs[19].value+1
                     break;
             }
         }

@@ -5,7 +5,7 @@ export const raidData = {
         reclvl: 1400,
         groupSize: 8,
         name: "Argos P3",
-        raidDay: 4,
+        raidDay: 0,
         time: 20
     },
     Valtan_nm: {
@@ -44,22 +44,13 @@ export const raidData = {
         raidDay: 6,
         time: 40
     },
-    Vykas_hm_1: {
+    Vykas_hm: {
         color: "#ce399a",
         minlvl: 1460,
         reclvl: 1460,
         groupSize: 8,
-        name: "Vykas Hard Wednesday",
-        raidDay: 3,
-        time: 40
-    },
-    Vykas_hm_2: {
-        color: "#ce399a",
-        minlvl: 1460,
-        reclvl: 1460,
-        groupSize: 8,
-        name: "Vykas Hard Sunday",
-        raidDay: 0,
+        name: "Vykas Hard",
+        raidDay: 4,
         time: 40
     },
     Kakul_saydon: {
@@ -85,7 +76,7 @@ export const raidData = {
         minlvl: 1370,
         reclvl: 1400,
         groupSize: 8,
-        name: "Snowpang Enjoyers",
+        name: "Pepega GvG",
         raidDay: 0,
         time: 60
     }

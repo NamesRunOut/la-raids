@@ -40,6 +40,7 @@ export enum character_class {
     Arcanist,
     Shadowhunter,
     Deathblade,
+    Reaper
 }
 
 export interface character {
