@@ -5,7 +5,7 @@ export const raidData = {
         reclvl: 1400,
         groupSize: 8,
         name: "Argos P3",
-        raidDay: 0,
+        raidDay: -1,
         time: 20
     },
     Valtan_nm: {
@@ -14,7 +14,7 @@ export const raidData = {
         reclvl: 1415,
         groupSize: 8,
         name: "Valtan Normal",
-        raidDay: 1,
+        raidDay: -1,
         time: 30
     },
     Valtan_hm: {
@@ -32,7 +32,7 @@ export const raidData = {
         reclvl: 1415,
         groupSize: 8,
         name: "Valtan Inferno",
-        raidDay: 2,
+        raidDay: -1,
         time: 120
     },
     Vykas_nm: {
@@ -41,7 +41,7 @@ export const raidData = {
         reclvl: 1430,
         groupSize: 8,
         name: "Vykas Normal",
-        raidDay: 6,
+        raidDay: -1,
         time: 40
     },
     Vykas_hm: {
@@ -59,16 +59,34 @@ export const raidData = {
         reclvl: 1485,
         groupSize: 4,
         name: "Kakul Saydon",
-        raidDay: 3,
+        raidDay: -1,
         time: 120
     },
     Brelshaza: {
         color: "#3957ce",
         minlvl: 1490,
         reclvl: 1505,
-        groupSize: 4,
-        name: "2nd best waifu",
-        raidDay: -1,
+        groupSize: 8,
+        name: "Queen (Wed)",
+        raidDay: 3,
+        time: 120,
+    },
+    Brelshaza_2: {
+        color: "#3957ce",
+        minlvl: 1490,
+        reclvl: 1505,
+        groupSize: 8,
+        name: "Queen (Sat)",
+        raidDay: 6,
+        time: 120,
+    },
+    Brelshaza_3: {
+        color: "#3957ce",
+        minlvl: 1490,
+        reclvl: 1505,
+        groupSize: 8,
+        name: "Queen (Sun)",
+        raidDay: 0,
         time: 120,
     },
     Gvg: {
@@ -77,7 +95,7 @@ export const raidData = {
         reclvl: 1400,
         groupSize: 8,
         name: "Pepega GvG",
-        raidDay: 0,
+        raidDay: -1,
         time: 60
     }
 }

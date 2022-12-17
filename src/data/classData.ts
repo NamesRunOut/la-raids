@@ -15,6 +15,7 @@ import machinist from '../utils/classIcons/machinist.png'
 import bard from '../utils/classIcons/bard.png'
 import sorceress from '../utils/classIcons/sorceress.png'
 import arcanist from '../utils/classIcons/arcana.png'
+import summoner from '../utils/classIcons/summoner.png'
 import shadowhunter from '../utils/classIcons/shadowhunter.png'
 import deathblade from '../utils/classIcons/deathblade.png'
 import reaper from '../utils/classIcons/reaper.png'
@@ -102,6 +103,11 @@ export const classData = {
     },
     Arcanist: {
         image: arcanist,
+        imageHue: 310,
+        color: "#631414"
+    },
+    Summoner: {
+        image: summoner,
         imageHue: 310,
         color: "#631414"
     },

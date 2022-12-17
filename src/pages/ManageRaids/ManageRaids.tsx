@@ -9,10 +9,11 @@ import {NotificationContext} from "../../contexts/NotificationContext";
 import {Action} from './components/styles'
 import {getSignup} from "./utils/getSignup";
 import {PlayerContext} from "../../contexts/PlayerContext";
+import getRaidForToday from "../Home/utils/getRaidForToday";
 
 const ManageRaids = () => {
     const [signups, setSignups] = useState<any>({comment: "", players: []})//useState<Array<signups>>([])
-    const [selected, setSelected] = useState(Object.keys(raidData)[0])
+    const [selected, setSelected] = useState(getRaidForToday())
     const [setNotification] = useContext(NotificationContext)
     const [trackedPlayer] = useContext(PlayerContext)
 

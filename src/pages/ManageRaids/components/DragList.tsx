@@ -51,7 +51,7 @@ const DragList: React.FC<{ raid: string, data: { comment: string, players: Array
             }
         }
 
-        for (let gr = 1; gr <= (Math.floor(allPlayers / raidData[raid].groupSize) + 1 || 2); gr++) {
+        for (let gr = 1; gr <= (Math.max(Object.keys(dataClone).length - 2, Math.floor(allPlayers / raidData[raid].groupSize) + 1 || 2)); gr++) {
             raidD[`group${gr}`] = []
             if (dataClone[`group${gr}`] && dataClone[`group${gr}`].length > 0) {
                 raidD[`group${gr}`] = [...dataClone[`group${gr}`]]

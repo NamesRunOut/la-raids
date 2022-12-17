@@ -23,7 +23,7 @@ const Timetable:React.FC <{selected: string, raid: any, highlightedPlayer: strin
     const [raidPercent, setRaidPercent] = useState(0)
     // @ts-ignore
     let minutesPerSlot = raidData[selected].time
-    let startHour = "19:05:00"
+    let startHour = "20:00:00"
     let dStart = new Date(`2022-12-01T${startHour}`)
 
     useEffect(() => {

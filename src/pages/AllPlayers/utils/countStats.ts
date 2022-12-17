@@ -26,6 +26,7 @@ const countStats = (players: Array<any>) => {
         {name: 'Bard', value: 0, color: classData.Bard.color},
         {name: 'Sorceress', value: 0, color: classData.Sorceress.color},
         {name: 'Arcanist', value: 0, color: classData.Arcanist.color},
+        {name: 'Summoner', value: 0, color: classData.Summoner.color},
         {name: 'Shadowhunter', value: 0, color: classData.Shadowhunter.color},
         {name: 'Deathblade', value: 0, color: classData.Deathblade.color},
         {name: 'Reaper', value: 0, color: classData.Reaper.color}
@@ -121,17 +122,21 @@ const countStats = (players: Array<any>) => {
                     classes[3].value = classes[3].value+1
                     specs[16].value = specs[16].value+1
                     break;
-                case "Shadowhunter":
-                    classes[4].value = classes[4].value+1
+                case "Summoner":
+                    classes[3].value = classes[3].value+1
                     specs[17].value = specs[17].value+1
                     break;
-                case "Deathblade":
+                case "Shadowhunter":
                     classes[4].value = classes[4].value+1
                     specs[18].value = specs[18].value+1
                     break;
-                case "Reaper":
+                case "Deathblade":
                     classes[4].value = classes[4].value+1
                     specs[19].value = specs[19].value+1
+                    break;
+                case "Reaper":
+                    classes[4].value = classes[4].value+1
+                    specs[20].value = specs[20].value+1
                     break;
             }
         }
