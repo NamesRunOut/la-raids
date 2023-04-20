@@ -5,7 +5,7 @@ export async function getPlayers(db: Firestore) {
     const players = collection(db, 'players');
     const playersSnapshot = await getDocs(players);
     const playersList = playersSnapshot.docs.map(doc => doc.data());
-    console.log(playersList)
+    // console.log(playersList)
     return playersList;
 }
 
@@ -42,7 +42,8 @@ export enum character_class {
     Summoner,
     Shadowhunter,
     Deathblade,
-    Reaper
+    Reaper,
+    Artist
 }
 
 export interface character {

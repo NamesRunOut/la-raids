@@ -19,6 +19,7 @@ import summoner from '../utils/classIcons/summoner.png'
 import shadowhunter from '../utils/classIcons/shadowhunter.png'
 import deathblade from '../utils/classIcons/deathblade.png'
 import reaper from '../utils/classIcons/reaper.png'
+import artist from '../utils/classIcons/artist.png'
 
 export const classData = {
     Berserker: {
@@ -125,5 +126,10 @@ export const classData = {
         image: reaper,
         imageHue: 250,
         color: "#5c145c"
+    },
+    Artist: {
+        image: artist,
+        imageHue: 16,
+        color: "#937f02"
     }
 }

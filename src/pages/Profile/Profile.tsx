@@ -66,7 +66,7 @@ const Profile = () => {
                                 <CharName>{char.name}</CharName>
                                 {/*@ts-ignore*/}
                                 <CharIlvl
-                                    style={{color: getIlvlRating(char.ilvl, raidData["Argos_p3"].minlvl || 0) || "black"}}>{char.ilvl}</CharIlvl>
+                                    style={{color: getIlvlRating(char.ilvl, raidData["Brelshaza"].minlvl || 0) || "black"}}>{char.ilvl}</CharIlvl>
                             </PlayerCharacter>)}
                     </PlayerCharacters>
                 </Characters>

@@ -35,7 +35,6 @@ const Players = () => {
             .then(r => {
                 // @ts-ignore
                 setPlayers(r.sort(sortByName))
-
                 let stats = countStats(r)
                 setStats({
                     classDistribution: stats.classDistribution,

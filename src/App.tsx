@@ -18,7 +18,7 @@ import getThemeData from "./utils/getThemeData";
 import Profile from "./pages/Profile/Profile";
 
 const App = () => {
-    const [selected, setSelected] = useState("")
+    const [selected, setSelected] = useState("/")
     const [theme, setTheme] = useState('theme1')
 
     return (

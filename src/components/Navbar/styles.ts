@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
+const base_icon_width = "1rem"
+
 export const Pages = styled.nav`
   padding: 0.25rem;
   display: flex;
@@ -8,19 +10,42 @@ export const Pages = styled.nav`
   justify-content: flex-start;
   align-items: center;
   gap: 0.25rem;
+  transition: all 0.5s;
 `
 
 export const PageLink = styled(Link)`
   text-decoration: none;
-  color: ${({ theme }) => theme.lighttext};
-  background: ${({ theme }) => theme.navbuttonbg};
-  width: max-content;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
+  color: ${({ theme }) => theme.navbuttonhover};
+  background: transparent;//${({ theme }) => theme.navbuttonbg};
+  padding: 0.25rem 0.65rem;
+  border-radius: 2rem;
+  transition: all 0.5s;
+  border: 1px solid ${({ theme }) => theme.navbuttonhover};
+  overflow: hidden;
+  width: 1.3rem;
 
   :hover {
-    color: ${({ theme }) => theme.navbuttonhover};
+    color: ${({ theme }) => theme.lighttext};
+    border: 1px solid ${({ theme }) => theme.lighttext};
   }
+`
+
+export const InnerLink = styled.div`
+  width: max-content;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  position: relative;
+`
+
+export const Indicator = styled.div`
+  width: 1.3rem;
+  height: 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const ThemeDropdown = styled.select`
